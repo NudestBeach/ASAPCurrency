@@ -7,4 +7,12 @@
     <groupId>net.sharksystem</groupId>
     <artifactId>ASAPJava</artifactId>
     <version>0.0.1</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.sharksystem</groupId>
+            <artifactId>ASAPJava</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
 </project>
