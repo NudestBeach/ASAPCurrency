@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added ASAPJava">
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/api/API.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Hab schon mal ein interface erstellt (wahrscheinlich falsch)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Currency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/API.java" beforeDir="false" />
     </list>
+    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="" />
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,15 +23,31 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Luxis-light"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/NudestBeach/ASAPCurrency.git",
+    "accountId": "2d18a685-f6fc-4431-b4e5-c3e4bbb3148b"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="36G9i6THT93k1od6y0UL8z47FHp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -37,15 +59,29 @@
     "Maven.ASAPJava [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/kacper/Projects/gitRepos/ASAPCurrency/lib",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
     </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -55,6 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764622166137</updated>
+      <workItem from="1764784343743" duration="3280000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -70,8 +107,19 @@
       <option name="project" value="LOCAL" />
       <updated>1764624326856</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hab schon mal ein interface erstellt (wahrscheinlich falsch)">
+      <option name="closed" value="true" />
+      <created>1764625800125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764625800125</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -87,6 +135,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create Maven Repository" />
     <MESSAGE value="Added ASAPJava" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ASAPJava" />
+    <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
   </component>
 </project>
