@@ -25,6 +25,6 @@ public interface SharkCurrency{
      * TODO: talk about this shyt because we dont know yet,
      * Idea is that we persist a currency that we configured
      */
-    public boolean saveCurrencyInmemory(Currenc);
+    public boolean saveCurrencyInmemory(Currency currency);
 
 }

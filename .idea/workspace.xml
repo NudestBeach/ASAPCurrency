@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Hab schon mal ein interface erstellt (wahrscheinlich falsch)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Currency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/Listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/API.java" beforeDir="false" />
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Did some improvements and updated the in genereal the projekt" />
+    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
     </list>
-    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +86,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764622166137</updated>
-      <workItem from="1764784343743" duration="3280000" />
+      <workItem from="1764784343743" duration="3426000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -115,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764625800125</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Did some improvements and updated the in genereal the projekt">
+      <option name="closed" value="true" />
+      <created>1764787779695</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1764787779695</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +139,7 @@
     <MESSAGE value="Create Maven Repository" />
     <MESSAGE value="Added ASAPJava" />
     <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
+    <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Did some improvements and updated the in genereal the projekt" />
   </component>
 </project>
