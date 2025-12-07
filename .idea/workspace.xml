@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Did some improvements and updated the in genereal the projekt">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Signings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationExeption.java" afterDir="false" />
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationExeption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationException.java" afterDir="false" />
     </list>
-    <list id="9bf3909b-91db-4a17-a556-ea4c8bc28292" name="Changes by Eric M" comment="">
+    <list id="9bf3909b-91db-4a17-a556-ea4c8bc28292" name="Changes by Eric M" comment="" />
+    <list id="76aa3885-572b-443c-9add-b32aea8fb115" name="Changes by kacper" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,17 +49,20 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java">
       <ranges>
-        <range start1="4" end1="4" start2="4" end2="9" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="11" end1="12" start2="16" end2="17" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="13" end1="13" start2="18" end2="23" changelist="9bf3909b-91db-4a17-a556-ea4c8bc28292" />
-        <range start1="14" end1="15" start2="24" end2="35" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="16" end1="17" start2="36" end2="38" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="19" end1="20" start2="40" end2="45" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="21" end1="22" start2="46" end2="47" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="24" end1="26" start2="49" end2="57" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="27" end1="28" start2="58" end2="69" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="29" end1="30" start2="70" end2="105" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="31" end1="31" start2="106" end2="110" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="3" end1="3" start2="3" end2="4" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="7" end1="7" start2="8" end2="9" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="8" end1="9" start2="10" end2="10" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="11" end1="13" start2="12" end2="14" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
+        <range start1="31" end1="32" start2="32" end2="33" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="36" end1="37" start2="37" end2="38" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="38" end1="38" start2="39" end2="55" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="39" end1="47" start2="56" end2="57" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
+        <range start1="49" end1="50" start2="59" end2="60" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="55" end1="56" start2="65" end2="66" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
+        <range start1="58" end1="59" start2="68" end2="69" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
+        <range start1="61" end1="61" start2="71" end2="88" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="70" end1="79" start2="97" end2="97" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="96" end1="109" start2="114" end2="114" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
       </ranges>
     </file>
   </component>
@@ -117,7 +119,9 @@
       <option name="presentableId" value="Default" />
       <updated>1764622166137</updated>
       <workItem from="1764784343743" duration="3550000" />
-      <workItem from="1765026401740" duration="4883000" />
+      <workItem from="1765026401740" duration="5608000" />
+      <workItem from="1765049229670" duration="73000" />
+      <workItem from="1765133988995" duration="5038000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -157,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764787797059</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)">
+      <option name="closed" value="true" />
+      <created>1765031428395</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1765031428395</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +192,7 @@
     <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
     <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
     <MESSAGE value="Changes by Eric M" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by Eric M" />
+    <MESSAGE value="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)" />
   </component>
 </project>

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Represents a financial obligation or asset transfer within the network.
  * Based on the provided UML specification.
  */
-public interface Promise extends Serializable {
+public interface Promise extends  Serializable {
 
 
     /**

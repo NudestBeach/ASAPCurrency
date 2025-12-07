@@ -9,8 +9,19 @@ import currency.classes.Promise;
  */
 public interface ASAPCurrencyListener {
 
+
     /**
-     *
+     * If you get via Gossip a message that you can join a Group this method will be called.
+     * @param currencyUri The group you want to join
+     * @param groupDocument The group document with Metadata
+     * @param receiverId The ID of the sender
+     * @throws WrongDestinationException If the message does not belong to you.
+     */
+    void onGroupInviteReceived(String currencyUri, SharkGroupDocument groupDocument, byte[] receiverId) throws WrongDestinationException;
+
+
+    /**
+     * Called, when a new Promise comes in.
      * @param currencyUri
      * @param promise
      */
@@ -24,5 +35,4 @@ public interface ASAPCurrencyListener {
      */
     void onBalanceChanged(String currencyUri, int newBalance);
 
-    void onGroupInviteReceived(String currencyUri, SharkGroupDocument groupDocument, byte[] receiverId) throws WrongDestinationExeption;
 }

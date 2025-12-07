@@ -1,16 +1,17 @@
 package currency.api;
 
 
+import Group.SharkGroupDocument;
 import currency.classes.Currency;
 import currency.classes.Promise;
 import listener.ASAPCurrencyListener;
 import net.sharksystem.asap.ASAPException;
+import java.util.ArrayList;
 
-import java.util.List;
 
 /**
- * A SharkCurrency is a local trust based currency System for SharkPeers. It can be used to create whitelisted or public Group between SharkPeers to exchange currency.
- * A Group is always created by one SharkPeer and includes the creation of a new currency. The currency is always bound to the group and can only be exchanged between the members.
+ * A SharkCurrency is a local trust based currency System for SharkPeers. It can be used to create public or private (whitelisted) Groups between SharkPeers to exchange currency.
+ * A Group is always created by one SharkPeer and includes the creation of a new local currency. The currency is always bound to the group and can only be exchanged between its members.
  *
  *
  */
@@ -29,35 +30,61 @@ public interface SharkCurrency {
      * - If 'encrypted' is true, the channel messages should be encrypted (requires exchange of keys).
      * * @param currency       The currency object containing name and metadata.
      *
-     * @param whitelisted    If true, access is restricted to a specific list of peers (managed separately).
+     * @param whitelisted    It stands the different peers, which are allowed to communicate with each other
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPException If the group/channel cannot be established.
      */
-    void establishGroup(Currency currency, Boolean whitelisted, Boolean encrypted, Boolean balanceVisible)
+    void establishGroupWhitelisted(Currency currency, ArrayList whitelisted, boolean encrypted, boolean balanceVisible)
             throws ASAPException;
 
-    /**
-     * Joins an existing public currency group.
-     * Signals interest in the specific URI to the ASAP engine.
-     *
-     * @param currencyName The name of the currency to join.
-     * @throws ASAPException If the channel cannot be accessed.
-     */
-    void joinCurrencyGroup(String currencyName) throws ASAPException;
 
     /**
-     * Sends a specific amount of currency to another peer.
+     * Establishes a new currency group with specific configuration.
+     * * Mapping to ASAP concepts:
+     * - This creates an ASAP Channel with the URI based on currency.getName().
+     * - If 'encrypted' is true, the channel messages should be encrypted (requires exchange of keys).
+     * * @param currency       The currency object containing name and metadata.
+     *
+     * @param encrypted      If true, the communication within this group will be encrypted.
+     * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
+     * @throws ASAPException If the group/channel cannot be established.
+     */
+    void establishGroup(Currency currency, boolean encrypted, boolean balanceVisible)
+            throws ASAPException;
+
+
+
+
+    /**
+     * Sends a specific amount of Currency to another peer.
      * Creates a transaction, serializes it, and adds it to the ASAP channel.
      *
      * @param currencyName The name of the currency group.
      * @param recipientId  The ASAP Peer ID of the recipient.
      * @param amount       The amount to transfer.
-     * @param memo         An optional note for the transaction.
+     * @param note         An optional note for the transaction.
      * @throws ASAPException If the message cannot be sent.
      */
-    void sendCurrency(String currencyName, CharSequence recipientId, double amount, String memo)
+    void sendPromise(String currencyName, CharSequence recipientId, int amount, String note)
             throws ASAPException;
+
+
+    /**
+     * Cryptographically signs the promise with the local user's private key. We are using the SharkPKI.
+     * Updates the state from UNSIGNED to SIGNED_BY_DEBITOR.
+     * @param p The Promise that must be signed
+     */
+    void signPromise(Promise p) throws ASAPException;
+
+    /**
+     * Cryptographically signs the Group Document with the local user's private key. We are using the SharkPKI.
+     * Updates the state from SIGNED_BY_NONE to SIGNED_BY_SOME for an unsigned Group Document.
+     * Reaches the state of SIGNED_BY_ALL for a whitelisted Group if all members signed.
+     * An open Group can never reach the State of SIGNED_BY_ALL.
+     * @param groupDocument The Promise that must be signed
+     */
+    void signGroupDocument(SharkGroupDocument groupDocument) throws ASAPException;
 
     /**
      * Calculates the current balance for the local user in the specified currency.
@@ -68,15 +95,6 @@ public interface SharkCurrency {
      */
     double getBalance(String currencyName) throws ASAPException;
 
-    /**
-     * TODO Does this really matter
-     * Returns the transaction history for a specific currency.
-     * * @param currencyName The name of the currency.
-     *
-     * @return List of past transactions.
-     * @throws ASAPException
-     */
-    List<Promise> getHistory(String currencyName) throws ASAPException;
 
     /**
      * Registers a listener to receive updates about transactions and balance changes.
@@ -92,19 +110,6 @@ public interface SharkCurrency {
      * @param listener The listener to remove.
      */
     void removeCurrencyListener(ASAPCurrencyListener listener);
-
-
-    /**
-     * OWNER-ONLY: Adds a user to a private/encrypted group.
-     * Updates the internal recipient list (whitelist) of the channel.
-     *@param currencyName The name of the group.
-     *
-     * @param peerId The ID (Public Key) of the user to be authorized.
-     * @throws ASAPException If the current user is not the owner or the channel is missing.
-     */
-    void addMemberToGroup(String currencyName, String peerId) throws ASAPException;
-
-
 
 
 }
