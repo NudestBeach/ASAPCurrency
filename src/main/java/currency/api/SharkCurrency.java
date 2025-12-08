@@ -10,9 +10,10 @@ import java.util.ArrayList;
 
 
 /**
- * A SharkCurrency is a local trust based currency System for SharkPeers. It can be used to create public or private (whitelisted) Groups between SharkPeers to exchange currency.
- * A Group is always created by one SharkPeer and includes the creation of a new local currency. The currency is always bound to the group and can only be exchanged between its members.
- *
+ * A SharkCurrency is a local trust based currency System for SharkPeers.
+ * It can be used to create public or private (whitelisted) Groups between SharkPeers to exchange currency.
+ * A Group is always created by one SharkPeer and includes the creation of a new local currency.
+ * The currency is always bound to the group and can only be exchanged between its members.
  *
  */
 public interface SharkCurrency {
@@ -26,7 +27,7 @@ public interface SharkCurrency {
      * Establishes a new currency group with specific configuration.
      * * Mapping to ASAP concepts:
      * - This creates an ASAP Channel with the URI based on currency.getName().
-     * - If 'whitelisted' is true, this indicates a Closed Channel scenario.
+     * - If 'whitelisted' is pass, this indicates a Closed Channel scenario.
      * - If 'encrypted' is true, the channel messages should be encrypted (requires exchange of keys).
      * * @param currency       The currency object containing name and metadata.
      *
@@ -66,14 +67,16 @@ public interface SharkCurrency {
      * @param note         An optional note for the transaction.
      * @throws ASAPException If the message cannot be sent.
      */
-    void sendPromise(String currencyName, CharSequence recipientId, int amount, String note)
+    void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note)
             throws ASAPException;
+    // TODO: ASAPCurrencyException
 
 
     /**
      * Cryptographically signs the promise with the local user's private key. We are using the SharkPKI.
      * Updates the state from UNSIGNED to SIGNED_BY_DEBITOR.
      * @param p The Promise that must be signed
+     * TODO: Sinn von signPromise & signGroupDocument -> sinvoll für eine Blackbox?
      */
     void signPromise(Promise p) throws ASAPException;
 
@@ -93,7 +96,7 @@ public interface SharkCurrency {
      * @return The current balance.
      * @throws ASAPException If the history cannot be read.
      */
-    double getBalance(String currencyName) throws ASAPException;
+    int getBalance(CharSequence currencyName) throws ASAPException;
 
 
     /**

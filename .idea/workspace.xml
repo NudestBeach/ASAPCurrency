@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added ASAPJava">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationExeption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationException.java" afterDir="false" />
     </list>
-    <list id="9bf3909b-91db-4a17-a556-ea4c8bc28292" name="Changes by Eric M" comment="" />
-    <list id="76aa3885-572b-443c-9add-b32aea8fb115" name="Changes by kacper" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
-    </list>
+    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="" />
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,14 +21,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Class" />
-        <option value="Exception" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -40,37 +35,14 @@
     &quot;assignee&quot;: &quot;Luxis-light&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/NudestBeach/ASAPCurrency.git&quot;,
-    &quot;accountId&quot;: &quot;2d18a685-f6fc-4431-b4e5-c3e4bbb3148b&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/NudestBeach/ASAPCurrency.git",
+    "accountId": "b70e2471-627e-4000-838e-db3d7c621727"
   }
-}</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="7" end1="7" start2="8" end2="9" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="8" end1="9" start2="10" end2="10" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="11" end1="13" start2="12" end2="14" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
-        <range start1="31" end1="32" start2="32" end2="33" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="36" end1="37" start2="37" end2="38" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="38" end1="38" start2="39" end2="55" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="39" end1="47" start2="56" end2="57" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
-        <range start1="49" end1="50" start2="59" end2="60" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="55" end1="56" start2="65" end2="66" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
-        <range start1="58" end1="59" start2="68" end2="69" changelist="76aa3885-572b-443c-9add-b32aea8fb115" />
-        <range start1="61" end1="61" start2="71" end2="88" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="70" end1="79" start2="97" end2="97" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="96" end1="109" start2="114" end2="114" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-      </ranges>
-    </file>
-  </component>
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -80,35 +52,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.ASAPJava [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ASAPJava [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/kacper/Projects/gitRepos/ASAPCurrency/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.ASAPJava [clean].executor": "Run",
+    "Maven.ASAPJava [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kacper/Projects/gitRepos/ASAPCurrency/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
     </key>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -118,10 +83,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764622166137</updated>
-      <workItem from="1764784343743" duration="3550000" />
-      <workItem from="1765026401740" duration="5608000" />
-      <workItem from="1765049229670" duration="73000" />
-      <workItem from="1765133988995" duration="5038000" />
+      <workItem from="1764784343743" duration="3426000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -153,23 +115,7 @@
       <option name="project" value="LOCAL" />
       <updated>1764787779695</updated>
     </task>
-    <task id="LOCAL-00005" summary="Changes by Eric M">
-      <option name="closed" value="true" />
-      <created>1764787797059</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1764787797059</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)">
-      <option name="closed" value="true" />
-      <created>1765031428395</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1765031428395</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,8 +137,6 @@
     <MESSAGE value="Added ASAPJava" />
     <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
     <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
-    <MESSAGE value="Changes by Eric M" />
-    <MESSAGE value="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Almost completed the SharkCurrency Group and added lot of stuff (need to discuss also a lot)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Did some improvements and updated the in genereal the projekt" />
   </component>
 </project>

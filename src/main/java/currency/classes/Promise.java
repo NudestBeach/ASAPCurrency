@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Represents a financial obligation or asset transfer within the network.
  * Based on the provided UML specification.
  */
-public interface Promise extends  Serializable {
+public interface Promise {
 
 
     /**
@@ -32,10 +32,11 @@ public interface Promise extends  Serializable {
     /**
      * Cryptographic signature of the debitor validating the promise.
      */
-    String getSignatureDebitor();
+    byte[] getSignatureDebitor();
 
     /**
      * Cryptographic signature of the creditor (optional, usually for acceptance/settlement).
+     * TODO: PKI macht schon den ganzen Spaß
      */
     String getSignatureCreditor();
 
@@ -47,27 +48,14 @@ public interface Promise extends  Serializable {
 
     /**
      * The definition of the currency (The "Taler" object).
+     * Only reference will be gossiped
      */
     Currency getReferenceValue();
 
     /**
      * Returns the current state of the signing process.
+     * TODO: sinnvoll für eine Blackbox?
      */
     Signings getPromiseState();
 
-
-    // --- Setters ---
-
-    void setGroup(byte[] group);
-
-    void setCreditorID(String creditor);
-
-    void setDebitorID(String debitor);
-
-    void setValue(int value);
-
-    void setReferenceValue(Currency currency);
-
-    // Anmerkung: Signaturen werden meist durch signPromise() gesetzt,
-    // aber Setter können für Deserialisierung nötig sein.
 }

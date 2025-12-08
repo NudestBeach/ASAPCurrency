@@ -14,10 +14,10 @@ public interface ASAPCurrencyListener {
      * If you get via Gossip a message that you can join a Group this method will be called.
      * @param currencyUri The group you want to join
      * @param groupDocument The group document with Metadata
-     * @param receiverId The ID of the sender
      * @throws WrongDestinationException If the message does not belong to you.
+     * TODO: SharkInviteMessage mit dem Nötigsten
      */
-    void onGroupInviteReceived(String currencyUri, SharkGroupDocument groupDocument, byte[] receiverId) throws WrongDestinationException;
+    void onGroupInviteReceived(String currencyID, SharkGroupDocument groupDocument) throws WrongDestinationException;
 
 
     /**
@@ -25,14 +25,15 @@ public interface ASAPCurrencyListener {
      * @param currencyUri
      * @param promise
      */
-    void onPromiseReceived(String currencyUri, Promise promise, byte[] receiverId);
+    void onPromiseReceived(String currencyUri, Promise promise);
 
     /**
      * Updates your balance. It happens when you receive incoming Promises and send outgoing Promises.
      * (If the Promise is signed by both parties)
      * @param currencyUri
      * @param newBalance
+     * TODO: einen einzuigen Notifyer einführen
      */
-    void onBalanceChanged(String currencyUri, int newBalance);
+    void onBalanceChangedNotify(String currencyUri, int newBalance);
 
 }
