@@ -4,8 +4,8 @@ package currency.api;
 import Group.SharkGroupDocument;
 import currency.classes.Currency;
 import currency.classes.Promise;
+import exepections.ASAPCurrencyException;
 import listener.ASAPCurrencyListener;
-import net.sharksystem.asap.ASAPException;
 import java.util.ArrayList;
 
 
@@ -34,10 +34,10 @@ public interface SharkCurrency {
      * @param whitelisted    It stands the different peers, which are allowed to communicate with each other
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPException If the group/channel cannot be established.
+     * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroupWhitelisted(Currency currency, ArrayList whitelisted, boolean encrypted, boolean balanceVisible)
-            throws ASAPException;
+    void establishGroup(Currency currency, ArrayList whitelisted, boolean encrypted, boolean balanceVisible)
+            throws ASAPCurrencyException;
 
 
     /**
@@ -49,70 +49,33 @@ public interface SharkCurrency {
      *
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPException If the group/channel cannot be established.
+     * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
     void establishGroup(Currency currency, boolean encrypted, boolean balanceVisible)
-            throws ASAPException;
-
-
+            throws ASAPCurrencyException;
 
 
     /**
      * Sends a specific amount of Currency to another peer.
-     * Creates a transaction, serializes it, and adds it to the ASAP channel.
+     * Creates a transaction, serializes it, signs it and adds it to the ASAP channel.
      *
      * @param currencyName The name of the currency group.
      * @param recipientId  The ASAP Peer ID of the recipient.
      * @param amount       The amount to transfer.
      * @param note         An optional note for the transaction.
-     * @throws ASAPException If the message cannot be sent.
+     * @throws ASAPCurrencyException If the Promise cannot be sent due to error.
      */
     void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note)
-            throws ASAPException;
-    // TODO: ASAPCurrencyException
+            throws ASAPCurrencyException;
 
-
-    /**
-     * Cryptographically signs the promise with the local user's private key. We are using the SharkPKI.
-     * Updates the state from UNSIGNED to SIGNED_BY_DEBITOR.
-     * @param p The Promise that must be signed
-     * TODO: Sinn von signPromise & signGroupDocument -> sinvoll für eine Blackbox?
-     */
-    void signPromise(Promise p) throws ASAPException;
-
-    /**
-     * Cryptographically signs the Group Document with the local user's private key. We are using the SharkPKI.
-     * Updates the state from SIGNED_BY_NONE to SIGNED_BY_SOME for an unsigned Group Document.
-     * Reaches the state of SIGNED_BY_ALL for a whitelisted Group if all members signed.
-     * An open Group can never reach the State of SIGNED_BY_ALL.
-     * @param groupDocument The Promise that must be signed
-     */
-    void signGroupDocument(SharkGroupDocument groupDocument) throws ASAPException;
 
     /**
      * Calculates the current balance for the local user in the specified currency.
      *
      * @param currencyName The name of the currency.
      * @return The current balance.
-     * @throws ASAPException If the history cannot be read.
+     * @throws ASAPCurrencyException If the history cannot be read.
      */
-    int getBalance(CharSequence currencyName) throws ASAPException;
-
-
-    /**
-     * Registers a listener to receive updates about transactions and balance changes.
-     * The listener is registered globally for the currency format.
-     *
-     * @param listener The listener implementation.
-     */
-    void addCurrencyListener(ASAPCurrencyListener listener);
-
-    /**
-     * Removes a previously registered listener.
-     *
-     * @param listener The listener to remove.
-     */
-    void removeCurrencyListener(ASAPCurrencyListener listener);
-
+    int getBalance(CharSequence currencyName) throws ASAPCurrencyException;
 
 }

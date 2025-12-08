@@ -5,13 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added ASAPJava">
+      <change afterPath="$PROJECT_DIR$/lib/SharkPKI_0.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/SharkPeer_0.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/GroupSignings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exepections/ASAPCurrencyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupInviteListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupJoinListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPPromiseListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/GenericNotifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Signings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/PromiseSignings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/Listener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exepections/WrongDestinationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+    </list>
+    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
+    </list>
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
     </list>
-    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="" />
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,8 +42,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
+        <option value="Exception" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -35,12 +59,47 @@
     &quot;assignee&quot;: &quot;Luxis-light&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NudestBeach/ASAPCurrency.git",
-    "accountId": "b70e2471-627e-4000-838e-db3d7c621727"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NudestBeach/ASAPCurrency.git&quot;,
+    &quot;accountId&quot;: &quot;b70e2471-627e-4000-838e-db3d7c621727&quot;
   }
-}]]></component>
+}</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="5" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="8" end1="8" start2="9" end2="10" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="12" end1="20" start2="14" end2="15" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="22" end1="28" start2="17" end2="17" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="7" end1="8" start2="8" end2="8" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="36" end1="37" start2="36" end2="37" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="38" end1="40" start2="38" end2="40" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="51" end1="52" start2="51" end2="52" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="54" end1="57" start2="54" end2="55" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="61" end1="62" start2="59" end2="60" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="67" end1="68" start2="65" end2="66" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="70" end1="73" start2="68" end2="69" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="74" end1="90" start2="70" end2="70" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="96" end1="97" start2="76" end2="77" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+        <range start1="98" end1="116" start2="78" end2="79" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java">
+      <ranges>
+        <range start1="10" end1="10" start2="10" end2="11" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+        <range start1="31" end1="35" start2="32" end2="32" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="36" end1="41" start2="33" end2="35" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="51" end1="51" start2="45" end2="47" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+        <range start1="53" end1="59" start2="49" end2="49" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -58,20 +117,25 @@
     "Maven.ASAPJava [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/kacper/Projects/gitRepos/ASAPCurrency/lib",
+    "last_opened_file_path": "E:/HTW/WI2526/ASAPProjekt/ASAPCurrency/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>

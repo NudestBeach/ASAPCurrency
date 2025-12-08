@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public interface Promise {
 
+    public static final String PROMISE_FORMAT = "application://x-asap-currency-promise";
 
     /**
      * Unique identifier of the promise.
@@ -29,16 +30,9 @@ public interface Promise {
      */
     String getDebitorID();
 
-    /**
-     * Cryptographic signature of the debitor validating the promise.
-     */
-    byte[] getSignatureDebitor();
 
-    /**
-     * Cryptographic signature of the creditor (optional, usually for acceptance/settlement).
-     * TODO: PKI macht schon den ganzen Spaß
-     */
-    String getSignatureCreditor();
+    //TODO: PKI macht schon den ganzen Spaß
+
 
     /**
      * The numeric amount of the promise.
@@ -49,13 +43,9 @@ public interface Promise {
     /**
      * The definition of the currency (The "Taler" object).
      * Only reference will be gossiped
+     *
+     * @return Currency - the currency object which is being referred to in this promise
      */
     Currency getReferenceValue();
-
-    /**
-     * Returns the current state of the signing process.
-     * TODO: sinnvoll für eine Blackbox?
-     */
-    Signings getPromiseState();
 
 }

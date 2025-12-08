@@ -1,7 +1,6 @@
 package currency.classes;
 
-//TODO IST QUATSCH
-public enum Signings {
+public enum PromiseSignings {
     UNSIGNED,
     SIGNED_BY_DEBITOR,
     SIGNED_BY_CREDITOR,
