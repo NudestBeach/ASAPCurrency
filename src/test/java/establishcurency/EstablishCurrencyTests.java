@@ -1,8 +1,11 @@
 package establishcurency;
+import exepections.ASAPCurrencyException;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkTestPeerFS;
-import net.sharksystem.pki.SharkPKIComponentImppl;
+import net.sharksystem.asap.ASAPException;
+import net.sharksystem.pki.SharkPKIComponentImpl;
 import net.sharksystem.testhelper.SharkPKITesthelper;
+import org.junit.jupiter.api.Test;
 
 import static net.sharksystem.utils.testsupport.TestConstants.*;
 
@@ -33,6 +36,14 @@ public class EstablishCurrencyTests {
         bobSharkPeer.start(BOB_ID);
 
         Thread.sleep(200);
+    }
+
+    @Test
+    public void aliceCreatesAGroupWithLocalCurrency()
+            throws SharkException, ASAPException, ASAPCurrencyException {
+
+        //
+
     }
 
 }

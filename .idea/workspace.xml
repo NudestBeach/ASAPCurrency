@@ -4,36 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added ASAPJava">
-      <change afterPath="$PROJECT_DIR$/lib/SharkPKI_0.0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/SharkPeer_0.1.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/classes/GroupSignings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/exepections/ASAPCurrencyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupInviteListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupJoinListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPPromiseListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/GenericNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
+      <change afterPath="$PROJECT_DIR$/lib/ASAPHub.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/ASAPJava.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/SharkPKI.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/SharkPeer.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_12_2025_22_42_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_12_2025_22_42__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ASAPJava 0.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SharkPKI_0.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SharkPeer_0.1.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Signings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/PromiseSignings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/Listener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/WrongDestinationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/exepections/WrongDestinationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
     </list>
-    <list id="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" name="Changes by Eric M" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
     </list>
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java" afterDir="false" />
-    </list>
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,8 +32,8 @@
       <list>
         <option value="Exception" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -62,41 +50,16 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/NudestBeach/ASAPCurrency.git&quot;,
-    &quot;accountId&quot;: &quot;b70e2471-627e-4000-838e-db3d7c621727&quot;
+    &quot;accountId&quot;: &quot;2d18a685-f6fc-4431-b4e5-c3e4bbb3148b&quot;
   }
 }</component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/listener/ASAPCurrencyListener.java">
+    <file path="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java">
       <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="8" end1="8" start2="9" end2="10" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="12" end1="20" start2="14" end2="15" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="22" end1="28" start2="17" end2="17" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java">
-      <ranges>
-        <range start1="6" end1="6" start2="6" end2="7" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="7" end1="8" start2="8" end2="8" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="36" end1="37" start2="36" end2="37" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="38" end1="40" start2="38" end2="40" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="51" end1="52" start2="51" end2="52" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="54" end1="57" start2="54" end2="55" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="61" end1="62" start2="59" end2="60" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="67" end1="68" start2="65" end2="66" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
-        <range start1="70" end1="73" start2="68" end2="69" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="74" end1="90" start2="70" end2="70" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="96" end1="97" start2="76" end2="77" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
-        <range start1="98" end1="116" start2="78" end2="79" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java">
-      <ranges>
-        <range start1="10" end1="10" start2="10" end2="11" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
-        <range start1="31" end1="35" start2="32" end2="32" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="36" end1="41" start2="33" end2="35" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="51" end1="51" start2="45" end2="47" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
-        <range start1="53" end1="59" start2="49" end2="49" changelist="4c5d8f05-246a-4e47-ab9b-89407d3bfecb" />
+        <range start1="1" end1="1" start2="1" end2="2" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="3" end1="4" start2="4" end2="6" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="5" end1="5" start2="7" end2="8" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="36" end1="36" start2="39" end2="47" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
       </ranges>
     </file>
   </component>
@@ -111,33 +74,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.ASAPJava [clean].executor": "Run",
-    "Maven.ASAPJava [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/HTW/WI2526/ASAPProjekt/ASAPCurrency/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.ASAPJava [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ASAPJava [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/HTW/WI2526/ASAPProjekt/ASAPCurrency/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
       <recent name="$PROJECT_DIR$/lib" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -148,6 +122,8 @@
       <option name="presentableId" value="Default" />
       <updated>1764622166137</updated>
       <workItem from="1764784343743" duration="3426000" />
+      <workItem from="1765384366000" duration="952000" />
+      <workItem from="1765385331193" duration="5593000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -179,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764787779695</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
+      <option name="closed" value="true" />
+      <created>1765211781518</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765211781518</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +185,7 @@
     <MESSAGE value="Added ASAPJava" />
     <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
     <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Did some improvements and updated the in genereal the projekt" />
+    <MESSAGE value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
+    <option name="LAST_COMMIT_MESSAGE" value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
   </component>
 </project>
