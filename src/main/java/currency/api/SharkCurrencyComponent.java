@@ -1,11 +1,10 @@
 package currency.api;
 
 
-import Group.SharkGroupDocument;
 import currency.classes.Currency;
-import currency.classes.Promise;
 import exepections.ASAPCurrencyException;
-import listener.ASAPCurrencyListener;
+import net.sharksystem.SharkComponent;
+
 import java.util.ArrayList;
 
 
@@ -16,7 +15,7 @@ import java.util.ArrayList;
  * The currency is always bound to the group and can only be exchanged between its members.
  *
  */
-public interface SharkCurrency {
+public interface SharkCurrencyComponent extends SharkComponent {
 
     /**
      * URI for the App-format
@@ -36,7 +35,7 @@ public interface SharkCurrency {
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroup(Currency currency, ArrayList whitelisted, boolean encrypted, boolean balanceVisible)
+    void establishGroup(Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
 

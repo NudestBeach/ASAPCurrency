@@ -14,7 +14,7 @@
             <artifactId>ASAPJava</artifactId>
             <version>0.8.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/ASAPJava 0.8.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/ASAPJava.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -22,7 +22,7 @@
             <artifactId>SharkPKI</artifactId>
             <version>0.0.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/SharkPKI_0.0.1.jar</systemPath>
+            <systemPath>${project.basedir}/lib/SharkPKI.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -30,7 +30,7 @@
             <artifactId>SharkPeer</artifactId>
             <version>0.1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/SharkPeer_0.1.0.jar</systemPath>
+            <systemPath>${project.basedir}/lib/SharkPeer.jar</systemPath>
         </dependency>
 
         <dependency>

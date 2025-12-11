@@ -1,17 +1,15 @@
 package testhelpers;
 
-import currency.api.SharkCurrency;
+import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
 import exepections.ASAPCurrencyException;
 import listener.ASAPGroupInviteListener;
-import listener.ASAPGroupInviteListenerManager;
 import listener.ASAPPromiseListener;
 import net.sharksystem.AbstractSharkComponent;
 import net.sharksystem.SharkComponent;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeer;
 import net.sharksystem.asap.*;
-import net.sharksystem.asap.crypto.ASAPKeyStore;
 import net.sharksystem.asap.crypto.InMemoASAPKeyStore;
 import net.sharksystem.asap.persons.SharkPKIFacadeImpl;
 import net.sharksystem.asap.pki.ASAPCertificateStorage;
@@ -30,12 +28,18 @@ import java.util.Set;
  */
 public class SharkCurrencyComponentImpl
         extends AbstractSharkComponent
-        implements SharkComponent, SharkCurrency, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
+        implements SharkComponent, SharkCurrencyComponent, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
 
     private SharkPeer owner;
     private CharSequence ownerName;
     private ASAPPromiseListener promiseListener;
     private ASAPGroupInviteListener groupInviteListener = null;
+
+    private final SharkPKIComponent sharkPKIComponent;
+
+    public SharkCurrencyComponentImpl(SharkPKIComponent sharkPKIComponent) {
+        this.sharkPKIComponent = sharkPKIComponent;
+    }
 
     @Override
     public void establishGroup(Currency currency, ArrayList whitelisted, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
