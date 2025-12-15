@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponentFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/scharkCurrencySerializationTests/SharkCurrencySerializationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/LocalCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/LocalCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/Promise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
     </list>
-    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
+    </list>
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +41,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -48,6 +54,60 @@
     &quot;accountId&quot;: &quot;b70e2471-627e-4000-838e-db3d7c621727&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="1" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="4" end1="6" start2="4" end2="6" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="6" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="5" end1="7" start2="7" end2="12" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="11" end1="13" start2="16" end2="18" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="14" end1="15" start2="19" end2="20" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="16" end1="17" start2="21" end2="22" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="20" end1="23" start2="25" end2="99" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="24" end1="24" start2="100" end2="199" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="4" end1="4" start2="5" end2="6" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="18" end1="18" start2="20" end2="21" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="20" end1="20" start2="23" end2="24" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="23" end1="23" start2="27" end2="29" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="44" end1="45" start2="50" end2="70" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="46" end1="46" start2="71" end2="83" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="50" end1="51" start2="87" end2="89" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="74" end1="74" start2="112" end2="114" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="108" end1="108" start2="148" end2="166" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java">
+      <ranges>
+        <range start1="1" end1="1" start2="1" end2="2" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="9" end1="9" start2="10" end2="11" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="11" end1="11" start2="13" end2="16" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="15" end1="15" start2="20" end2="21" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="19" end1="19" start2="25" end2="26" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="32" end1="32" start2="39" end2="40" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="35" end1="36" start2="43" end2="43" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="53" end1="54" start2="60" end2="61" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="77" end1="78" start2="84" end2="85" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="89" end1="90" start2="96" end2="97" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="92" end1="94" start2="99" end2="101" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="98" end1="100" start2="105" end2="107" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="102" end1="102" start2="109" end2="116" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="103" end1="106" start2="117" end2="117" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="107" end1="109" start2="118" end2="119" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="110" end1="112" start2="120" end2="121" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="113" end1="114" start2="122" end2="128" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -65,6 +125,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.EstablishCurrencyTests.executor": "Run",
+    "JUnit.SharkCurrencySerializationTest.executor": "Run",
+    "JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor": "Run",
     "Maven.ASAPJava [clean].executor": "Run",
     "Maven.ASAPJava [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -96,7 +158,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.EstablishCurrencyTests">
     <configuration name="EstablishCurrencyTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -112,9 +174,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SharkCurrencySerializationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="scharkCurrencySerializationTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="scharkCurrencySerializationTests" />
+      <option name="MAIN_CLASS_NAME" value="scharkCurrencySerializationTests.SharkCurrencySerializationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SharkCurrencySerializationTest.testSerializationAndDeserialization" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="scharkCurrencySerializationTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="scharkCurrencySerializationTests" />
+      <option name="MAIN_CLASS_NAME" value="scharkCurrencySerializationTests.SharkCurrencySerializationTest" />
+      <option name="METHOD_NAME" value="testSerializationAndDeserialization" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.EstablishCurrencyTests" />
+        <item itemvalue="JUnit.SharkCurrencySerializationTest" />
+        <item itemvalue="JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization" />
       </list>
     </recent_temporary>
   </component>

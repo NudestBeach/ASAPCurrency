@@ -31,9 +31,6 @@ public interface Promise {
     String getDebitorID();
 
 
-    //TODO: PKI macht schon den ganzen Spaß
-
-
     /**
      * The numeric amount of the promise.
      * Note: Typically integer based (e.g., Cents/Satoshis) to avoid floating point errors.
@@ -47,5 +44,9 @@ public interface Promise {
      * @return Currency - the currency object which is being referred to in this promise
      */
     Currency getReferenceValue();
+
+
+
+
 
 }

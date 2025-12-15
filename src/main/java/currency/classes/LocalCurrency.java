@@ -1,13 +1,13 @@
 package currency.classes;
 
-import java.awt.*;
+import java.util.*;
 
 /**
  *
  */
 public class LocalCurrency implements Currency {
     private boolean gloabalLimit;
-    private List centralized = new List();
+    private List centralized = new ArrayList();
     private String currencyName;
     private String specification;
     private  byte[] id = new byte[0];
@@ -28,12 +28,12 @@ public class LocalCurrency implements Currency {
 
     @Override
     public String getCurrencyName() {
-        return "";
+        return this.currencyName;
     }
 
     @Override
     public String getSpecification() {
-        return "";
+        return this.specification;
     }
 
     @Override

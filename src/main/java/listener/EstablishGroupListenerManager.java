@@ -1,7 +1,7 @@
-package main.java.listener;
+package listener;
 
 public interface EstablishGroupListenerManager {
 
-    add
-    remove
+    //add
+    //remove
 }

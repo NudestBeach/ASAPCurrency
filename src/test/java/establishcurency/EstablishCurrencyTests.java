@@ -1,4 +1,5 @@
 package establishcurency;
+import Group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import currency.api.SharkCurrencyComponentFactory;
 import currency.classes.Currency;
@@ -7,16 +8,22 @@ import exepections.ASAPCurrencyException;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeerFS;
 import net.sharksystem.SharkTestPeerFS;
+import net.sharksystem.asap.ASAPChannel;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPPeerFS;
+import net.sharksystem.asap.ASAPStorage;
+import net.sharksystem.asap.engine.ASAPEngine;
+import net.sharksystem.asap.engine.ASAPEngineFS;
 import net.sharksystem.fs.FSUtils;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.pki.SharkPKIComponentFactory;
 import net.sharksystem.testhelper.SharkPKITesthelper;
+import net.sharksystem.utils.SerializationHelper;
 import net.sharksystem.utils.testsupport.TestConstants;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import testhelpers.SharkCurrencyComponentImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +37,10 @@ public class EstablishCurrencyTests {
     // Test results
     private String TEST_FOLDER;
     private final CharSequence EXAMPLE_APP_FORMAT = "shark/x-establishCurrencyExample";
+    static final CharSequence FORMAT = "TestFormat";
 
     SharkTestPeerFS aliceSharkPeer, bobSharkPeer;
     SharkPKIComponentImpl aliceComponent, bobComponent;
-
     // Set-Up a Folder within out project to save testing data
     @BeforeEach
     public void init() {
@@ -51,7 +58,7 @@ public class EstablishCurrencyTests {
          That's for testing only
          */
         SharkPKITesthelper.incrementTestNumber();
-        String folderName = SharkPKITesthelper.getPKITestFolder(ROOT_DIRECTORY);
+        CharSequence folderName = SharkPKITesthelper.getPKITestFolder(ROOT_DIRECTORY);
         System.out.println("folderName == " + folderName);
 
         ///////// Alice
@@ -75,7 +82,7 @@ public class EstablishCurrencyTests {
 
         // 0. Setting up Alice Peer
         Collection<CharSequence> formats = new ArrayList<>();
-        String aliceFolder = TEST_FOLDER + "/" + TestConstants.ALICE_ID;
+        CharSequence aliceFolder = TEST_FOLDER + "/" + TestConstants.ALICE_ID;
         SharkPeerFS alice = new SharkPeerFS(TestConstants.ALICE_ID, aliceFolder);
         formats.add(EXAMPLE_APP_FORMAT);
         SharkPKIComponentFactory certificateComponentFactory = new SharkPKIComponentFactory();
@@ -87,31 +94,38 @@ public class EstablishCurrencyTests {
         alice.start(aliceAsapPeer);
 
         // 1. Alice arranges a new local Currency
-        String currencyName = "AliceTaler";
+        CharSequence currencyName = "AliceTaler";
         Currency dummyCurrency = new LocalCurrency(
                 false,    // global limit
-                new java.awt.List(),// centralized list (dummy)
-                currencyName,       // Name
+                new ArrayList(),// centralized list (dummy)
+                currencyName.toString(),       // Name
                 "A test Currency"  // Spec
         );
 
         // 2. Alice creates a new Group using the created Currency
-        SharkCurrencyComponent currencyComponent =
-                (SharkCurrencyComponent) alice.getComponent(SharkCurrencyComponent.class);
+        SharkCurrencyComponentImpl currencyComponent =
+                (SharkCurrencyComponentImpl) alice.getComponent(SharkCurrencyComponent.class);
         currencyComponent.establishGroup(dummyCurrency, new ArrayList<CharSequence>(), false, true);
 
+        //a) Object to char-sequence to byte Array (Impl)
+        //b) ASAPStorage storage -> storage.add(URI, messageContentAlsByteArray) (Impl)
+        //c) Message in channel packen
+        //d) Message aus Channel holen -> man bekommt ASAPMessages Object
+        //e) aus ASAPMessages bekommen wir dann byte array von "getMessage()"
+        //f) gucken ob content stimmt
+
         // 3. Assert: Check in ASAP Storage, if Channel exists
-        //TODO: goal is to store the GroupDocument in the group creators system, write test for that
-        net.sharksystem.asap.ASAPStorage currencyStorage =
-                this.aliceSharkPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
 
-        // The URI should be the same as defined by the Currency Format
-        CharSequence expetedURI = currencyName;
+        //TODO: goal is to store the GroupDocument in the group cChar
 
-        // Check if Channel exists in Storage
-        boolean channelExists = currencyStorage.channelExists(expetedURI);
+        SharkGroupDocument testDoc = currencyComponent.getSharkGroupDocument(currencyName);
 
-        Assertions.assertTrue(channelExists, "The ASAP-Channel for the currency doesn't exist.");
+        CharSequence expectedURI = "application://x-asap-currency/currency-groups/AliceTaler";
+        boolean channelExists = alice.getASAPPeer()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
+                .channelExists(currencyName);
+        Assertions.assertEquals(ALICE_ID,testDoc.getGroupCreator());
+        Assertions.assertTrue(channelExists, "Channel does not exist");
 
     }
 
