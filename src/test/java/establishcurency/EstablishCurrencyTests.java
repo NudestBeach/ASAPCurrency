@@ -89,9 +89,9 @@ public class EstablishCurrencyTests {
         alice.addComponent(certificateComponentFactory, SharkPKIComponent.class);
         SharkCurrencyComponentFactory currencyFactory = new SharkCurrencyComponentFactory(
                 (SharkPKIComponent) alice.getComponent(SharkPKIComponent.class));
-        alice.addComponent(currencyFactory, SharkCurrencyComponent.class);
         ASAPPeerFS aliceAsapPeer = new ASAPPeerFS(ALICE_NAME, aliceFolder);
         alice.start(aliceAsapPeer);
+        alice.addComponent(currencyFactory, SharkCurrencyComponent.class);
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTaler";
@@ -120,7 +120,8 @@ public class EstablishCurrencyTests {
 
         SharkGroupDocument testDoc = currencyComponent.getSharkGroupDocument(currencyName);
 
-        CharSequence expectedURI = "application://x-asap-currency/currency-groups/AliceTaler";
+        // This is what a full URI should look like for a currency
+        // "application://x-asap-currency/currency-groups/AliceTaler"
         boolean channelExists = alice.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
                 .channelExists(currencyName);

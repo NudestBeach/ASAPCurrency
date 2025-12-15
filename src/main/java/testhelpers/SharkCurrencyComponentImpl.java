@@ -37,19 +37,20 @@ public class SharkCurrencyComponentImpl
         implements SharkComponent, SharkCurrencyComponent, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
 
     private SharkPeer owner;
+    private ASAPPeer asapPeer = null;
     private CharSequence ownerName;
     private ASAPPromiseListener promiseListener;
     private ASAPGroupInviteListener groupInviteListener = null;
-
     private final SharkPKIComponent sharkPKIComponent;
 
-    public SharkCurrencyComponentImpl(SharkPKIComponent sharkPKIComponent) {
+    public SharkCurrencyComponentImpl(SharkPKIComponent sharkPKIComponent) throws SharkException {
+        if(sharkPKIComponent == null) throw new SharkException("shark pki must not be null");
         this.sharkPKIComponent = sharkPKIComponent;
     }
 
     @Override
     public void establishGroup(Currency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
-        SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.ownerName.toString(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
+        SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.toString(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
         try{
             // 1. Get Name of the Currency URI
             String currencyNameURI = currency.getCurrencyName();
@@ -104,37 +105,13 @@ public class SharkCurrencyComponentImpl
     public static final String SHARK_PKI_DATA_KEY = "sharkPKIData";
     private SharkPKIFacade sharkPKIFacade = null;
     private ASAPStorageBasedCertificates asapCertificateStorage;
-    private ASAPPeer asapPeer = null;
     private InMemoASAPKeyStore asapKeyStore;
 
     //Sets-Up the PKI for our peer
     @Override
     public void onStart(ASAPPeer asapPeer) throws SharkException {
         this.asapPeer = asapPeer;
-
-        //its a keystore bro
         this.asapKeyStore = new InMemoASAPKeyStore(asapPeer.getPeerID());
-        try {
-            this.asapKeyStore.setMementoTarget(this.owner.getSharkPeerExtraData());
-            ASAPStorage asapStorage = asapPeer.getASAPStorage(ASAPCertificateStorage.PKI_APP_NAME);
-            CharSequence peerName = this.ownerName != null ? this.ownerName : asapPeer.getPeerID();
-
-            this.asapCertificateStorage =
-                    new ASAPStorageBasedCertificates(asapStorage, asapPeer.getPeerID(), peerName);
-
-            this.sharkPKIFacade =
-                    new SharkPKIFacadeImpl(this.asapCertificateStorage, this.asapKeyStore);
-            //Memento means it will be persistend the state after the system shuts down
-            //its like saving a gamefile and return at the game after reboot
-            this.sharkPKIFacade.setMementoTarget(this.owner.getSharkPeerExtraData());
-            //This for notify you if a peer is in hood / nachbarschaft
-            this.asapPeer.addASAPEnvironmentChangesListener(this);
-            this.asapPeer.addASAPMessageReceivedListener(SharkPKIComponent.PKI_APP_NAME, this);
-
-
-        } catch (IOException | ASAPException e) {
-            throw new SharkException(e);
-        }
     }
 
     @Override

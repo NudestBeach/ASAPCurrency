@@ -3,6 +3,7 @@ package currency.api;
 
 import currency.classes.Currency;
 import exepections.ASAPCurrencyException;
+import net.sharksystem.ASAPFormats;
 import net.sharksystem.SharkComponent;
 
 import java.util.ArrayList;
@@ -10,15 +11,16 @@ import java.util.ArrayList;
 
 /**
  * A SharkCurrency is a local trust based currency System for SharkPeers.
- * It can be used to create public or private (whitelisted) Groups between SharkPeers to exchange currency.
+ * It can be used to create open whitelisted groups between SharkPeers to exchange currency.
  * A Group is always created by one SharkPeer and includes the creation of a new local currency.
  * The currency is always bound to the group and can only be exchanged between its members.
  *
  */
+@ASAPFormats(formats = {SharkCurrencyComponent.CURRENCY_FORMAT})
 public interface SharkCurrencyComponent extends SharkComponent {
 
     /**
-     * URI for the App-format
+     * Shark-Currency URI format
      */
     public static final String CURRENCY_FORMAT = "application://x-asap-currency";
 

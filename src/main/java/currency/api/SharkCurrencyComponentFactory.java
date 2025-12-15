@@ -2,6 +2,7 @@ package currency.api;
 
 import net.sharksystem.SharkComponent;
 import net.sharksystem.SharkComponentFactory;
+import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeer;
 import net.sharksystem.pki.SharkPKIComponent;
 import testhelpers.SharkCurrencyComponentImpl;
@@ -17,7 +18,7 @@ public class SharkCurrencyComponentFactory implements SharkComponentFactory {
     }
 
     @Override
-    public SharkComponent getComponent(SharkPeer sharkPeer) {
+    public SharkComponent getComponent(SharkPeer sharkPeer) throws SharkException {
         return new SharkCurrencyComponentImpl(pkiComponent);
     }
 }
