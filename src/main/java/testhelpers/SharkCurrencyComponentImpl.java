@@ -9,6 +9,7 @@ import listener.ASAPGroupInviteListener;
 import listener.ASAPPromiseListener;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
+import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.asap.crypto.InMemoASAPKeyStore;
 import net.sharksystem.asap.persons.SharkPKIFacadeImpl;
 import net.sharksystem.asap.pki.ASAPCertificateStorage;
@@ -64,14 +65,10 @@ public class SharkCurrencyComponentImpl
             // 5. Save document in Storage
             storage.add(currencyNameURI, serializedDocument);
 
-
-            // TODO: Serialize GroupDocument for whitelisted Members and send
-            /**
-            if (!whitelistMember.isEmpty() && whitelistMember != null){
-                
-            }
-
-            **/
+            // 6. sign document and add yourself to the group
+            byte[] signature = ASAPCryptoAlgorithms
+                    .sign(sharkGroupDocument.getGroupId(), asapKeyStore);
+            sharkGroupDocument.addMember(this.asapPeer.getPeerID(),signature);
 
         } catch (IOException | ASAPException e){
             throw new ASAPCurrencyException(e.getMessage());

@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_12_2025_16_03_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_12_2025_16_03__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/.sharkPeerExtraData" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/.sharkPeerExtraData" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/application%3A%2F%2Fx-asap-currency/0/AliceTaler.content" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/application%3A%2F%2Fx-asap-currency/0/AliceTaler.content" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />

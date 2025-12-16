@@ -23,7 +23,7 @@ public class SharkGroupDocument {
     private boolean encrypted;
     private boolean balanceVisible;
     private GroupSignings groupDocState;
-    private Map<byte[],byte[]> currentMembers;
+    private final Map<CharSequence,byte[]> currentMembers = new HashMap<>(); //<PeerId, Signature>
 
     // --- Konstruktor (Unverändert) ---
     public SharkGroupDocument(CharSequence groupCreator,
@@ -39,6 +39,15 @@ public class SharkGroupDocument {
         this.balanceVisible = balanceVisible;
         this.groupDocState = (groupDocState != null) ? groupDocState : GroupSignings.SIGNED_BY_NONE;
         this.groupId = UUID.randomUUID().toString().getBytes(StandardCharsets.UTF_8);
+    }
+
+    public boolean addMember(CharSequence peerId, byte[] signature) {
+        if(peerId.length()==0) return false;
+        if(signature==null || signature.length==0) return false;
+        if(!this.currentMembers.containsKey(peerId)) {
+            this.currentMembers.put(peerId, signature);
+        }
+        return true;
     }
 
     // --- Serialisierung: Objekt -> byte[] ---
@@ -194,6 +203,6 @@ public class SharkGroupDocument {
     public boolean isEncrypted() { return encrypted; }
     public GroupSignings getGroupDocState() { return groupDocState; }
     public boolean isBalanceVisible() { return balanceVisible; }
-    public Map<byte[], byte[]> getCurrentMembers() { return currentMembers; }
+    public Map<CharSequence, byte[]> getCurrentMembers() { return currentMembers; }
     public ArrayList getWhitelistMember() { return whitelistMember; }
 }

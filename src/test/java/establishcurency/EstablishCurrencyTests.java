@@ -12,6 +12,7 @@ import net.sharksystem.asap.ASAPChannel;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPPeerFS;
 import net.sharksystem.asap.ASAPStorage;
+import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.asap.engine.ASAPEngine;
 import net.sharksystem.asap.engine.ASAPEngineFS;
 import net.sharksystem.fs.FSUtils;
@@ -34,7 +35,6 @@ import static net.sharksystem.utils.testsupport.TestConstants.*;
 
 public class EstablishCurrencyTests {
 
-    // Test results
     private String TEST_FOLDER;
     private final CharSequence EXAMPLE_APP_FORMAT = "shark/x-establishCurrencyExample";
     static final CharSequence FORMAT = "TestFormat";
@@ -107,16 +107,19 @@ public class EstablishCurrencyTests {
         SharkCurrencyComponentImpl currencyComponent =
                 (SharkCurrencyComponentImpl) alice.getComponent(SharkCurrencyComponent.class);
         currencyComponent.establishGroup(dummyCurrency, new ArrayList<CharSequence>(), false, true);
-
         SharkGroupDocument testDoc = currencyComponent.getSharkGroupDocument(currencyName);
+        byte[] groupId = testDoc.getGroupId();
+        byte[] aliceSignature = testDoc.getCurrentMembers().get(ALICE_NAME);
 
-        // This is what a full URI should look like for a currency
-        // "application://x-asap-currency/currency-groups/AliceTaler"
+        // 3. Checking results
         boolean channelExists = alice.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
                 .channelExists(currencyName);
+        boolean verified = ASAPCryptoAlgorithms.verify(
+                groupId, aliceSignature, ALICE_NAME, ((SharkPKIComponent) alice.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
         Assertions.assertEquals(ALICE_NAME,testDoc.getGroupCreator());
         Assertions.assertTrue(channelExists, "Channel does not exist");
+        Assertions.assertTrue(verified, "The Signature of Alice could not have been verified");
 
     }
 
