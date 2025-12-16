@@ -41,6 +41,7 @@ public class EstablishCurrencyTests {
 
     SharkTestPeerFS aliceSharkPeer, bobSharkPeer;
     SharkPKIComponentImpl aliceComponent, bobComponent;
+
     // Set-Up a Folder within out project to save testing data
     @BeforeEach
     public void init() {
@@ -90,33 +91,22 @@ public class EstablishCurrencyTests {
         SharkCurrencyComponentFactory currencyFactory = new SharkCurrencyComponentFactory(
                 (SharkPKIComponent) alice.getComponent(SharkPKIComponent.class));
         ASAPPeerFS aliceAsapPeer = new ASAPPeerFS(ALICE_NAME, aliceFolder);
-        alice.start(aliceAsapPeer);
         alice.addComponent(currencyFactory, SharkCurrencyComponent.class);
+        alice.start(aliceAsapPeer);
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTaler";
         Currency dummyCurrency = new LocalCurrency(
-                false,    // global limit
-                new ArrayList(),// centralized list (dummy)
-                currencyName.toString(),       // Name
-                "A test Currency"  // Spec
+                false,                // global limit
+                new ArrayList(),                // centralized list (dummy)
+                currencyName.toString(),        // Name
+                "A test Currency"               // Spec
         );
 
         // 2. Alice creates a new Group using the created Currency
         SharkCurrencyComponentImpl currencyComponent =
                 (SharkCurrencyComponentImpl) alice.getComponent(SharkCurrencyComponent.class);
         currencyComponent.establishGroup(dummyCurrency, new ArrayList<CharSequence>(), false, true);
-
-        //a) Object to char-sequence to byte Array (Impl)
-        //b) ASAPStorage storage -> storage.add(URI, messageContentAlsByteArray) (Impl)
-        //c) Message in channel packen
-        //d) Message aus Channel holen -> man bekommt ASAPMessages Object
-        //e) aus ASAPMessages bekommen wir dann byte array von "getMessage()"
-        //f) gucken ob content stimmt
-
-        // 3. Assert: Check in ASAP Storage, if Channel exists
-
-        //TODO: goal is to store the GroupDocument in the group cChar
 
         SharkGroupDocument testDoc = currencyComponent.getSharkGroupDocument(currencyName);
 
@@ -125,7 +115,7 @@ public class EstablishCurrencyTests {
         boolean channelExists = alice.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
                 .channelExists(currencyName);
-        Assertions.assertEquals(ALICE_ID,testDoc.getGroupCreator());
+        Assertions.assertEquals(ALICE_NAME,testDoc.getGroupCreator());
         Assertions.assertTrue(channelExists, "Channel does not exist");
 
     }

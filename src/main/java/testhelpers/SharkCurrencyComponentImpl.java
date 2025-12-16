@@ -7,10 +7,7 @@ import currency.classes.GroupSignings;
 import exepections.ASAPCurrencyException;
 import listener.ASAPGroupInviteListener;
 import listener.ASAPPromiseListener;
-import net.sharksystem.AbstractSharkComponent;
-import net.sharksystem.SharkComponent;
-import net.sharksystem.SharkException;
-import net.sharksystem.SharkPeer;
+import net.sharksystem.*;
 import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.InMemoASAPKeyStore;
 import net.sharksystem.asap.persons.SharkPKIFacadeImpl;
@@ -19,6 +16,7 @@ import net.sharksystem.asap.pki.ASAPStorageBasedCertificates;
 import net.sharksystem.asap.pki.SharkPKIFacade;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.utils.SerializationHelper;
+import net.sharksystem.utils.testsupport.TestConstants;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -36,11 +34,7 @@ public class SharkCurrencyComponentImpl
         extends AbstractSharkComponent
         implements SharkComponent, SharkCurrencyComponent, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
 
-    private SharkPeer owner;
     private ASAPPeer asapPeer = null;
-    private CharSequence ownerName;
-    private ASAPPromiseListener promiseListener;
-    private ASAPGroupInviteListener groupInviteListener = null;
     private final SharkPKIComponent sharkPKIComponent;
 
     public SharkCurrencyComponentImpl(SharkPKIComponent sharkPKIComponent) throws SharkException {
@@ -50,7 +44,7 @@ public class SharkCurrencyComponentImpl
 
     @Override
     public void establishGroup(Currency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
-        SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.toString(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
+        SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.getPeerID(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
         try{
             // 1. Get Name of the Currency URI
             String currencyNameURI = currency.getCurrencyName();
@@ -100,11 +94,6 @@ public class SharkCurrencyComponentImpl
         return 0;
     }
 
-    /////////////////////////// PKI-Setup /////////////////////////////
-    /// Our Peers need a KeyStore to sign GroupInvites or Promises ///
-    public static final String SHARK_PKI_DATA_KEY = "sharkPKIData";
-    private SharkPKIFacade sharkPKIFacade = null;
-    private ASAPStorageBasedCertificates asapCertificateStorage;
     private InMemoASAPKeyStore asapKeyStore;
 
     //Sets-Up the PKI for our peer

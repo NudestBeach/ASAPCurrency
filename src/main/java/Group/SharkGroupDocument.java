@@ -17,7 +17,7 @@ public class SharkGroupDocument {
     private static final String EMPTY_PLACEHOLDER = "NULL";
     private static final String LIST_DELIMITER = ":::";
     private byte[] groupId;
-    private String groupCreator;
+    private CharSequence groupCreator;
     private Currency assignedCurrency;
     private ArrayList whitelistMember;
     private boolean encrypted;
@@ -26,7 +26,7 @@ public class SharkGroupDocument {
     private Map<byte[],byte[]> currentMembers;
 
     // --- Konstruktor (Unverändert) ---
-    public SharkGroupDocument(String groupCreator,
+    public SharkGroupDocument(CharSequence groupCreator,
                               Currency assignedCurrency,
                               ArrayList whitelistMember,
                               boolean encrypted,
@@ -189,7 +189,7 @@ public class SharkGroupDocument {
 
     // --- Getter ---
     public byte[] getGroupId() { return groupId; }
-    public String getGroupCreator() { return groupCreator; }
+    public CharSequence getGroupCreator() { return groupCreator; }
     public Currency getAssignedCurrency() { return assignedCurrency; }
     public boolean isEncrypted() { return encrypted; }
     public GroupSignings getGroupDocState() { return groupDocState; }

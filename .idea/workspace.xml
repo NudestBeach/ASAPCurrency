@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_12_2025_16_03_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_12_2025_16_03__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponentFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/.sharkPeerExtraData" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/.sharkPeerExtraData" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/ASAPCurrencyTestFolder/Alice_42/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" afterDir="false" />
     </list>
@@ -64,6 +67,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.EstablishCurrencyTests.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SharkCurrencySerializationTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor&quot;: &quot;Run&quot;,
@@ -227,5 +231,16 @@
     <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
     <MESSAGE value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
     <option name="LAST_COMMIT_MESSAGE" value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponentFactory.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
