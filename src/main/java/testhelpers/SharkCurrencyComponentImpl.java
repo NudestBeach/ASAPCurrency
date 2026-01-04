@@ -23,6 +23,7 @@ import net.sharksystem.utils.testsupport.TestConstants;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -36,27 +37,28 @@ public class SharkCurrencyComponentImpl
         extends AbstractSharkComponent
         implements SharkComponent, SharkCurrencyComponent, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
 
-    private ASAPPeer asapPeer = null;
     private final SharkPKIComponent sharkPKIComponent;
+    private ASAPPeer asapPeer;
 
-    public SharkCurrencyComponentImpl(SharkPKIComponent sharkPKIComponent) throws SharkException {
-        if(sharkPKIComponent == null) throw new SharkException("shark pki must not be null");
-        this.sharkPKIComponent = sharkPKIComponent;
+    public SharkCurrencyComponentImpl(SharkPKIComponent pki) throws SharkException {
+        this.sharkPKIComponent = pki;
     }
 
     @Override
     public void establishGroup(Currency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+        this.checkComponentRunning();
         SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.getPeerID(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
         try{
             // 1. Get Name of the Currency URI
             String currencyNameURI = currency.getCurrencyName();
+            ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
             if (currencyNameURI == null || currencyNameURI.isEmpty()) {
                 throw new ASAPCurrencyException("Currency URI cannot be empty");
             }
 
             // 2. sign document and add yourself to the group
             byte[] signature = ASAPCryptoAlgorithms
-                    .sign(sharkGroupDocument.getGroupId(), asapKeyStore);
+                    .sign(sharkGroupDocument.getGroupId(), ks);
             if(signature == null || signature.length == 0) {
                 System.err.println("CRITICAL: Signature could not be created! Check KeyStore for ID: "
                         + this.asapPeer.getPeerID());
@@ -103,15 +105,10 @@ public class SharkCurrencyComponentImpl
         return 0;
     }
 
-    private ASAPKeyStore asapKeyStore;
-
     //Sets-Up the PKI for our peer
     @Override
     public void onStart(ASAPPeer asapPeer) throws SharkException {
-        System.out.println("DEBUG: Component started for peer: " + asapPeer.getPeerID());
         this.asapPeer = asapPeer;
-        this.asapKeyStore = this.sharkPKIComponent.getASAPKeyStore();
-        System.out.println("DEBUG (Impl): Keystore Hash: " + System.identityHashCode(this.asapKeyStore));
     }
 
     @Override
@@ -131,6 +128,10 @@ public class SharkCurrencyComponentImpl
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             ASAPChannel channel = storage.getChannel(currencyNameUri);
             ASAPMessages messages = channel.getMessages();
+            if(messages.size() == 0) {
+                System.err.println("DEBUG: No messages found in channel " + currencyNameUri);
+                return null;
+            }
             byte[] unserializedDocument = messages.getMessage(0, false);
             return SharkGroupDocument.fromByte(unserializedDocument);
 
@@ -141,4 +142,8 @@ public class SharkCurrencyComponentImpl
         }
      }
 
+    private void checkComponentRunning() throws ASAPCurrencyException {
+        if(this.asapPeer == null || this.sharkPKIComponent == null)
+            throw new ASAPCurrencyException("peer not started and/or pki not initialized");
+    }
 }

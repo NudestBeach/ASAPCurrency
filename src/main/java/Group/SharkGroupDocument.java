@@ -3,35 +3,49 @@ package Group;
 import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import currency.classes.LocalCurrency;
+import exepections.ASAPCurrencyException;
 import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static java.lang.Boolean.parseBoolean;
-
 public class SharkGroupDocument {
 
     public static final String DOCUMENT_FORMAT = "application://x-asap-currency-group-document";
     private static final String EMPTY_PLACEHOLDER = "NULL";
     private static final String LIST_DELIMITER = ":::";
-    private byte[] groupId;
-    private CharSequence groupCreator;
-    private Currency assignedCurrency;
-    private ArrayList whitelistMember;
-    private boolean encrypted;
-    private boolean balanceVisible;
-    private GroupSignings groupDocState;
+    private final byte[] groupId;
+    private final CharSequence groupCreator;
+    private final Currency assignedCurrency;
+    private ArrayList<CharSequence> whitelistMember;
+    private final boolean encrypted;
+    private final boolean balanceVisible;
+    private final GroupSignings groupDocState;
     private final Map<CharSequence,byte[]> currentMembers = new HashMap<>(); //<PeerId, Signature>
 
-    // --- Konstruktor (Unverändert) ---
+    /**
+     * Public constructor setting a new GroupId
+     */
     public SharkGroupDocument(CharSequence groupCreator,
                               Currency assignedCurrency,
-                              ArrayList whitelistMember,
+                              ArrayList<CharSequence> whitelistMember,
                               boolean encrypted,
                               boolean balanceVisible,
                               GroupSignings groupDocState) {
+        this.whitelistMember = (whitelistMember != null)
+                ? new ArrayList<>(whitelistMember)
+                : new ArrayList<>();
+
+        if (groupCreator != null) {
+            String creatorStr = groupCreator.toString();
+            boolean found = this.whitelistMember.stream()
+                    .anyMatch(m -> m.toString().equals(creatorStr));
+
+            if (!found) {
+                this.whitelistMember.add(groupCreator);
+            }
+        }
         this.groupCreator = groupCreator;
         this.assignedCurrency = assignedCurrency;
         this.whitelistMember = whitelistMember;
@@ -41,12 +55,44 @@ public class SharkGroupDocument {
         this.groupId = UUID.randomUUID().toString().getBytes(StandardCharsets.UTF_8);
     }
 
-    public boolean addMember(CharSequence peerId, byte[] signature) {
-        if(peerId.length()==0) return false;
-        if(signature==null || signature.length==0) return false;
-        if(!this.currentMembers.containsKey(peerId)) {
-            this.currentMembers.put(peerId, signature);
+    /**
+     * PRIVATE Constructor where we set the groupId
+     */
+    private SharkGroupDocument(byte[] groupId,CharSequence groupCreator,
+                              Currency assignedCurrency,
+                              ArrayList<CharSequence> whitelistMember,
+                              boolean encrypted,
+                              boolean balanceVisible,
+                              GroupSignings groupDocState) {
+        this.whitelistMember = (whitelistMember != null)
+                ? new ArrayList<>(whitelistMember)
+                : new ArrayList<>();
+
+        if (groupCreator != null) {
+            String creatorStr = groupCreator.toString();
+            boolean found = this.whitelistMember.stream()
+                    .anyMatch(m -> m.toString().equals(creatorStr));
+
+            if (!found) {
+                this.whitelistMember.add(groupCreator);
+            }
         }
+        this.groupCreator = groupCreator;
+        this.assignedCurrency = assignedCurrency;
+        this.whitelistMember = whitelistMember;
+        this.encrypted = encrypted;
+        this.balanceVisible = balanceVisible;
+        this.groupDocState = (groupDocState != null) ? groupDocState : GroupSignings.SIGNED_BY_NONE;
+        this.groupId = groupId;
+    }
+
+    public boolean addMember(CharSequence peerId, byte[] signature) {
+        if(peerId == null || peerId.length()==0) return false;
+        if(signature==null || signature.length==0) return false;
+        if (this.currentMembers.containsKey(peerId)) {
+            return false;
+        }
+        this.currentMembers.put(peerId, signature);
         return true;
     }
 
@@ -82,6 +128,14 @@ public class SharkGroupDocument {
         parts.add(String.valueOf(this.balanceVisible));
         parts.add(this.groupDocState.name());
 
+        StringBuilder membersSb = new StringBuilder();
+        for (Map.Entry<CharSequence, byte[]> entry : this.currentMembers.entrySet()) {
+            membersSb.append(entry.getKey()).append("=")
+                    .append(Base64.getEncoder().encodeToString(entry.getValue()))
+                    .append(LIST_DELIMITER);
+        }
+        parts.add(membersSb.length() > 0 ? membersSb.toString() : EMPTY_PLACEHOLDER);
+
         // String bauen und in Bytes konvertieren
         String serializedString = SerializationHelper.collection2String(parts);
         return SerializationHelper.str2bytes(serializedString);
@@ -94,7 +148,7 @@ public class SharkGroupDocument {
      * @param data The byte array containing the serialized SharkGroupDocument data.
      * @return A new SharkGroupDocument object.
      */
-    public static SharkGroupDocument fromByte(byte[] data) throws IOException {
+    public static SharkGroupDocument fromByte(byte[] data) throws IOException, ASAPCurrencyException {
         if (data == null) return null;
 
         // Bytes zurück in String wandeln
@@ -103,7 +157,7 @@ public class SharkGroupDocument {
         // String zerlegen
         List<CharSequence> parts = SerializationHelper.string2CharSequenceList(dataString);
 
-        if (parts.size() < 8) {
+        if (parts.size() < 9) {
             throw new IllegalArgumentException("Illegal Format for SharkGroupDocument: " + parts.size() + " Parts. Expected 8.");
         }
 
@@ -112,7 +166,7 @@ public class SharkGroupDocument {
         // 1. GroupID lesen und IGNORIEREN
         // Wir müssen den Token konsumieren, damit der Index stimmt,
         // aber der Konstruktor erzeugt eine neue ID, daher nutzen wir diesen Wert nicht.
-        idx++;
+        byte[] gId = safeCharSequenceToBytes(parts.get(idx++));
 
         // 2. GroupCreator
         String cId = parts.get(idx++).toString();
@@ -138,8 +192,22 @@ public class SharkGroupDocument {
         } catch (IllegalArgumentException e) {
             // ignore
         }
+        SharkGroupDocument doc = new SharkGroupDocument(gId, cId, currency, whitelist, enc, bal, state);
 
-        return new SharkGroupDocument(cId, currency, whitelist, enc, bal, state);
+        // 7. Member-Map wiederherstellen (Letzter Part)
+        String membersData = parts.get(idx++).toString();
+        if (!membersData.equals(EMPTY_PLACEHOLDER)) {
+            StringTokenizer st = new StringTokenizer(membersData, LIST_DELIMITER);
+            while (st.hasMoreTokens()) {
+                String pair = st.nextToken();
+                String[] splitPair = pair.split("=");
+                if(splitPair.length == 2) {
+                    doc.addMember(splitPair[0], Base64.getDecoder().decode(splitPair[1]));
+                }
+            }
+        }
+
+        return doc;
     }
 
     // --- Helper Methoden ---

@@ -4,6 +4,7 @@ import Group.SharkGroupDocument;
 import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import currency.classes.LocalCurrency;
+import exepections.ASAPCurrencyException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class SharkCurrencySerializationTest {
 
     @Test
-    public void testSerializationAndDeserialization() throws IOException {
+    public void testSerializationAndDeserialization() throws IOException, ASAPCurrencyException {
         // 1. ARRANGE
         // Hinweis: groupId wird im Konstruktor zufällig generiert, daher setzen wir sie hier nicht manuell.
         String creatorId = "alice";
