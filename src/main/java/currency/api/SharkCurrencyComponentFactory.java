@@ -16,9 +16,13 @@ public class SharkCurrencyComponentFactory implements SharkComponentFactory {
     public SharkCurrencyComponentFactory(SharkPKIComponent pkiComponent) {
         this.pkiComponent = pkiComponent;
     }
+    private SharkCurrencyComponentImpl instance = null;
 
     @Override
     public SharkComponent getComponent(SharkPeer sharkPeer) throws SharkException {
-        return new SharkCurrencyComponentImpl(pkiComponent);
+        if(this.instance == null) {
+            this.instance = new SharkCurrencyComponentImpl(pkiComponent);
+        }
+        return this.instance;
     }
 }

@@ -10,6 +10,7 @@ import listener.ASAPPromiseListener;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
+import net.sharksystem.asap.crypto.ASAPKeyStore;
 import net.sharksystem.asap.crypto.InMemoASAPKeyStore;
 import net.sharksystem.asap.persons.SharkPKIFacadeImpl;
 import net.sharksystem.asap.pki.ASAPCertificateStorage;
@@ -52,23 +53,34 @@ public class SharkCurrencyComponentImpl
             if (currencyNameURI == null || currencyNameURI.isEmpty()) {
                 throw new ASAPCurrencyException("Currency URI cannot be empty");
             }
-            // 2. Get ASAP Storage for our Currency Format
+
+            // 2. sign document and add yourself to the group
+            byte[] signature = ASAPCryptoAlgorithms
+                    .sign(sharkGroupDocument.getGroupId(), asapKeyStore);
+            if(signature == null || signature.length == 0) {
+                System.err.println("CRITICAL: Signature could not be created! Check KeyStore for ID: "
+                        + this.asapPeer.getPeerID());
+            } else {
+                System.out.println("SUCCESS: Created signature with length: " + signature.length);
+            }
+            boolean successAddMember = sharkGroupDocument
+                    .addMember(this.asapPeer.getPeerID(),signature);
+            if(!successAddMember) {
+                throw new ASAPCurrencyException("Error in adding member to group");
+            }
+
+            // 3. Get ASAP Storage for our Currency Format
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
 
-            // 3. Create a new Channel for the specific Group
+            // 4. Create a new Channel for the specific Group
             storage.createChannel(currencyNameURI);
             System.out.println("DEBUG: all channels: "+storage.getChannelURIs());
 
-            // 4. Serialize the document
+            // 5. Serialize the document
             byte[] serializedDocument = sharkGroupDocument.toSaveByte();
 
-            // 5. Save document in Storage
+            // 6. Save document in Storage
             storage.add(currencyNameURI, serializedDocument);
-
-            // 6. sign document and add yourself to the group
-            byte[] signature = ASAPCryptoAlgorithms
-                    .sign(sharkGroupDocument.getGroupId(), asapKeyStore);
-            sharkGroupDocument.addMember(this.asapPeer.getPeerID(),signature);
 
         } catch (IOException | ASAPException e){
             throw new ASAPCurrencyException(e.getMessage());
@@ -91,13 +103,15 @@ public class SharkCurrencyComponentImpl
         return 0;
     }
 
-    private InMemoASAPKeyStore asapKeyStore;
+    private ASAPKeyStore asapKeyStore;
 
     //Sets-Up the PKI for our peer
     @Override
     public void onStart(ASAPPeer asapPeer) throws SharkException {
+        System.out.println("DEBUG: Component started for peer: " + asapPeer.getPeerID());
         this.asapPeer = asapPeer;
-        this.asapKeyStore = new InMemoASAPKeyStore(asapPeer.getPeerID());
+        this.asapKeyStore = this.sharkPKIComponent.getASAPKeyStore();
+        System.out.println("DEBUG (Impl): Keystore Hash: " + System.identityHashCode(this.asapKeyStore));
     }
 
     @Override
@@ -117,7 +131,7 @@ public class SharkCurrencyComponentImpl
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             ASAPChannel channel = storage.getChannel(currencyNameUri);
             ASAPMessages messages = channel.getMessages();
-            byte[] unserializedDocument = messages.getMessage(0, true);
+            byte[] unserializedDocument = messages.getMessage(0, false);
             return SharkGroupDocument.fromByte(unserializedDocument);
 
         } catch (IOException e) {

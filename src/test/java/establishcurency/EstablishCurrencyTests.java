@@ -8,18 +8,13 @@ import exepections.ASAPCurrencyException;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeerFS;
 import net.sharksystem.SharkTestPeerFS;
-import net.sharksystem.asap.ASAPChannel;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPPeerFS;
-import net.sharksystem.asap.ASAPStorage;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
-import net.sharksystem.asap.engine.ASAPEngine;
-import net.sharksystem.asap.engine.ASAPEngineFS;
 import net.sharksystem.fs.FSUtils;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.pki.SharkPKIComponentFactory;
 import net.sharksystem.testhelper.SharkPKITesthelper;
-import net.sharksystem.utils.SerializationHelper;
 import net.sharksystem.utils.testsupport.TestConstants;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,9 +22,7 @@ import org.junit.jupiter.api.Test;
 import testhelpers.SharkCurrencyComponentImpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import static net.sharksystem.utils.testsupport.TestConstants.*;
 
@@ -82,17 +75,13 @@ public class EstablishCurrencyTests {
             throws SharkException, ASAPException, ASAPCurrencyException, IOException {
 
         // 0. Setting up Alice Peer
-        Collection<CharSequence> formats = new ArrayList<>();
-        CharSequence aliceFolder = TEST_FOLDER + "/" + TestConstants.ALICE_ID;
-        SharkPeerFS alice = new SharkPeerFS(TestConstants.ALICE_ID, aliceFolder);
-        formats.add(EXAMPLE_APP_FORMAT);
-        SharkPKIComponentFactory certificateComponentFactory = new SharkPKIComponentFactory();
-        alice.addComponent(certificateComponentFactory, SharkPKIComponent.class);
-        SharkCurrencyComponentFactory currencyFactory = new SharkCurrencyComponentFactory(
-                (SharkPKIComponent) alice.getComponent(SharkPKIComponent.class));
-        ASAPPeerFS aliceAsapPeer = new ASAPPeerFS(ALICE_NAME, aliceFolder);
+        SharkPKITesthelper.incrementTestNumber();
+        CharSequence folderName = SharkPKITesthelper.getPKITestFolder(ROOT_DIRECTORY);
+        SharkTestPeerFS alice = SharkPKITesthelper.setupSharkPeerDoNotStart(ALICE_NAME, folderName);
+        SharkPKIComponent alicePKI = SharkPKITesthelper.setupPKIComponentPeerNotStarted(alice, ALICE_ID);
+        SharkCurrencyComponentFactory currencyFactory = new SharkCurrencyComponentFactory(alicePKI);
         alice.addComponent(currencyFactory, SharkCurrencyComponent.class);
-        alice.start(aliceAsapPeer);
+        alice.start(ALICE_ID);
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTaler";
@@ -109,17 +98,28 @@ public class EstablishCurrencyTests {
         currencyComponent.establishGroup(dummyCurrency, new ArrayList<CharSequence>(), false, true);
         SharkGroupDocument testDoc = currencyComponent.getSharkGroupDocument(currencyName);
         byte[] groupId = testDoc.getGroupId();
-        byte[] aliceSignature = testDoc.getCurrentMembers().get(ALICE_NAME);
+        String realAliceID = alice.getASAPPeer().getPeerID().toString();
+        System.out.println("DEBUG: current Members:" + testDoc.getCurrentMembers());
+        byte[] aliceSignature = testDoc.getCurrentMembers().get(realAliceID);
+        System.out.println("DEBUG (Test): Keystore Hash: " + System.identityHashCode(alice.getASAPPeer().getASAPKeyStore()));
 
         // 3. Checking results
         boolean channelExists = alice.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
                 .channelExists(currencyName);
         boolean verified = ASAPCryptoAlgorithms.verify(
-                groupId, aliceSignature, ALICE_NAME, ((SharkPKIComponent) alice.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
-        Assertions.assertEquals(ALICE_NAME,testDoc.getGroupCreator());
-        Assertions.assertTrue(channelExists, "Channel does not exist");
-        Assertions.assertTrue(verified, "The Signature of Alice could not have been verified");
+                groupId,
+                aliceSignature,
+                ALICE_ID,
+                ((SharkPKIComponent) alice.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        Assertions
+                .assertEquals(ALICE_NAME,testDoc.getGroupCreator());
+        Assertions
+                .assertTrue(channelExists, "Channel does not exist");
+        Assertions
+                .assertTrue(verified, "The Signature of Alice could not have been verified");
+        Assertions
+                .assertEquals(Collections.singletonMap(ALICE_NAME, aliceSignature),testDoc.getCurrentMembers());
 
     }
 
