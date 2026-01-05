@@ -1,4 +1,4 @@
-package scharkCurrencySerializationTests;
+package sharkCurrencySerializationTests;
 
 import Group.SharkGroupDocument;
 import currency.classes.Currency;

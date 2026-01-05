@@ -55,6 +55,39 @@ public interface SharkCurrencyComponent extends SharkComponent {
     void establishGroup(Currency currency, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
+    /**
+     * Establishes a new currency group with specific configuration.
+     * * Mapping to ASAP concepts:
+     * - This version of the method offers the possibility to invite initial members
+     * - This creates an ASAP Channel with the URI based on currency.getName().
+     * - If 'whitelisted' is pass, this indicates a Closed Channel scenario.
+     * - If 'encrypted' is true, the channel messages should be encrypted (requires exchange of keys).
+     * * @param currency       The currency object containing name and metadata.
+     *
+     * @param inviteMembers  List of group members who will automatically be invited
+     * @param whitelisted    It stands the different peers, which are allowed to communicate with each other
+     * @param encrypted      If true, the communication within this group will be encrypted.
+     * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
+     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     */
+    void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
+            throws ASAPCurrencyException;
+
+    /**
+     * Establishes a new currency group with specific configuration.
+     * * Mapping to ASAP concepts:
+     * - This version of the method offers the possibility to invite initial members
+     * - This creates an ASAP Channel with the URI based on currency.getName().
+     * - If 'encrypted' is true, the channel messages should be encrypted (requires exchange of keys).
+     * * @param currency       The currency object containing name and metadata.
+     *
+     * @param inviteMembers  List of group members who will automatically be invited
+     * @param encrypted      If true, the communication within this group will be encrypted.
+     * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
+     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     */
+    void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, boolean encrypted, boolean balanceVisible)
+            throws ASAPCurrencyException;
 
     /**
      * Sends a specific amount of Currency to another peer.

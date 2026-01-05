@@ -96,6 +96,28 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
+    public void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+
+        // 0. Check method call validity
+        this.checkComponentRunning();
+        if (whitelisted != null && inviteMembers != null) {
+            boolean allWhitelisted = inviteMembers.stream()
+                    .allMatch(invited -> whitelisted.stream()
+                            .anyMatch(white -> white.toString().equals(invited.toString())));
+
+            if (!allWhitelisted) {
+                throw new ASAPCurrencyException("Can not invite peers that are not on the whitelist.");
+            }
+        }
+
+    }
+
+    @Override
+    public void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+
+    }
+
+    @Override
     public void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note) throws ASAPCurrencyException {
 
     }

@@ -1,0 +1,61 @@
+package testHelper;
+
+import currency.api.SharkCurrencyComponent;
+import currency.api.SharkCurrencyComponentFactory;
+import net.sharksystem.SharkException;
+import net.sharksystem.SharkTestPeerFS;
+import net.sharksystem.pki.SharkPKIComponent;
+import net.sharksystem.testhelper.SharkPKITesthelper;
+import net.sharksystem.testhelper.SharkPeerTestHelper;
+import testhelpers.SharkCurrencyComponentImpl;
+
+import static net.sharksystem.utils.testsupport.TestConstants.ROOT_DIRECTORY;
+
+/**
+ * Helper class containing methods to set up test scenarios
+ */
+public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
+
+    private static int testNumber = 0;
+    public final String subRootFolder;
+
+    protected SharkTestPeerFS aliceSharkPeer;
+    protected SharkTestPeerFS bobSharkPeer;
+    protected SharkTestPeerFS claraSharkPeer;
+    protected SharkTestPeerFS davidSharkPeer;
+
+    protected SharkCurrencyComponent aliceCurrencyComponent;
+    protected SharkCurrencyComponent bobCurrencyComponent;
+    protected SharkCurrencyComponent claraCurrencyComponent;
+    protected SharkCurrencyComponent davidCurrencyComponent;
+
+    protected SharkCurrencyComponentImpl aliceImpl;
+    protected SharkCurrencyComponentImpl bobImpl;
+    protected SharkCurrencyComponentImpl claraImpl;
+    protected SharkCurrencyComponentImpl davidImpl;
+
+    public AsapCurrencyTestHelper(String testVariant) {
+        this.subRootFolder = ROOT_DIRECTORY + testVariant + "/";
+    }
+
+    /**
+     * This just starts Alice not more
+     * @throws SharkException Thrown when there are errors adding the component
+     */
+    public void setUpScenarioEstablishCurrency_1_justAlice() throws SharkException {
+        this.aliceSharkPeer
+                = new SharkTestPeerFS(ALICE_NAME, subRootFolder + "/" + ALICE_NAME);
+        SharkPKIComponent pkiForFactory
+                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(this.aliceSharkPeer, ALICE_ID);
+        SharkCurrencyComponentFactory currencyFactory
+                = new SharkCurrencyComponentFactory(pkiForFactory);
+        aliceSharkPeer.addComponent(currencyFactory, SharkCurrencyComponent.class);
+        aliceSharkPeer.start(ALICE_ID);
+        this.aliceCurrencyComponent
+                = (SharkCurrencyComponent) this.aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
+        this.aliceImpl =
+                (SharkCurrencyComponentImpl) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
+        AsapCurrencyTestHelper.testNumber++;
+    }
+
+}
