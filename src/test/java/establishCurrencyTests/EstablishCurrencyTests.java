@@ -125,7 +125,8 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
     // WORK IN PROGRESS, hier noch nicht fertig
     @Test
-    public void successfullGroupInviteSendAndReceived() throws SharkException {
+    public void successfullGroupInviteSendAndReceived() throws SharkException, InterruptedException, IOException {
+
 
         // 0. Set up Alice and Bob
         SharkPKITesthelper.incrementTestNumber();
@@ -138,6 +139,8 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 = new SharkCurrencyComponentFactory(pkiForFactoryAlice);
         aliceSharkPeer.addComponent(currencyFactoryAlice, SharkCurrencyComponent.class);
         aliceSharkPeer.start(ALICE_ID);
+        this.aliceCurrencyComponent = (SharkCurrencyComponent) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
+        this.aliceImpl = (SharkCurrencyComponentImpl) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
         // Bob
         bobSharkPeer = SharkPKITesthelper.setupSharkPeerDoNotStart(BOB_NAME, folderName);
         SharkPKIComponent pkiForFactoryBob
@@ -145,6 +148,81 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         SharkCurrencyComponentFactory currencyFactoryBob
                 = new SharkCurrencyComponentFactory(pkiForFactoryBob);
         bobSharkPeer.addComponent(currencyFactoryBob, SharkCurrencyComponent.class);
-        aliceSharkPeer.start(BOB_ID);
+        bobSharkPeer.start(BOB_ID);
+        this.bobImpl = (SharkCurrencyComponentImpl) bobSharkPeer.getComponent(SharkCurrencyComponent.class);
+
+        bobSharkPeer.getASAPTestPeerFS().getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // 1. Alice arranges a new local Currency
+        CharSequence currencyName = "AliceTalerA";
+        Currency dummyCurrency = new LocalCurrency(
+                false,
+                new ArrayList<>(),
+                currencyName.toString(),
+                "A test Currency"
+        );
+
+        // 2. Alice creates a new Group and whitelists Bob
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+
+        this.aliceCurrencyComponent.establishGroup(
+                dummyCurrency,
+                whitelist,
+                false,
+                true);
+
+        SharkGroupDocument testDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        byte[] groupId = testDoc.getGroupId();
+
+        bobSharkPeer.getASAPTestPeerFS()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
+                .createChannel(currencyName);
+        int port = 7777;
+
+        Thread bobThread = new Thread(() -> {
+            try (java.net.ServerSocket serverSocket = new java.net.ServerSocket(port)) {
+
+                java.net.Socket clientSocket = serverSocket.accept();
+
+
+
+                bobSharkPeer.getASAPTestPeerFS().handleConnection(
+                        clientSocket.getInputStream(),
+                        clientSocket.getOutputStream()
+                );
+            } catch (IOException | SharkException e) {
+                e.printStackTrace();
+            }
+        });
+        bobThread.start();
+
+        Thread.sleep(200);
+
+
+        Thread aliceThread = new Thread(() -> {
+            try (java.net.Socket socket = new java.net.Socket("localhost", port)) {
+
+
+                aliceSharkPeer.getASAPTestPeerFS().handleConnection(
+                        socket.getInputStream(),
+                        socket.getOutputStream()
+                );
+            } catch (IOException | SharkException e) {
+                e.printStackTrace();
+            }
+        });
+        aliceThread.start();
+
+        aliceThread.join(5000);
+        bobThread.join(5000);
+
+        // 4.(Assertions)
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+
+        Assertions.assertNotNull(bobDoc, "Bob sollte das SharkGroupDocument empfangen haben.");
+        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
     }
-}
+
+    }

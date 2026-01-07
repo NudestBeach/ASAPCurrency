@@ -131,6 +131,12 @@ public class SharkCurrencyComponentImpl
     @Override
     public void onStart(ASAPPeer asapPeer) throws SharkException {
         this.asapPeer = asapPeer;
+        try {
+            // Initialisiere Storage, damit der Peer auf dieses Format hört
+            this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+        } catch (IOException e) {
+            throw new SharkException("Could not initialize ASAP storage for currency", e);
+        }
     }
 
     @Override
