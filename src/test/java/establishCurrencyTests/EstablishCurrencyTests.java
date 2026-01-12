@@ -42,7 +42,14 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 "A test Currency"               // Spec
         );
 
+        // uri is: //group-document//AliceTalerA
+        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyName;
+
         // 2. Alice creates a new Group using the created Currency
+        aliceSharkPeer.getASAPPeer()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
+                .removeChannel(groupUri);
+
         this.aliceCurrencyComponent.establishGroup(dummyCurrency,
                 new ArrayList<CharSequence>(),
                 false,
@@ -55,7 +62,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Map<CharSequence, byte[]> members = testDoc.getCurrentMembers();
         boolean channelExists = aliceSharkPeer.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
-                .channelExists(currencyName);
+                .channelExists(groupUri);
         boolean verified = ASAPCryptoAlgorithms.verify(
                 groupId,
                 aliceSignature,
@@ -72,6 +79,13 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(members.containsKey(ALICE_ID));
         Assertions.assertArrayEquals(aliceSignature, members.get(ALICE_ID),
                 "The saved signature is different than the original one");
+
+        // TODO: Check all the channel
+        // 4. Do some cleaning
+        aliceSharkPeer.getASAPPeer()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT).removeChannel("AliceTalerA");
+        aliceSharkPeer.getASAPPeer()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT).removeChannel(groupUri);
     }
 
     @Test

@@ -51,6 +51,7 @@ public class SharkCurrencyComponentImpl
         try{
             // 1. Get Name of the Currency URI
             String currencyNameURI = currency.getCurrencyName();
+            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameURI;
             ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
             if (currencyNameURI == null || currencyNameURI.isEmpty()) {
                 throw new ASAPCurrencyException("Currency URI cannot be empty");
@@ -75,14 +76,14 @@ public class SharkCurrencyComponentImpl
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
 
             // 4. Create a new Channel for the specific Group
-            storage.createChannel(currencyNameURI);
+            this.createChannel(storage, groupURI);
             System.out.println("DEBUG: all channels: "+storage.getChannelURIs());
 
             // 5. Serialize the document
             byte[] serializedDocument = sharkGroupDocument.toSaveByte();
 
             // 6. Save document in Storage
-            storage.add(currencyNameURI, serializedDocument);
+            storage.add(groupURI, serializedDocument);
 
         } catch (IOException | ASAPException e){
             throw new ASAPCurrencyException(e.getMessage());
@@ -152,12 +153,14 @@ public class SharkCurrencyComponentImpl
 
     public SharkGroupDocument getSharkGroupDocument(CharSequence currencyNameUri) throws ASAPException {
 
+        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
+
         try {
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            ASAPChannel channel = storage.getChannel(currencyNameUri);
+            ASAPChannel channel = storage.getChannel(groupUri);
             ASAPMessages messages = channel.getMessages();
             if(messages.size() == 0) {
-                System.err.println("DEBUG: No messages found in channel " + currencyNameUri);
+                System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
             byte[] unserializedDocument = messages.getMessage(0, false);
@@ -173,5 +176,20 @@ public class SharkCurrencyComponentImpl
     private void checkComponentRunning() throws ASAPCurrencyException {
         if(this.asapPeer == null || this.sharkPKIComponent == null)
             throw new ASAPCurrencyException("peer not started and/or pki not initialized");
+    }
+
+    private void createChannel(ASAPStorage storage, CharSequence uri) {
+        try {
+            if(storage.channelExists(uri)) {
+                throw new ASAPCurrencyException("Channel with uri "+ uri +" already exists");
+            }
+            else {
+                storage.createChannel(uri);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ASAPException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

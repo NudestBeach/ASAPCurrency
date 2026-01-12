@@ -5,17 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/ASAPKeyStoreWrapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/establishcurency/SharkPKIComponentImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/scharkCurrencySerializationTests/SharkCurrencySerializationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sharkCurrencySerializationTests/SharkCurrencySerializationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />

@@ -12,7 +12,7 @@ import java.util.*;
 
 public class SharkGroupDocument {
 
-    public static final String DOCUMENT_FORMAT = "application://x-asap-currency-group-document";
+    public static final String DOCUMENT_FORMAT = "//group-document//";
     private static final String EMPTY_PLACEHOLDER = "NULL";
     private static final String LIST_DELIMITER = ":::";
     private final byte[] groupId;
@@ -205,6 +205,10 @@ public class SharkGroupDocument {
                     doc.addMember(splitPair[0], Base64.getDecoder().decode(splitPair[1]));
                 }
             }
+        }
+
+        if(doc==null || doc.groupId.length<=0) {
+            throw new ASAPCurrencyException("Error in group-document serialization");
         }
 
         return doc;
