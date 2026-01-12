@@ -90,9 +90,18 @@ public interface SharkCurrencyComponent extends SharkComponent {
             throws ASAPCurrencyException;
 
     /**
+     * It is used for to Invite Members to a Group which has no invited Members as a list.
+     * You can send Members one by one or multiple Members at once.
+     * @param content It's the Groupdocument what you want to send
+     * @param uri URI of the group you want to invite
+     * @param peerId ID of the peer you want to invite
+     *
+     */
+    void invitePeerToGroup(byte[] content, CharSequence uri, CharSequence peerId);
+
+    /**
      * Sends a specific amount of Currency to another peer.
      * Creates a transaction, serializes it, signs it and adds it to the ASAP channel.
-     *
      * @param currencyName The name of the currency group.
      * @param recipientId  The ASAP Peer ID of the recipient.
      * @param amount       The amount to transfer.

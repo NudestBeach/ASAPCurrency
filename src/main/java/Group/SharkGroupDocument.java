@@ -12,7 +12,7 @@ import java.util.*;
 
 public class SharkGroupDocument {
 
-    public static final String DOCUMENT_FORMAT = "application://x-asap-currency-group-document";
+    public static final String DOCUMENT_FORMAT = "//group-document";
     private static final String EMPTY_PLACEHOLDER = "NULL";
     private static final String LIST_DELIMITER = ":::";
     private final byte[] groupId;
