@@ -58,4 +58,20 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         AsapCurrencyTestHelper.testNumber++;
     }
 
+    public void setUpScenarioEstablishCurrency_2_BobAndAlice() throws SharkException {
+        setUpScenarioEstablishCurrency_1_justAlice();
+        this.bobSharkPeer
+                = new SharkTestPeerFS(BOB_NAME, subRootFolder + "/" + BOB_NAME);
+        SharkPKIComponent pkiForFactory
+                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(this.bobSharkPeer, BOB_ID);
+        SharkCurrencyComponentFactory currencyFactory
+                = new SharkCurrencyComponentFactory(pkiForFactory);
+        bobSharkPeer.addComponent(currencyFactory, SharkCurrencyComponent.class);
+        bobSharkPeer.start(BOB_ID);
+        this.bobCurrencyComponent
+                = (SharkCurrencyComponent) this.bobSharkPeer.getComponent(SharkCurrencyComponent.class);
+        this.bobImpl =
+                (SharkCurrencyComponentImpl) bobSharkPeer.getComponent(SharkCurrencyComponent.class);
+        AsapCurrencyTestHelper.testNumber++;
+    }
 }
