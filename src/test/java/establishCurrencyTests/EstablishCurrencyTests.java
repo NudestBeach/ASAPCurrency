@@ -6,7 +6,9 @@ import currency.classes.Currency;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.SharkException;
+import net.sharksystem.asap.ASAPStorage;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
+import net.sharksystem.asap.crypto.ASAPKeyStore;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.testhelper.SharkPKITesthelper;
 import org.junit.jupiter.api.Assertions;
@@ -43,13 +45,9 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         );
 
         // uri is: //group-document//AliceTalerA
-        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyName;
+        CharSequence groupUriA = SharkGroupDocument.DOCUMENT_FORMAT+currencyName;
 
         // 2. Alice creates a new Group using the created Currency
-        aliceSharkPeer.getASAPPeer()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
-                .removeChannel(groupUri);
-
         this.aliceCurrencyComponent.establishGroup(dummyCurrency,
                 new ArrayList<CharSequence>(),
                 false,
@@ -59,10 +57,10 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         byte[] aliceSignature = testDoc.getCurrentMembers().get(ALICE_ID);
 
         // 3. Checking results
+        ASAPStorage aliceStorage = aliceSharkPeer.getASAPPeer()
+                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
         Map<CharSequence, byte[]> members = testDoc.getCurrentMembers();
-        boolean channelExists = aliceSharkPeer.getASAPPeer()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
-                .channelExists(groupUri);
+        boolean channelExists = aliceStorage.channelExists(groupUriA);
         boolean verified = ASAPCryptoAlgorithms.verify(
                 groupId,
                 aliceSignature,
@@ -82,10 +80,10 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // TODO: Check all the channel
         // 4. Do some cleaning
-        aliceSharkPeer.getASAPPeer()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT).removeChannel("AliceTalerA");
-        aliceSharkPeer.getASAPPeer()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT).removeChannel(groupUri);
+        aliceStorage.removeChannel(groupUriA);
+        aliceStorage.removeChannel("//group-documentAliceTalerA");
+        aliceStorage.removeChannel("AliceTalerA");
+        System.out.println("DEBUG: all channels: "+aliceStorage.getChannelURIs());
     }
 
     @Test
@@ -93,19 +91,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
             throws SharkException {
 
         // 0. Setting up Alice Peer
-        SharkPKITesthelper.incrementTestNumber();
-        String folderName = SharkPKITesthelper.getPKITestFolder(ROOT_DIRECTORY);
-        aliceSharkPeer = SharkPKITesthelper.setupSharkPeerDoNotStart(ALICE_NAME, folderName);
-        SharkPKIComponent pkiForFactory
-                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(aliceSharkPeer, ALICE_ID);
-        SharkCurrencyComponentFactory currencyFactory
-                = new SharkCurrencyComponentFactory(pkiForFactory);
-        aliceSharkPeer.addComponent(currencyFactory, SharkCurrencyComponent.class);
-        aliceSharkPeer.start(ALICE_ID);
-
-        SharkCurrencyComponentImpl currencyComponent =
-                (SharkCurrencyComponentImpl) aliceSharkPeer
-                        .getComponent(SharkCurrencyComponent.class);
+        this.setUpScenarioEstablishCurrency_1_justAlice();
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerB";
@@ -125,7 +111,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         // 3. Checking the result
         Exception exception
                 = assertThrows(ASAPCurrencyException.class, () -> {
-            currencyComponent.establishGroup(membersToBeInvited,
+            this.aliceCurrencyComponent.establishGroup(membersToBeInvited,
                     dummyCurrency,
                     new ArrayList<CharSequence>(),
                     false,
@@ -143,33 +129,10 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
 
         // 0. Set up Alice and Bob
-        SharkPKITesthelper.incrementTestNumber();
-        String folderName = SharkPKITesthelper.getPKITestFolder(ROOT_DIRECTORY);
-        // Alice
-        aliceSharkPeer = SharkPKITesthelper.setupSharkPeerDoNotStart(ALICE_NAME, folderName);
-        SharkPKIComponent pkiForFactoryAlice
-                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(aliceSharkPeer, ALICE_ID);
-        SharkCurrencyComponentFactory currencyFactoryAlice
-                = new SharkCurrencyComponentFactory(pkiForFactoryAlice);
-        aliceSharkPeer.addComponent(currencyFactoryAlice, SharkCurrencyComponent.class);
-        aliceSharkPeer.start(ALICE_ID);
-        this.aliceCurrencyComponent = (SharkCurrencyComponent) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
-        this.aliceImpl = (SharkCurrencyComponentImpl) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
-        // Bob
-        bobSharkPeer = SharkPKITesthelper.setupSharkPeerDoNotStart(BOB_NAME, folderName);
-        SharkPKIComponent pkiForFactoryBob
-                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(bobSharkPeer, BOB_ID);
-        SharkCurrencyComponentFactory currencyFactoryBob
-                = new SharkCurrencyComponentFactory(pkiForFactoryBob);
-        bobSharkPeer.addComponent(currencyFactoryBob, SharkCurrencyComponent.class);
-        bobSharkPeer.start(BOB_ID);
-        this.bobImpl = (SharkCurrencyComponentImpl) bobSharkPeer.getComponent(SharkCurrencyComponent.class);
+        setUpScenarioEstablishCurrency_2_BobAndAlice();
 
-        bobSharkPeer.getASAPTestPeerFS().getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-
-        /////////////////////////////////////////////////////////////////////////////////////
         // 1. Alice arranges a new local Currency
-        CharSequence currencyName = "AliceTalerA";
+        CharSequence currencyName = "AliceTalerC";
         Currency dummyCurrency = new LocalCurrency(
                 false,
                 new ArrayList<>(),
@@ -233,10 +196,36 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         bobThread.join(5000);
 
         // 4.(Assertions)
+        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+        byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
+        byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+        boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
+                groupId,
+                aliceSignature,
+                ALICE_ID,
+                ((SharkPKIComponent) aliceSharkPeer
+                        .getComponent(SharkPKIComponent.class))
+                        .getASAPKeyStore());
+        boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(
+                groupId,
+                bobSignature,
+                BOB_ID,
+                ((SharkPKIComponent) bobSharkPeer
+                        .getComponent(SharkPKIComponent.class))
+                        .getASAPKeyStore());
 
-        Assertions.assertNotNull(bobDoc, "Bob sollte das SharkGroupDocument empfangen haben.");
-        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions
+                .assertNotNull(bobDoc, "Bob sollte das SharkGroupDocument empfangen haben.");
+        Assertions
+                .assertArrayEquals(groupId,
+                        bobDoc.getGroupId(),
+                        "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions
+                .assertEquals(4,
+                        bobDoc.getCurrentMembers().size()
+                        +aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
+        Assertions
+                .assertTrue(verifiedAliceSig&&verifiedBobSig); //both have to be verified
     }
-
-    }
+}

@@ -76,8 +76,7 @@ public class SharkCurrencyComponentImpl
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
 
             // 4. Create a new Channel for the specific Group
-            storage.createChannel(SharkGroupDocument.DOCUMENT_FORMAT+currencyNameURI);
-            System.out.println("DEBUG: all channels: "+storage.getChannelURIs());
+            storage.createChannel(groupURI);
 
             // 5. Serialize the document
             byte[] serializedDocument = sharkGroupDocument.toSaveByte();
