@@ -4,25 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development.">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="added connection via tcp but no data transfere happens">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.content" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.content" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.meta" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
     </list>
-    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+    </list>
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,9 +61,23 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/NudestBeach/ASAPCurrency.git&quot;,
-    &quot;accountId&quot;: &quot;b70e2471-627e-4000-838e-db3d7c621727&quot;
+    &quot;accountId&quot;: &quot;2d18a685-f6fc-4431-b4e5-c3e4bbb3148b&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java">
+      <ranges>
+        <range start1="77" end1="78" start2="77" end2="78" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="176" end1="176" start2="176" end2="181" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java">
+      <ranges>
+        <range start1="90" end1="90" start2="90" end2="100" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="94" end1="95" start2="104" end2="104" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -76,6 +96,7 @@
   &quot;keyToString&quot;: {
     &quot;JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor&quot;: &quot;Debug&quot;,
     &quot;JUnit.EstablishCurrencyTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SharkCurrencySerializationTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor&quot;: &quot;Run&quot;,
     &quot;Maven.ASAPJava [clean].executor&quot;: &quot;Run&quot;,
@@ -125,6 +146,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="EstablishCurrencyTests.successfullGroupInviteSendAndReceived" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="establishCurrencyTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="establishCurrencyTests" />
+      <option name="MAIN_CLASS_NAME" value="establishCurrencyTests.EstablishCurrencyTests" />
+      <option name="METHOD_NAME" value="successfullGroupInviteSendAndReceived" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SharkCurrencySerializationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -159,10 +196,19 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.EstablishCurrencyTests" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.SharkCurrencySerializationTest" />
         <item itemvalue="JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -175,6 +221,8 @@
       <workItem from="1764784343743" duration="3426000" />
       <workItem from="1765384366000" duration="952000" />
       <workItem from="1765385331193" duration="5593000" />
+      <workItem from="1768138372088" duration="528000" />
+      <workItem from="1768209661829" duration="5159000" />
     </task>
     <task id="LOCAL-00001" summary="Create Maven Repository">
       <created>1764622241417</created>
@@ -214,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765211781518</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added connection via tcp but no data transfere happens">
+      <option name="closed" value="true" />
+      <created>1767788166459</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1767788166460</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +293,8 @@
     <MESSAGE value="Hab schon mal ein interface erstellt (wahrscheinlich falsch)" />
     <MESSAGE value="Did some improvements and updated the in genereal the projekt" />
     <MESSAGE value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
-    <option name="LAST_COMMIT_MESSAGE" value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
+    <MESSAGE value="added connection via tcp but no data transfere happens" />
+    <option name="LAST_COMMIT_MESSAGE" value="added connection via tcp but no data transfere happens" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -76,7 +76,7 @@ public class SharkCurrencyComponentImpl
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
 
             // 4. Create a new Channel for the specific Group
-            this.createChannel(storage, groupURI);
+            storage.createChannel(SharkGroupDocument.DOCUMENT_FORMAT+currencyNameURI);
             System.out.println("DEBUG: all channels: "+storage.getChannelURIs());
 
             // 5. Serialize the document
@@ -178,18 +178,8 @@ public class SharkCurrencyComponentImpl
             throw new ASAPCurrencyException("peer not started and/or pki not initialized");
     }
 
-    private void createChannel(ASAPStorage storage, CharSequence uri) {
-        try {
-            if(storage.channelExists(uri)) {
-                throw new ASAPCurrencyException("Channel with uri "+ uri +" already exists");
-            }
-            else {
-                storage.createChannel(uri);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ASAPException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public void invitePeerToGroup(byte[] content, CharSequence uri, CharSequence peerId) {
+
     }
 }
