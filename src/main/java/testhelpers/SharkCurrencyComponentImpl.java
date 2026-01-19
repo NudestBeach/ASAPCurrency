@@ -5,6 +5,7 @@ import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import exepections.ASAPCurrencyException;
+import listener.ASAPCurrencyListenerManager;
 import listener.ASAPGroupInviteListener;
 import listener.ASAPPromiseListener;
 import net.sharksystem.*;
@@ -20,6 +21,8 @@ import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.utils.SerializationHelper;
 import net.sharksystem.utils.testsupport.TestConstants;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -34,8 +37,8 @@ import static net.sharksystem.utils.SerializationHelper.characterSequence2bytes;
  * WORK IN PROGRESS!!!!!
  */
 public class SharkCurrencyComponentImpl
-        extends AbstractSharkComponent
-        implements SharkComponent, SharkCurrencyComponent, ASAPMessageReceivedListener, ASAPEnvironmentChangesListener {
+        extends ASAPCurrencyListenerManager
+        implements SharkCurrencyComponent, ASAPMessageReceivedListener {
 
     private final SharkPKIComponent sharkPKIComponent;
     private ASAPPeer asapPeer;
@@ -137,18 +140,19 @@ public class SharkCurrencyComponentImpl
         } catch (IOException e) {
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
+
+        this.asapPeer.addASAPMessageReceivedListener(
+                SharkCurrencyComponent.CURRENCY_FORMAT,
+                this);
     }
 
     @Override
-    public void onlinePeersChanged(Set<CharSequence> set) {
-
+    public void asapMessagesReceived(ASAPMessages asapMessages,
+                                     String senderE2E,
+                                     List<ASAPHop> asapHops) throws IOException {
+        CharSequence uri = asapMessages.getURI();
+        this.notifySharkMessageReceivedListener(uri);
     }
-
-    @Override
-    public void asapMessagesReceived(ASAPMessages asapMessages, String s, List<ASAPHop> list) throws IOException {
-
-    }
-
 
     public SharkGroupDocument getSharkGroupDocument(CharSequence currencyNameUri) throws ASAPException {
 
@@ -162,8 +166,8 @@ public class SharkCurrencyComponentImpl
                 System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
-            byte[] unserializedDocument = messages.getMessage(0, false);
-            return SharkGroupDocument.fromByte(unserializedDocument);
+            byte[] serializedDocument = messages.getMessage(0, false);
+            return SharkGroupDocument.fromByte(serializedDocument);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -172,13 +176,52 @@ public class SharkCurrencyComponentImpl
         }
      }
 
+     public byte[] getSharkGroupDocumentSerialized(CharSequence currencyNameUri) {
+         CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
+
+         try {
+             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+             ASAPChannel channel = storage.getChannel(groupUri);
+             ASAPMessages messages = channel.getMessages();
+             if(messages.size() == 0) {
+                 System.err.println("DEBUG: No messages found in channel " + groupUri);
+                 return null;
+             }
+             return messages.getMessage(0, false);
+
+         } catch (IOException | ASAPException e) {
+             throw new RuntimeException(e);
+         }
+     }
+
     private void checkComponentRunning() throws ASAPCurrencyException {
         if(this.asapPeer == null || this.sharkPKIComponent == null)
             throw new ASAPCurrencyException("peer not started and/or pki not initialized");
     }
 
     @Override
-    public void invitePeerToGroup(byte[] content, CharSequence uri, CharSequence peerId) {
+    public void invitePeerToGroup(CharSequence currencyNameUri, String optionalMessage, CharSequence peerId)
+            throws ASAPCurrencyException {
 
+        CharSequence fullGroupURI = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
+        this.checkComponentRunning();
+
+        try {
+             byte[] docBytes = this.getSharkGroupDocumentSerialized(currencyNameUri);
+
+             ByteArrayOutputStream baos = new ByteArrayOutputStream();
+             DataOutputStream daos = new DataOutputStream(baos);
+
+             daos.writeUTF(optionalMessage != null ? optionalMessage : "");
+             daos.writeInt(docBytes.length);
+             daos.write(docBytes);
+
+             byte[] fullContent = baos.toByteArray();
+
+             this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, fullGroupURI, fullContent);
+
+        } catch(ASAPException | IOException e) {
+            throw new ASAPCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
+        }
     }
 }

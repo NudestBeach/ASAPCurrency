@@ -154,47 +154,10 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         SharkGroupDocument testDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = testDoc.getGroupId();
 
-        bobSharkPeer.getASAPTestPeerFS()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT)
-                .createChannel(currencyName);
-        int port = 7777;
-
-        Thread bobThread = new Thread(() -> {
-            try (java.net.ServerSocket serverSocket = new java.net.ServerSocket(port)) {
-
-                java.net.Socket clientSocket = serverSocket.accept();
-
-
-
-                bobSharkPeer.getASAPTestPeerFS().handleConnection(
-                        clientSocket.getInputStream(),
-                        clientSocket.getOutputStream()
-                );
-            } catch (IOException | SharkException e) {
-                e.printStackTrace();
-            }
-        });
-        bobThread.start();
-
-        Thread.sleep(200);
-
-
-        Thread aliceThread = new Thread(() -> {
-            try (java.net.Socket socket = new java.net.Socket("localhost", port)) {
-
-
-                aliceSharkPeer.getASAPTestPeerFS().handleConnection(
-                        socket.getInputStream(),
-                        socket.getOutputStream()
-                );
-            } catch (IOException | SharkException e) {
-                e.printStackTrace();
-            }
-        });
-        aliceThread.start();
-
-        aliceThread.join(5000);
-        bobThread.join(5000);
+        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
         // 4.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);

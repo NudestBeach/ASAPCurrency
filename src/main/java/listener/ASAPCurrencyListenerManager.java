@@ -8,19 +8,35 @@ import java.util.HashMap;
 
 public class ASAPCurrencyListenerManager extends GenericListenerImplementation<ASAPCurrencyListener> {
 
-    private HashMap<CharSequence, GenericListenerImplementation<ASAPCurrencyListener> listenerMap =
-            new HashMap();
+    private HashMap<CharSequence, ASAPCurrencyListener> listenerMap = new HashMap();
 
-    public void addSharkCurrencyListener(ASAPCurrencyListener listener) {
-        this.addListener(listener);
+    public void addSharkCurrencyListener(CharSequence uri, ASAPCurrencyListener listener) {
+        if(!listenerMap.containsKey(uri)) {
+            listenerMap.put(uri, listener);
+        }
+        this.addListener(listenerMap.get(uri));
     }
 
-    public void removeSharkCurrencyListener(ASAPCurrencyListener listener) {
-        this.removeListener(listener);
+    public void notifySharkMessageReceivedListener(
+            CharSequence uri) {
+
+        SharkMessagesReceivedNotifier sharkMessagesReceivedNotifier =
+                new SharkMessagesReceivedNotifier(uri);
+
+        this.notifyAll(null, false);
     }
 
-    protected void sharkCurrencNotifyReceived(CharSequence format) {
+    private class SharkMessagesReceivedNotifier implements GenericNotifier<ASAPCurrencyListener> {
+        private final CharSequence uri;
 
+        public SharkMessagesReceivedNotifier(CharSequence uri) {
+            this.uri = uri;
+        }
+
+        @Override
+        public void doNotify(ASAPCurrencyListener sharkMessagesReceivedListener) {
+            sharkMessagesReceivedListener.handleSharkCurrencyNotification(this.uri, null);
+        }
     }
 
 }

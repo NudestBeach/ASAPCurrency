@@ -9,6 +9,8 @@ import net.sharksystem.testhelper.SharkPKITesthelper;
 import net.sharksystem.testhelper.SharkPeerTestHelper;
 import testhelpers.SharkCurrencyComponentImpl;
 
+import java.io.IOException;
+
 import static net.sharksystem.utils.testsupport.TestConstants.ROOT_DIRECTORY;
 
 /**
@@ -18,6 +20,10 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
     public final String subRootFolder;
+    private static int portNumber = 5000;
+    public static int getPortNumber() {
+        return portNumber++;
+    }
 
     protected SharkTestPeerFS aliceSharkPeer;
     protected SharkTestPeerFS bobSharkPeer;
@@ -36,6 +42,28 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     public AsapCurrencyTestHelper(String testVariant) {
         this.subRootFolder = ROOT_DIRECTORY + testVariant + "/";
+    }
+
+    public void runEncounter(SharkTestPeerFS leftPeer, SharkTestPeerFS rightPeer, boolean stop)
+            throws SharkException, IOException, InterruptedException {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println("                       start encounter: "
+                + leftPeer.getASAPPeer().getPeerID() + " <--> " + rightPeer.getASAPPeer().getPeerID());
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+        leftPeer.getASAPTestPeerFS().startEncounter(getPortNumber(), rightPeer.getASAPTestPeerFS());
+        // give them moment to exchange data
+        Thread.sleep(1000);
+        System.out.println("slept a moment");
+
+        if(stop) {
+            System.out.println("############################################################################");
+            System.out.println("                   stop encounter: "
+                    + leftPeer.getASAPPeer().getPeerID() + " <--> " + rightPeer.getASAPPeer().getPeerID());
+            leftPeer.getASAPTestPeerFS().stopEncounter(rightPeer.getASAPTestPeerFS());
+            System.out.println("############################################################################");
+            Thread.sleep(100);
+        }
     }
 
     /**

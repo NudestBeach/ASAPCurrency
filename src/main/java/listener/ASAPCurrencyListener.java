@@ -16,5 +16,5 @@ public interface ASAPCurrencyListener {
      * It will then lead the notifivation to the right listener, which is responsible for the task.
      * @param uri Channel in which the notification was send.
      */
-    void handleSharkCurrencyNotification(CharSequence uri);
+    void handleSharkCurrencyNotification(CharSequence uri, byte[] fullContent);
 }

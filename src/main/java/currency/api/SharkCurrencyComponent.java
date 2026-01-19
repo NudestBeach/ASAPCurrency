@@ -92,12 +92,13 @@ public interface SharkCurrencyComponent extends SharkComponent {
     /**
      * It is used for to Invite Members to a Group which has no invited Members as a list.
      * You can send Members one by one or multiple Members at once.
-     * @param content It's the Groupdocument what you want to send
-     * @param uri URI of the group you want to invite
+     * @param currencyNameUri Name of the Currency the group is based in
+     * @param optionalMessage An optional message can be added to an invitation
      * @param peerId ID of the peer you want to invite
      *
      */
-    void invitePeerToGroup(byte[] content, CharSequence uri, CharSequence peerId);
+    void invitePeerToGroup(CharSequence currencyNameUri, String optionalMessage, CharSequence peerId)
+            throws ASAPCurrencyException;
 
     /**
      * Sends a specific amount of Currency to another peer.
