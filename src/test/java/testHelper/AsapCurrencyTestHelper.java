@@ -74,4 +74,5 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
                 (SharkCurrencyComponentImpl) bobSharkPeer.getComponent(SharkCurrencyComponent.class);
         AsapCurrencyTestHelper.testNumber++;
     }
+
 }

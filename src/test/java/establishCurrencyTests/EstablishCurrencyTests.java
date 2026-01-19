@@ -5,6 +5,7 @@ import currency.api.SharkCurrencyComponentFactory;
 import currency.classes.Currency;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
+import listener.ASAPGroupInviteListener;
 import net.sharksystem.SharkException;
 import net.sharksystem.asap.ASAPStorage;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
@@ -18,6 +19,7 @@ import testhelpers.SharkCurrencyComponentImpl;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 import static net.sharksystem.utils.testsupport.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -62,7 +64,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Map<CharSequence, byte[]> members = testDoc.getCurrentMembers();
         boolean channelExists = aliceStorage.channelExists(groupUriA);
         boolean verified = ASAPCryptoAlgorithms.verify(
-                groupId,
+                groupId, //Content der signiert wurde
                 aliceSignature,
                 ALICE_ID,
                 ((SharkPKIComponent) aliceSharkPeer
@@ -127,9 +129,8 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
     @Test
     public void successfullGroupInviteSendAndReceived() throws SharkException, InterruptedException, IOException {
 
-
         // 0. Set up Alice and Bob
-        setUpScenarioEstablishCurrency_2_BobAndAlice();
+        this.setUpScenarioEstablishCurrency_2_BobAndAlice();
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerC";
@@ -216,7 +217,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                         .getASAPKeyStore());
 
         Assertions
-                .assertNotNull(bobDoc, "Bob sollte das SharkGroupDocument empfangen haben.");
+                .assertNotNull(bobDoc, "Bob document ist null.");
         Assertions
                 .assertArrayEquals(groupId,
                         bobDoc.getGroupId(),
@@ -225,7 +226,59 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 .assertEquals(4,
                         bobDoc.getCurrentMembers().size()
                         +aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
+        //Alice and Bob have to be verified
         Assertions
-                .assertTrue(verifiedAliceSig&&verifiedBobSig); //both have to be verified
+                .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
+        Assertions
+                .assertTrue(verifiedAliceSig, "Bob Signatur ist ungültig");
+
+    }
+
+    @Test
+    public void sendGroupInviteTomorethanOnePerson(){
+
+    }
+
+    @Test
+    public void receiveInviteListenerTest() throws SharkException {
+        // 0. Setup Alice & Bob
+        this.setUpScenarioEstablishCurrency_2_BobAndAlice();
+
+        // 1. Währung vorbereiten
+        CharSequence currencyName = "AliceTalerD";
+        Currency dummyCurrency = new LocalCurrency(
+                false,
+                new ArrayList<>(),
+                currencyName.toString(),
+                "A test Currency"
+        );
+
+        // 2. Listener bei Bob registrieren
+        // Wir nutzen ein Future, um das Ergebnis des Listeners einzufangen
+        CompletableFuture<SharkGroupDocument> receivedGroupDocFuture = new CompletableFuture<>();
+
+        // Bob lauscht nach einem Group Invite
+        // TODO: Group Invite Listener hinzufügen
+        /**
+        this.bobCurrencyComponent.addGroupInviteListener(new ASAPGroupInviteListener() {
+            @Override
+            public void onGroupInviteReceived(String currencyID, SharkGroupDocument groupDocument){
+                System.out.println("TEST-GROUP-INVITE-RECEIVED-LISTENER: Bob hat eine Einlaudung erhalten für " + currencyID);
+                receivedGroupDocFuture(groupDocument);
+            }
+        });
+         **/
+
+        // 3. Alice erstellt Gruppe (und löst Gossip aus)
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+
+        this.aliceCurrencyComponent.establishGroup(
+                dummyCurrency,
+                whitelist,
+                false,
+                true);
+        // 4. Netzwerk simulieren
+
     }
 }

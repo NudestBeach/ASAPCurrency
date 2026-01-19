@@ -1,19 +1,26 @@
 package listener;
 
-/**
- * Interface for managing currency listeners in ASAP Currency environment.
- */
-public interface ASAPCurrencyListenerManager {
 
-    /**
-     * Add listener for receiving currency events in ASAP Currency environment.
-     * @param listener listener which is to be added
-     */
-    void addASAPCurrencyListener(String format, ASAPCurrencyListener listener);
+import net.sharksystem.asap.listenermanager.ASAPMessageReceivedListenerManager;
+import net.sharksystem.asap.listenermanager.GenericListenerImplementation;
 
-    /**
-     * Remove currency listener.
-     * @param listener listener which is to be removed
-     */
-    void removeASAPCurrencyListener(String format, ASAPCurrencyListener listener);
+import java.util.HashMap;
+
+public class ASAPCurrencyListenerManager extends GenericListenerImplementation<ASAPCurrencyListener> {
+
+    private HashMap<CharSequence, GenericListenerImplementation<ASAPCurrencyListener> listenerMap =
+            new HashMap();
+
+    public void addSharkCurrencyListener(ASAPCurrencyListener listener) {
+        this.addListener(listener);
+    }
+
+    public void removeSharkCurrencyListener(ASAPCurrencyListener listener) {
+        this.removeListener(listener);
+    }
+
+    protected void sharkCurrencNotifyReceived(CharSequence format) {
+
+    }
+
 }
