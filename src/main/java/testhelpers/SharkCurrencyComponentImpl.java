@@ -5,9 +5,8 @@ import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import exepections.ASAPCurrencyException;
-import listener.ASAPCurrencyListenerManager;
-import listener.ASAPGroupInviteListener;
-import listener.ASAPPromiseListener;
+import listener.SharkCurrencyListener;
+import listener.SharkCurrencyListenerManager;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
@@ -37,7 +36,7 @@ import static net.sharksystem.utils.SerializationHelper.characterSequence2bytes;
  * WORK IN PROGRESS!!!!!
  */
 public class SharkCurrencyComponentImpl
-        extends ASAPCurrencyListenerManager
+        extends SharkCurrencyListenerManager
         implements SharkCurrencyComponent, ASAPMessageReceivedListener {
 
     private final SharkPKIComponent sharkPKIComponent;
@@ -141,17 +140,8 @@ public class SharkCurrencyComponentImpl
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
 
-        this.asapPeer.addASAPMessageReceivedListener(
-                SharkCurrencyComponent.CURRENCY_FORMAT,
+        this.asapPeer.addASAPMessageReceivedListener(SharkCurrencyComponent.CURRENCY_FORMAT,
                 this);
-    }
-
-    @Override
-    public void asapMessagesReceived(ASAPMessages asapMessages,
-                                     String senderE2E,
-                                     List<ASAPHop> asapHops) throws IOException {
-        CharSequence uri = asapMessages.getURI();
-        this.notifySharkMessageReceivedListener(uri);
     }
 
     public SharkGroupDocument getSharkGroupDocument(CharSequence currencyNameUri) throws ASAPException {
@@ -223,5 +213,11 @@ public class SharkCurrencyComponentImpl
         } catch(ASAPException | IOException e) {
             throw new ASAPCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
         }
+    }
+
+    @Override
+    public void asapMessagesReceived(ASAPMessages asapMessages, String s, List<ASAPHop> list) throws IOException {
+        CharSequence uri = asapMessages.getURI();
+        this.notifySharkCurrencyNotiReceived(uri);
     }
 }
