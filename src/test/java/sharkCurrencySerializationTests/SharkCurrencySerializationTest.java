@@ -5,6 +5,7 @@ import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
+import net.sharksystem.asap.ASAPException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +16,11 @@ import java.util.ArrayList;
 public class SharkCurrencySerializationTest {
 
     @Test
-    public void testSerializationAndDeserialization() throws IOException, ASAPCurrencyException {
+    public void testSerializationAndDeserialization() throws IOException, ASAPException {
         // 1. ARRANGE
         // Hinweis: groupId wird im Konstruktor zufällig generiert, daher setzen wir sie hier nicht manuell.
         String creatorId = "alice";
-        Currency currency = new LocalCurrency(false, new ArrayList(), "AliceCoin", "TestSpec");
+        Currency currency = new LocalCurrency(false, "AliceCoin", "TestSpec");
 
         // Liste erstellen
         ArrayList<CharSequence> whitelist = new ArrayList<>();
@@ -38,7 +39,7 @@ public class SharkCurrencySerializationTest {
 
         // 2. ACT
         // Hier nutzen wir jetzt die byte[] Methode
-        byte[] serialized = original.toSaveByte();
+        byte[] serialized = original.sharkDocumentToByte();
 
         // Optional: Zur Kontrolle als String ausgeben
         System.out.println("Serialisiert (als String): " + new String(serialized, StandardCharsets.UTF_8));

@@ -41,7 +41,7 @@ public class GroupInvitation {
             this.document.addMember(this.asapPeer.getPeerID(),signature);
             ASAPStorage storage = this.asapPeer.getASAPStorage(CURRENCY_FORMAT);
             storage.createChannel(this.uri);
-            byte[] serializedDocument = this.document.toSaveByte();
+            byte[] serializedDocument = this.document.sharkDocumentToByte();
             storage.add(this.uri, serializedDocument);
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

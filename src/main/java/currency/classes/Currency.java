@@ -1,5 +1,13 @@
 package currency.classes;
 
+import exepections.ASAPCurrencyException;
+import net.sharksystem.asap.ASAPException;
+import net.sharksystem.utils.SerializationHelper;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The Currency interface represents a currency.
  * It can be implemented by classes that represent a specific currency.
@@ -25,21 +33,15 @@ public interface Currency {
     String getSpecification();
 
     /**
-     * Returns the ID of the creator of the currency.
-     * @return the ID of the creator of the currency
-     */
-    byte[] getCreatorId();
-
-    /**
      * Returns whether the currency has a global limit.
      * @return true if the currency has a global limit, false otherwise
      */
     Boolean hasGlobalLimit();
 
     /**
-     * Returns whether the currency is centralized.
-     * @return true if the currency is centralized, false otherwise
+     * Turns the Currency object into a byte[] for serialization purposes
+     * @return the byte series of this currency object
      */
-    Boolean isCentralized();
+    byte[] toByte() throws ASAPCurrencyException, IOException, ASAPException;
 
 }

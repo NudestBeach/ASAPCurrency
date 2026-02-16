@@ -81,7 +81,7 @@ public class SharkCurrencyComponentImpl
             storage.createChannel(groupURI);
 
             // 5. Serialize the document
-            byte[] serializedDocument = sharkGroupDocument.toSaveByte();
+            byte[] serializedDocument = sharkGroupDocument.sharkDocumentToByte();
 
             // 6. Save document in Storage
             storage.add(groupURI, serializedDocument);

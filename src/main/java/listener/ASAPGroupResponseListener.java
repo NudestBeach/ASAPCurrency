@@ -6,25 +6,7 @@ import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
 
-public class ASAPGroupResponseListener implements ASAPCurrencyListener {
-    @Override
-    public void handleSharkCurrencyNotification(CharSequence uri, byte[] fullContent) {
-        if (uri.toString().endsWith("//response")) {
-            try {
-                String answer = SerializationHelper.bytes2str(fullContent);
-                String groupUri = uri.toString().replace("//response", "");
-
-                if ("ACCEPTED".equals(answer)) {
-                    handleAcceptance(groupUri);
-                } else {
-                    handleDecline(groupUri);
-                }
-
-            } catch (IOException e) {
-                Log.writeLog(this, "Fehler beim Lesen der Antwort: " + e.getMessage());
-            }
-        }
-    }
+public class ASAPGroupResponseListener implements SharkCurrencyListener {
 
     private void handleAcceptance(CharSequence groupUri) {
         System.out.println("Der Peer hat die Einladung für " + groupUri + " ANGENOMMEN.");
@@ -35,5 +17,10 @@ public class ASAPGroupResponseListener implements ASAPCurrencyListener {
 
     private void handleDecline(String groupUri) {
         System.out.println("Der Peer hat die Einladung für " + groupUri + " ABGELEHNT.");
+    }
+
+    @Override
+    public void handleSharkCurrencyNotification(CharSequence uri) {
+        System.out.println("TESTESTESTESTEST");
     }
 }

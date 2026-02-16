@@ -4,6 +4,7 @@ import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
+import net.sharksystem.asap.ASAPException;
 import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
@@ -59,11 +60,11 @@ public class SharkGroupDocument {
      * PRIVATE Constructor where we set the groupId
      */
     private SharkGroupDocument(byte[] groupId,CharSequence groupCreator,
-                              Currency assignedCurrency,
-                              ArrayList<CharSequence> whitelistMember,
-                              boolean encrypted,
-                              boolean balanceVisible,
-                              GroupSignings groupDocState) {
+                               Currency assignedCurrency,
+                               ArrayList<CharSequence> whitelistMember,
+                               boolean encrypted,
+                               boolean balanceVisible,
+                               GroupSignings groupDocState) {
         this.whitelistMember = (whitelistMember != null)
                 ? new ArrayList<>(whitelistMember)
                 : new ArrayList<>();
@@ -102,31 +103,30 @@ public class SharkGroupDocument {
      * Converts the SharkGroupDocument object into a byte array for saving.
      * @return A byte array representation of the SharkGroupDocument.
      */
-    public byte[] toSaveByte() throws IOException {
-        List<CharSequence> parts = new ArrayList<>();
+    public byte[] sharkDocumentToByte() throws IOException, ASAPException {
+        List<CharSequence> documentVariables = new ArrayList<>();
 
         // 1. GroupID (wird gespeichert, um die Struktur zu wahren)
-        parts.add(bytesToCharSequenceSafe(this.groupId));
+        documentVariables.add(bytesToCharSequenceSafe(this.groupId));
 
         // 2. GroupCreator
-        parts.add(this.groupCreator);
+        documentVariables.add(this.groupCreator);
 
         // 3. Currency
         if (this.assignedCurrency != null) {
-            parts.add(charSequenceToSafe(this.assignedCurrency.getCurrencyName()));
-            parts.add(charSequenceToSafe(this.assignedCurrency.getSpecification()));
+            byte[] currencyBytes = ((LocalCurrency)this.assignedCurrency).toByte();
+            documentVariables.add(Base64.getEncoder().encodeToString(currencyBytes));
         } else {
-            parts.add(EMPTY_PLACEHOLDER);
-            parts.add(EMPTY_PLACEHOLDER);
+            documentVariables.add(EMPTY_PLACEHOLDER);
         }
 
         // 4. Liste serialisieren
-        parts.add(serializeList(this.whitelistMember));
+        documentVariables.add(serializeList(this.whitelistMember));
 
         // 5. Booleans & State
-        parts.add(String.valueOf(this.encrypted));
-        parts.add(String.valueOf(this.balanceVisible));
-        parts.add(this.groupDocState.name());
+        documentVariables.add(String.valueOf(this.encrypted));
+        documentVariables.add(String.valueOf(this.balanceVisible));
+        documentVariables.add(this.groupDocState.name());
 
         StringBuilder membersSb = new StringBuilder();
         for (Map.Entry<CharSequence, byte[]> entry : this.currentMembers.entrySet()) {
@@ -134,10 +134,10 @@ public class SharkGroupDocument {
                     .append(Base64.getEncoder().encodeToString(entry.getValue()))
                     .append(LIST_DELIMITER);
         }
-        parts.add(membersSb.length() > 0 ? membersSb.toString() : EMPTY_PLACEHOLDER);
+        documentVariables.add(membersSb.length() > 0 ? membersSb.toString() : EMPTY_PLACEHOLDER);
 
         // String bauen und in Bytes konvertieren
-        String serializedString = SerializationHelper.collection2String(parts);
+        String serializedString = SerializationHelper.collection2String(documentVariables);
         return SerializationHelper.str2bytes(serializedString);
     }
 
@@ -155,10 +155,10 @@ public class SharkGroupDocument {
         String dataString = SerializationHelper.bytes2str(data);
 
         // String zerlegen
-        List<CharSequence> parts = SerializationHelper.string2CharSequenceList(dataString);
+        List<CharSequence> documentVariables = SerializationHelper.string2CharSequenceList(dataString);
 
-        if (parts.size() < 9) {
-            throw new IllegalArgumentException("Illegal Format for SharkGroupDocument: " + parts.size() + " Parts. Expected 8.");
+        if (documentVariables.size() < 8) {
+            throw new IllegalArgumentException("Illegal Format for SharkGroupDocument: " + documentVariables.size() + " Parts. Expected 8.");
         }
 
         int idx = 0;
@@ -166,26 +166,29 @@ public class SharkGroupDocument {
         // 1. GroupID lesen und IGNORIEREN
         // Wir müssen den Token konsumieren, damit der Index stimmt,
         // aber der Konstruktor erzeugt eine neue ID, daher nutzen wir diesen Wert nicht.
-        byte[] gId = safeCharSequenceToBytes(parts.get(idx++));
+        byte[] gId = safeCharSequenceToBytes(documentVariables.get(idx++));
 
         // 2. GroupCreator
-        String cId = parts.get(idx++).toString();
+        String cId = documentVariables.get(idx++).toString();
 
         // 3. Currency
-        String cName = safeCharSequenceToString(parts.get(idx++));
-        String cSpec = safeCharSequenceToString(parts.get(idx++));
-        Currency currency = new LocalCurrency(false, new ArrayList(), cName, cSpec);
+        Currency currency = null;
+        String currencyData = documentVariables.get(idx++).toString();
+        if (!currencyData.equals(EMPTY_PLACEHOLDER)) {
+            byte[] currencyBytes = Base64.getDecoder().decode(currencyData);
+            currency = LocalCurrency.fromByte(currencyBytes);
+        }
 
         // 4. Whitelist
-        CharSequence listData = parts.get(idx++);
+        CharSequence listData = documentVariables.get(idx++);
         ArrayList<CharSequence> whitelist = deserializeList(listData);
 
         // 5. Booleans
-        boolean enc = parseBoolean(parts.get(idx++));
-        boolean bal = parseBoolean(parts.get(idx++));
+        boolean enc = parseBoolean(documentVariables.get(idx++));
+        boolean bal = parseBoolean(documentVariables.get(idx++));
 
         // 6. State
-        String stateStr = parts.get(idx++).toString();
+        String stateStr = documentVariables.get(idx++).toString();
         GroupSignings state = GroupSignings.SIGNED_BY_NONE;
         try {
             state = GroupSignings.valueOf(stateStr);
@@ -195,7 +198,7 @@ public class SharkGroupDocument {
         SharkGroupDocument doc = new SharkGroupDocument(gId, cId, currency, whitelist, enc, bal, state);
 
         // 7. Member-Map wiederherstellen (Letzter Part)
-        String membersData = parts.get(idx++).toString();
+        String membersData = documentVariables.get(idx++).toString();
         if (!membersData.equals(EMPTY_PLACEHOLDER)) {
             StringTokenizer st = new StringTokenizer(membersData, LIST_DELIMITER);
             while (st.hasMoreTokens()) {

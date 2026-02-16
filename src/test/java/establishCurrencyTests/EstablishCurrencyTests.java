@@ -41,7 +41,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         CharSequence currencyName = "AliceTalerA";
         Currency dummyCurrency = new LocalCurrency(
                 false,                // global limit
-                new ArrayList<>(),                // centralized list (dummy)
                 currencyName.toString(),        // Name
                 "A test Currency"               // Spec
         );
@@ -99,7 +98,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         CharSequence currencyName = "AliceTalerB";
         Currency dummyCurrency = new LocalCurrency(
                 false,                // global limit
-                new ArrayList<>(),                // centralized list (dummy)
                 currencyName.toString(),        // Name
                 "A test Currency"               // Spec
         );
@@ -136,7 +134,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         CharSequence currencyName = "AliceTalerC";
         Currency dummyCurrency = new LocalCurrency(
                 false,
-                new ArrayList<>(),
                 currencyName.toString(),
                 "A test Currency"
         );
@@ -151,9 +148,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-        SharkGroupDocument testDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = testDoc.getGroupId();
-
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
                 .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
@@ -161,6 +155,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 4.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        byte[] groupId = aliceDoc.getGroupId();
         SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
@@ -211,7 +206,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         CharSequence currencyName = "AliceTalerD";
         Currency dummyCurrency = new LocalCurrency(
                 false,
-                new ArrayList<>(),
                 currencyName.toString(),
                 "A test Currency"
         );
