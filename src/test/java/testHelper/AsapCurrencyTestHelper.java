@@ -25,20 +25,20 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         return portNumber++;
     }
 
-    protected SharkTestPeerFS aliceSharkPeer;
-    protected SharkTestPeerFS bobSharkPeer;
-    protected SharkTestPeerFS claraSharkPeer;
-    protected SharkTestPeerFS davidSharkPeer;
+    public SharkTestPeerFS aliceSharkPeer;
+    public SharkTestPeerFS bobSharkPeer;
+    public SharkTestPeerFS claraSharkPeer;
+    public SharkTestPeerFS davidSharkPeer;
 
-    protected SharkCurrencyComponent aliceCurrencyComponent;
-    protected SharkCurrencyComponent bobCurrencyComponent;
-    protected SharkCurrencyComponent claraCurrencyComponent;
-    protected SharkCurrencyComponent davidCurrencyComponent;
+    public SharkCurrencyComponent aliceCurrencyComponent;
+    public SharkCurrencyComponent bobCurrencyComponent;
+    public SharkCurrencyComponent claraCurrencyComponent;
+    public SharkCurrencyComponent davidCurrencyComponent;
 
-    protected SharkCurrencyComponentImpl aliceImpl;
-    protected SharkCurrencyComponentImpl bobImpl;
-    protected SharkCurrencyComponentImpl claraImpl;
-    protected SharkCurrencyComponentImpl davidImpl;
+    public SharkCurrencyComponentImpl aliceImpl;
+    public SharkCurrencyComponentImpl bobImpl;
+    public SharkCurrencyComponentImpl claraImpl;
+    public SharkCurrencyComponentImpl davidImpl;
 
     public AsapCurrencyTestHelper(String testVariant) {
         this.subRootFolder = ROOT_DIRECTORY + testVariant + "/";

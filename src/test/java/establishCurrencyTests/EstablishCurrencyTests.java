@@ -1,27 +1,31 @@
 package establishCurrencyTests;
 import Group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
-import currency.api.SharkCurrencyComponentFactory;
+
 import currency.classes.Currency;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
-import listener.ASAPGroupInviteListener;
+
+import net.sharksystem.asap.*;
+import net.sharksystem.utils.streams.StreamPairImpl;
 import net.sharksystem.SharkException;
-import net.sharksystem.asap.ASAPStorage;
+import net.sharksystem.asap.ASAPEncounterManagerImpl;
+import net.sharksystem.asap.apps.TCPServerSocketAcceptor;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
-import net.sharksystem.asap.crypto.ASAPKeyStore;
+
 import net.sharksystem.pki.SharkPKIComponent;
-import net.sharksystem.testhelper.SharkPKITesthelper;
+
+import net.sharksystem.utils.streams.StreamPairImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import testHelper.AsapCurrencyTestHelper;
-import testhelpers.SharkCurrencyComponentImpl;
+
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-import static net.sharksystem.utils.testsupport.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
@@ -128,7 +132,9 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
     public void successfullGroupInviteSendAndReceived() throws SharkException, InterruptedException, IOException {
 
         // 0. Set up Alice and Bob
-        this.setUpScenarioEstablishCurrency_2_BobAndAlice();
+
+        AsapCurrencyTestHelper asapCurrencyTestHelper = new AsapCurrencyTestHelper("Successful group Invite Test");
+        asapCurrencyTestHelper.setUpScenarioEstablishCurrency_2_BobAndAlice();
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerC";
@@ -142,16 +148,36 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        asapCurrencyTestHelper.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
                 true);
+        //ALLICE to be online and visible
+        ASAPPeerFS aliceASAPPeerFS = asapCurrencyTestHelper.aliceSharkPeer.getASAPTestPeerFS();
+        ASAPEncounterManagerImpl aliceEncounterManager =
+                new ASAPEncounterManagerImpl(aliceASAPPeerFS, aliceASAPPeerFS.getPeerID());
+
+        //BOB to be online and visible
+        ASAPPeerFS bobASAPPeerFS = asapCurrencyTestHelper.bobSharkPeer.getASAPTestPeerFS();
+        ASAPEncounterManagerImpl bobEncounterManager =
+                new ASAPEncounterManagerImpl(bobASAPPeerFS, bobASAPPeerFS.getPeerID());
+
+        int alicePort = AsapCurrencyTestHelper.getPortNumber();
+        TCPServerSocketAcceptor aliceSocketAcceptor = new TCPServerSocketAcceptor(alicePort, aliceEncounterManager);
+        Socket connect2Alice = new Socket("localhost", alicePort);
+
+        bobEncounterManager.handleEncounter(
+                StreamPairImpl.getStreamPair(
+                        connect2Alice.getInputStream(), connect2Alice.getOutputStream(), net.sharksystem.utils.testsupport.TestConstants.ALICE_ID, net.sharksystem.utils.testsupport.TestConstants.ALICE_ID),
+                ASAPEncounterConnectionType.INTERNET);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
-        this.aliceCurrencyComponent
+        asapCurrencyTestHelper.aliceCurrencyComponent
                 .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
-        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        asapCurrencyTestHelper.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+
+        aliceSocketAcceptor.close();
 
         // 4.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);

@@ -156,7 +156,7 @@ public class SharkCurrencyComponentImpl
                 System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
-            byte[] serializedDocument = messages.getMessage(0, false);
+            byte[] serializedDocument = messages.getMessage(0, false); //hier
             return SharkGroupDocument.fromByte(serializedDocument);
 
         } catch (IOException e) {
@@ -208,7 +208,7 @@ public class SharkCurrencyComponentImpl
 
              byte[] fullContent = baos.toByteArray();
 
-             this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, fullGroupURI, fullContent);
+             this.asapPeer.sendTransientASAPMessage(CURRENCY_FORMAT, fullGroupURI, fullContent);
 
         } catch(ASAPException | IOException e) {
             throw new ASAPCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
