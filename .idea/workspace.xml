@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="left Peer is null fix">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="bobDoc null fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
     </list>
@@ -275,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771344605074</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="bobDoc null fix">
+      <option name="closed" value="true" />
+      <created>1771349118537</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771349118537</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,7 +306,8 @@
     <MESSAGE value="many improvements on listeners and added manger. Did solve almost all TODOS. Next step is the implementation for the updated ASAP stuff and starting testdriven development." />
     <MESSAGE value="added connection via tcp but no data transfere happens" />
     <MESSAGE value="left Peer is null fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="left Peer is null fix" />
+    <MESSAGE value="bobDoc null fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bobDoc null fix" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

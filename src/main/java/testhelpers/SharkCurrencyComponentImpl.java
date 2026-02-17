@@ -257,6 +257,14 @@ public class SharkCurrencyComponentImpl
                 SharkGroupDocument doc = parseSharkGroupDocument(msgContent);
 
                 if (doc != null && doc.getAssignedCurrency() != null) {
+
+                    // 1. signiere das Group Document (Einladung annehmen)
+                    byte[] mySignature = net.sharksystem.asap.crypto.ASAPCryptoAlgorithms.sign(
+                            doc.sharkDocumentToByte(), asapPeer.getASAPKeyStore());
+
+                    doc.addMember(this.asapPeer.getPeerID(), mySignature);
+
+                    // 2. speicher das Group Dokument ab
                     String cName = doc.getAssignedCurrency().getCurrencyName();
                     CharSequence targetGroupUri = SharkGroupDocument.DOCUMENT_FORMAT + cName;
 
