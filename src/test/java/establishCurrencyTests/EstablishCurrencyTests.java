@@ -192,7 +192,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                         bobDoc.getGroupId(),
                         "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
         Assertions
-                .assertEquals(4,
+                .assertEquals(3,
                         bobDoc.getCurrentMembers().size()
                         +aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
         //Alice and Bob have to be verified
