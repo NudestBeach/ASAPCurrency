@@ -19,7 +19,8 @@ import net.sharksystem.asap.pki.SharkPKIFacade;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.utils.SerializationHelper;
 import net.sharksystem.utils.testsupport.TestConstants;
-
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -144,30 +145,60 @@ public class SharkCurrencyComponentImpl
                 this);
     }
 
+    // Hilfsmethode zum robusten Parsen
+    private SharkGroupDocument parseSharkGroupDocument(byte[] data) {
+        if (data == null || data.length == 0) return null;
+
+        try {
+            // Versuch 1: Direktes Parsen (für nackte Dokumente im Storage)
+            return SharkGroupDocument.fromByte(data);
+        } catch (Exception e) {
+            // Versuch 2: Parsen eines gewrappten Pakets (aus invitePeerToGroup)
+            try (ByteArrayInputStream bais = new ByteArrayInputStream(data);
+                 DataInputStream dis = new DataInputStream(bais)) {
+
+                dis.readUTF(); // Überspringe die 'optionalMessage'
+                int docLength = dis.readInt(); // Lies die Länge des Dokuments
+
+                if (docLength > 0 && bais.available() >= docLength) {
+                    byte[] docBytes = new byte[docLength];
+                    dis.readFully(docBytes);
+                    return SharkGroupDocument.fromByte(docBytes);
+                }
+            } catch (Exception innerEx) {
+                // Falls beides fehlschlägt
+            }
+        }
+        return null;
+    }
+
     public SharkGroupDocument getSharkGroupDocument(CharSequence currencyNameUri) throws ASAPException {
 
-        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
+        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameUri.toString();
 
         try {
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             ASAPChannel channel = storage.getChannel(groupUri);
             ASAPMessages messages = channel.getMessages();
-            if(messages.size() == 0) {
+            if (messages.size() == 0) {
                 System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
-            byte[] serializedDocument = messages.getMessage(0, false); //hier
-            return SharkGroupDocument.fromByte(serializedDocument);
 
-        } catch (IOException e) {
+            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(0, false));
+            if (doc == null) {
+                throw new ASAPException("Konnte SharkGroupDocument nicht parsen.");
+            }
+            return doc;
+        } catch (IOException e){
             throw new RuntimeException(e);
-        } catch (ASAPException e) {
+        } catch (ASAPException e){
             throw new ASAPException(e);
         }
-     }
+    }
 
      public byte[] getSharkGroupDocumentSerialized(CharSequence currencyNameUri) {
-         CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
+         CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameUri;
 
          try {
              ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
@@ -189,11 +220,11 @@ public class SharkCurrencyComponentImpl
             throw new ASAPCurrencyException("peer not started and/or pki not initialized");
     }
 
+    // Bearbeitet: sendASAPMessage (persistent) statt sendTransientASAPMessage
     @Override
     public void invitePeerToGroup(CharSequence currencyNameUri, String optionalMessage, CharSequence peerId)
             throws ASAPCurrencyException {
 
-        CharSequence fullGroupURI = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameUri;
         this.checkComponentRunning();
 
         try {
@@ -204,11 +235,11 @@ public class SharkCurrencyComponentImpl
 
              daos.writeUTF(optionalMessage != null ? optionalMessage : "");
              daos.writeInt(docBytes.length);
-             daos.write(docBytes);
+            daos.write(docBytes);
 
-             byte[] fullContent = baos.toByteArray();
+            byte[] fullContent = baos.toByteArray();
 
-             this.asapPeer.sendTransientASAPMessage(CURRENCY_FORMAT, fullGroupURI, fullContent);
+             this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, peerId, fullContent);
 
         } catch(ASAPException | IOException e) {
             throw new ASAPCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
@@ -217,7 +248,31 @@ public class SharkCurrencyComponentImpl
 
     @Override
     public void asapMessagesReceived(ASAPMessages asapMessages, String s, List<ASAPHop> list) throws IOException {
-        CharSequence uri = asapMessages.getURI();
-        this.notifySharkCurrencyNotiReceived(uri);
+        try {
+            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+
+            for (int i = 0; i < asapMessages.size(); i++) {
+                byte[] msgContent = asapMessages.getMessage(i, false);
+
+                SharkGroupDocument doc = parseSharkGroupDocument(msgContent);
+
+                if (doc != null && doc.getAssignedCurrency() != null) {
+                    String cName = doc.getAssignedCurrency().getCurrencyName();
+                    CharSequence targetGroupUri = SharkGroupDocument.DOCUMENT_FORMAT + cName;
+
+                    // Kanal erstellen, falls er noch nicht existiert
+                    if (!storage.channelExists(targetGroupUri)) {
+                        storage.createChannel(targetGroupUri);
+                    }
+
+                    storage.add(targetGroupUri, doc.sharkDocumentToByte());
+
+                    System.out.println("DEBUG: Auto-accepted and cleaned Invite for " + cName);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Fehler beim Verarbeiten der empfangenen Nachricht: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

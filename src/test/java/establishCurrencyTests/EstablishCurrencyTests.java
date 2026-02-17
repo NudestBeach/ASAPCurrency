@@ -152,37 +152,19 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-        //ALLICE to be online and visible
-        ASAPPeerFS aliceASAPPeerFS = this.aliceSharkPeer.getASAPTestPeerFS();
-        ASAPEncounterManagerImpl aliceEncounterManager =
-                new ASAPEncounterManagerImpl(aliceASAPPeerFS, aliceASAPPeerFS.getPeerID());
 
-        //BOB to be online and visible
-        ASAPPeerFS bobASAPPeerFS = this.bobSharkPeer.getASAPTestPeerFS();
-        ASAPEncounterManagerImpl bobEncounterManager =
-                new ASAPEncounterManagerImpl(bobASAPPeerFS, bobASAPPeerFS.getPeerID());
-
-
-        int alicePort = AsapCurrencyTestHelper.getPortNumber();
-        TCPServerSocketAcceptor aliceSocketAcceptor = new TCPServerSocketAcceptor(alicePort, aliceEncounterManager);
-        Socket connect2Alice = new Socket("localhost", alicePort);
-
-        bobEncounterManager.handleEncounter(
-                StreamPairImpl.getStreamPair(
-                        connect2Alice.getInputStream(), connect2Alice.getOutputStream(), net.sharksystem.utils.testsupport.TestConstants.ALICE_ID, net.sharksystem.utils.testsupport.TestConstants.ALICE_ID),
-                ASAPEncounterConnectionType.INTERNET);
-
-        //Fehler behoben dass es die uri nicht gefunden hat weil wir zu schnell waren
-        Thread.sleep(5000);
+        //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
+        Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
                 .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
+
+        // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
-        aliceSocketAcceptor.close();
 
-        // 4.(Assertions)
+        // 5.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
         SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
