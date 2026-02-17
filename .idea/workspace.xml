@@ -7,14 +7,13 @@
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="small fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTalerA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/AliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
@@ -37,22 +36,18 @@
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/AliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/AliceTalerA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/AliceTalerA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
     </list>
-    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
       <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
     </list>
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,19 +86,20 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java">
       <ranges>
-        <range start1="3" end1="4" start2="3" end2="4" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="7" end1="8" start2="7" end2="10" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="9" end1="10" start2="11" end2="13" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
-        <range start1="11" end1="12" start2="14" end2="15" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="13" end1="14" start2="16" end2="18" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="17" end1="18" start2="21" end2="22" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="20" end1="20" start2="24" end2="25" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="23" end1="24" start2="28" end2="28" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
-        <range start1="130" end1="131" start2="134" end2="137" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
-        <range start1="144" end1="145" start2="150" end2="151" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
-        <range start1="149" end1="149" start2="155" end2="173" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
-        <range start1="151" end1="152" start2="175" end2="176" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
-        <range start1="153" end1="154" start2="177" end2="180" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="18" end1="18" start2="18" end2="19" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="35" end1="35" start2="36" end2="37" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="167" end1="168" start2="169" end2="171" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="169" end1="178" start2="172" end2="183" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="179" end1="180" start2="184" end2="185" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="181" end1="201" start2="186" end2="206" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="202" end1="217" start2="207" end2="225" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java">
+      <ranges>
+        <range start1="22" end1="23" start2="22" end2="23" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="24" end1="25" start2="24" end2="30" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="49" end1="49" start2="54" end2="55" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
       </ranges>
     </file>
   </component>
@@ -121,34 +117,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EstablishCurrencyTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.SharkCurrencySerializationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ASAPJava [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ASAPJava [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Eric M/Documents/Projekt_Studium_WiSe2526/ASAPCurrency&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
+    "JUnit.EstablishCurrencyTests.executor": "Run",
+    "JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor": "Run",
+    "JUnit.SharkCurrencySerializationTest.executor": "Run",
+    "JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor": "Run",
+    "Maven.ASAPJava [clean].executor": "Run",
+    "Maven.ASAPJava [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "GroupInviteAndRecive",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Eric M/Documents/Projekt_Studium_WiSe2526/ASAPCurrency",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
@@ -159,7 +155,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived">
+  <component name="RunManager" selected="JUnit.EstablishCurrencyTests">
     <configuration name="EstablishCurrencyTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -349,11 +345,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java</url>
-          <line>176</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java</url>
           <line>175</line>
           <option name="timeStamp" value="19" />
@@ -376,6 +367,24 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java</url>
+          <line>51</line>
+          <properties class="testHelper.AsapCurrencyTestHelper" method="runEncounter">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java</url>
+          <line>99</line>
+          <properties class="currency.api.SharkCurrencyComponent" method="invitePeerToGroup">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

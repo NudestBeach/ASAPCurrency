@@ -16,6 +16,7 @@ import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.pki.SharkPKIComponent;
 
 import net.sharksystem.utils.streams.StreamPairImpl;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import testHelper.AsapCurrencyTestHelper;
@@ -33,6 +34,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
     public EstablishCurrencyTests() {
         super(EstablishCurrencyTests.class.getSimpleName());
     }
+
 
     @Test
     public void aliceCreatesAGroupWithLocalCurrency()
@@ -165,56 +167,62 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         int alicePort = AsapCurrencyTestHelper.getPortNumber();
         TCPServerSocketAcceptor aliceSocketAcceptor = new TCPServerSocketAcceptor(alicePort, aliceEncounterManager);
-        Socket connect2Alice = new Socket("localhost", alicePort);
+        try {
+            Socket connect2Alice = new Socket("localhost", alicePort);
 
-        bobEncounterManager.handleEncounter(
-                StreamPairImpl.getStreamPair(
-                        connect2Alice.getInputStream(), connect2Alice.getOutputStream(), net.sharksystem.utils.testsupport.TestConstants.ALICE_ID, net.sharksystem.utils.testsupport.TestConstants.ALICE_ID),
-                ASAPEncounterConnectionType.INTERNET);
+            bobEncounterManager.handleEncounter(
+                    StreamPairImpl.getStreamPair(
+                            connect2Alice.getInputStream(), connect2Alice.getOutputStream(), net.sharksystem.utils.testsupport.TestConstants.ALICE_ID, net.sharksystem.utils.testsupport.TestConstants.ALICE_ID),
+                    ASAPEncounterConnectionType.INTERNET);
+        //Fehler behoben dass es die uri nicht gefunden hat weil wir zu schnell waren
+        Thread.sleep(5000);
+            // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
+            asapCurrencyTestHelper.aliceCurrencyComponent
+                    .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
+            Thread.sleep(5000);
+            asapCurrencyTestHelper.runEncounter(asapCurrencyTestHelper.aliceSharkPeer, asapCurrencyTestHelper.bobSharkPeer, true);
 
-        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
-        asapCurrencyTestHelper.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
-        asapCurrencyTestHelper.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+            aliceSocketAcceptor.close();
 
-        aliceSocketAcceptor.close();
+            // 4.(Assertions)
+            SharkGroupDocument aliceDoc = asapCurrencyTestHelper.aliceImpl.getSharkGroupDocument(currencyName);
+            byte[] groupId = aliceDoc.getGroupId();
+            SharkGroupDocument bobDoc = asapCurrencyTestHelper.bobImpl.getSharkGroupDocument(currencyName);
+            byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
+            byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+            boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
+                    groupId,
+                    aliceSignature,
+                    ALICE_ID,
+                    ((SharkPKIComponent) asapCurrencyTestHelper.aliceSharkPeer
+                            .getComponent(SharkPKIComponent.class))
+                            .getASAPKeyStore());
+            boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(
+                    groupId,
+                    bobSignature,
+                    BOB_ID,
+                    ((SharkPKIComponent) asapCurrencyTestHelper.bobSharkPeer
+                            .getComponent(SharkPKIComponent.class))
+                            .getASAPKeyStore());
 
-        // 4.(Assertions)
-        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = aliceDoc.getGroupId();
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
-        byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
-        boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
-                groupId,
-                aliceSignature,
-                ALICE_ID,
-                ((SharkPKIComponent) aliceSharkPeer
-                        .getComponent(SharkPKIComponent.class))
-                        .getASAPKeyStore());
-        boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(
-                groupId,
-                bobSignature,
-                BOB_ID,
-                ((SharkPKIComponent) bobSharkPeer
-                        .getComponent(SharkPKIComponent.class))
-                        .getASAPKeyStore());
-
-        Assertions
-                .assertNotNull(bobDoc, "Bob document ist null.");
-        Assertions
-                .assertArrayEquals(groupId,
-                        bobDoc.getGroupId(),
-                        "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
-        Assertions
-                .assertEquals(4,
-                        bobDoc.getCurrentMembers().size()
-                        +aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
-        //Alice and Bob have to be verified
-        Assertions
-                .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
-        Assertions
-                .assertTrue(verifiedAliceSig, "Bob Signatur ist ungültig");
+            Assertions
+                    .assertNotNull(bobDoc, "Bob document ist null.");
+            Assertions
+                    .assertArrayEquals(groupId,
+                            bobDoc.getGroupId(),
+                            "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+            Assertions
+                    .assertEquals(4,
+                            bobDoc.getCurrentMembers().size()
+                                    +aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
+            //Alice and Bob have to be verified
+            Assertions
+                    .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
+            Assertions
+                    .assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
+        } finally {
+            aliceSocketAcceptor.close();
+        }
 
     }
 

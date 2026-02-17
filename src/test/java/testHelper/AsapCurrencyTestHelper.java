@@ -20,9 +20,14 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
     public final String subRootFolder;
-    private static int portNumber = 5000;
+    //private static int portNumber = 5000;
     public static int getPortNumber() {
-        return portNumber++;
+        //return portNumber++;
+        try(java.net.ServerSocket socket = new java.net.ServerSocket(0)) {
+            return socket.getLocalPort();
+        } catch (java.io.IOException e) {
+            throw new RuntimeException("Kein freier Port konnte ermittelt werden.");
+        }
     }
 
     public SharkTestPeerFS aliceSharkPeer;
@@ -47,6 +52,7 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
     public void runEncounter(SharkTestPeerFS leftPeer, SharkTestPeerFS rightPeer, boolean stop)
             throws SharkException, IOException, InterruptedException {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        //Nullpointer exeption bei leftpeer
         System.out.println("                       start encounter: "
                 + leftPeer.getASAPPeer().getPeerID() + " <--> " + rightPeer.getASAPPeer().getPeerID());
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
