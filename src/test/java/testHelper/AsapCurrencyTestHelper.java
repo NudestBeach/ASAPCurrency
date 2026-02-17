@@ -20,9 +20,13 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
     public final String subRootFolder;
-    private static int portNumber = 5000;
+    //private static int portNumber = 5000;
     public static int getPortNumber() {
-        return portNumber++;
+        try (java.net.ServerSocket socket = new java.net.ServerSocket(0)) {
+            return socket.getLocalPort();
+        } catch (java.io.IOException e) {
+            throw new RuntimeException("Kein freier Port konnte ermittelt werden.", e);
+        }
     }
 
     public SharkTestPeerFS aliceSharkPeer;

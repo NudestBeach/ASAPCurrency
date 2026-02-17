@@ -132,9 +132,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
     public void successfullGroupInviteSendAndReceived() throws SharkException, InterruptedException, IOException {
 
         // 0. Set up Alice and Bob
-
-        AsapCurrencyTestHelper asapCurrencyTestHelper = new AsapCurrencyTestHelper("Successful group Invite Test");
-        asapCurrencyTestHelper.setUpScenarioEstablishCurrency_2_BobAndAlice();
+        this.setUpScenarioEstablishCurrency_2_BobAndAlice();
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerC";
@@ -148,20 +146,22 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        asapCurrencyTestHelper.aliceCurrencyComponent.establishGroup(
+        this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
                 true);
+
         //ALLICE to be online and visible
-        ASAPPeerFS aliceASAPPeerFS = asapCurrencyTestHelper.aliceSharkPeer.getASAPTestPeerFS();
+        ASAPPeerFS aliceASAPPeerFS = this.aliceSharkPeer.getASAPTestPeerFS();
         ASAPEncounterManagerImpl aliceEncounterManager =
                 new ASAPEncounterManagerImpl(aliceASAPPeerFS, aliceASAPPeerFS.getPeerID());
 
         //BOB to be online and visible
-        ASAPPeerFS bobASAPPeerFS = asapCurrencyTestHelper.bobSharkPeer.getASAPTestPeerFS();
+        ASAPPeerFS bobASAPPeerFS = this.bobSharkPeer.getASAPTestPeerFS();
         ASAPEncounterManagerImpl bobEncounterManager =
                 new ASAPEncounterManagerImpl(bobASAPPeerFS, bobASAPPeerFS.getPeerID());
+
 
         int alicePort = AsapCurrencyTestHelper.getPortNumber();
         TCPServerSocketAcceptor aliceSocketAcceptor = new TCPServerSocketAcceptor(alicePort, aliceEncounterManager);
@@ -172,10 +172,13 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                         connect2Alice.getInputStream(), connect2Alice.getOutputStream(), net.sharksystem.utils.testsupport.TestConstants.ALICE_ID, net.sharksystem.utils.testsupport.TestConstants.ALICE_ID),
                 ASAPEncounterConnectionType.INTERNET);
 
+        //Fehler behoben dass es die uri nicht gefunden hat weil wir zu schnell waren
+        Thread.sleep(5000);
+
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
-        asapCurrencyTestHelper.aliceCurrencyComponent
+        this.aliceCurrencyComponent
                 .invitePeerToGroup(currencyName,"Hi Bob, join my group!", BOB_ID);
-        asapCurrencyTestHelper.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
         aliceSocketAcceptor.close();
 
