@@ -90,6 +90,10 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         AsapCurrencyTestHelper.testNumber++;
     }
 
+    /**
+     * This starts Alice and Bob
+     * @throws SharkException Thrown when there are errors adding the component
+     */
     public void setUpScenarioEstablishCurrency_2_BobAndAlice() throws SharkException {
         setUpScenarioEstablishCurrency_1_justAlice();
         this.bobSharkPeer
@@ -107,4 +111,43 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         AsapCurrencyTestHelper.testNumber++;
     }
 
+    /**
+     * This starts Alice, Bob and Clara
+     * @throws SharkException Thrown when there are errors adding the component
+     */
+    public void setUpScenarioEstablishCurrency_3_ClaraAndBobAndAlice() throws SharkException {
+        setUpScenarioEstablishCurrency_2_BobAndAlice();
+        this.claraSharkPeer
+                = new SharkTestPeerFS(CLARA_NAME, subRootFolder + "/" + CLARA_NAME);
+        SharkPKIComponent pkiForFactory
+                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(this.claraSharkPeer, CLARA_ID);
+        SharkCurrencyComponentFactory currencyFactory
+                = new SharkCurrencyComponentFactory(pkiForFactory);
+        claraSharkPeer.addComponent(currencyFactory, SharkCurrencyComponent.class);
+        claraSharkPeer.start(CLARA_ID);
+        this.claraCurrencyComponent = (SharkCurrencyComponent) this.claraSharkPeer.getComponent(SharkCurrencyComponent.class);
+        this.claraImpl =
+                (SharkCurrencyComponentImpl) claraSharkPeer.getComponent(SharkCurrencyComponent.class);
+        AsapCurrencyTestHelper.testNumber++;
+    }
+
+    /**
+     * This starts Alice, Bob, Clara and David
+     * @throws SharkException Thrown when there are errors adding the component
+     */
+    public void setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice() throws SharkException {
+        setUpScenarioEstablishCurrency_3_ClaraAndBobAndAlice();
+        this.davidSharkPeer
+                = new SharkTestPeerFS(DAVID_NAME, subRootFolder + "/" + DAVID_NAME);
+        SharkPKIComponent pkiForFactory
+                = SharkPKITesthelper.setupPKIComponentPeerNotStarted(this.davidSharkPeer, DAVID_ID);
+        SharkCurrencyComponentFactory currencyFactory
+                = new SharkCurrencyComponentFactory(pkiForFactory);
+        davidSharkPeer.addComponent(currencyFactory, SharkCurrencyComponent.class);
+        davidSharkPeer.start(DAVID_ID);
+        this.davidCurrencyComponent = (SharkCurrencyComponent) this.davidSharkPeer.getComponent(SharkCurrencyComponent.class);
+        this.davidImpl =
+                (SharkCurrencyComponentImpl) davidSharkPeer.getComponent(SharkCurrencyComponent.class);
+        AsapCurrencyTestHelper.testNumber++;
+    }
 }

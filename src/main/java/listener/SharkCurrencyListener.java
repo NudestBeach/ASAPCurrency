@@ -11,10 +11,23 @@ import exepections.WrongDestinationException;
  */
 public interface SharkCurrencyListener {
 
-    /**
-     * This method manages all incoming notifications regariding the currency application scope.
-     * It will then lead the notifivation to the right listener, which is responsible for the task.
-     * @param uri Channel in which the notification was send.
-     */
     void handleSharkCurrencyNotification(CharSequence uri);
+
+    /**
+     * When an invite arrives this method is called
+     * @param sharkGroupDocument the document of the group
+     * @param sender PeerID of sender
+     * @param message Optional message of invite, might be empty
+     */
+    void onInviteReceived(SharkGroupDocument sharkGroupDocument, String sender, String message);
+
+    /**
+     * Will be called when the user accepts the group invite
+     */
+    void onInviteAccepted(SharkGroupDocument sharkGroupDocument);
+
+    /**
+     * Will be called when the user declines the group invite
+     */
+    void onInviteDeclined(SharkGroupDocument sharkGroupDocument);
 }

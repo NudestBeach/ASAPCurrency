@@ -6,18 +6,268 @@
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="bobDoc null fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupInviteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupInviteListenerManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPGroupResponseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPPromiseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/ASAPPromiseListenerManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/EstablishGroupListenerManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/10/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/2/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/3/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/4/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/5/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/6/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/7/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/8/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/9/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/AliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/1/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/1/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/2/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/2/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/2/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/2/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/3/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/4/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/4/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/4/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/4/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/4/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/5/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/5/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/5/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/5/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/5/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/6/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/6/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/6/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/6/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/6/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/7/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/7/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/7/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/7/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/7/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/8/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/9/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerB.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/1/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/10/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/11/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/12/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/13/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/14/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/%2F%2Fgroup-document%2F%2FAliceTalerC.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/15/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/%2F%2Fgroup-document%2F%2FAliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/16/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/2/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/2/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/2/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/2/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/2/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/3/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/3/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/3/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/3/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/4/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/4/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/4/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/4/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/5/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/5/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/5/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/5/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/6/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/6/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/6/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/6/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-documentAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/7/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/7/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/7/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/7/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/8/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-document%2F%2FAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/%2F%2Fgroup-documentAliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/AliceTaler.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/9/AliceTalerB.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/application%3A%2F%2Fx-asap-currency/0/AliceTalerC.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_1/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/0/AliceTalerA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/sharkPKI_2/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
     </list>
-    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
-    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+    </list>
+    <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/GroupSignings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/GroupSignings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,14 +297,55 @@
     &quot;assignee&quot;: &quot;Luxis-light&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NudestBeach/ASAPCurrency.git",
-    "accountId": "b70e2471-627e-4000-838e-db3d7c621727"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NudestBeach/ASAPCurrency.git&quot;,
+    &quot;accountId&quot;: &quot;b70e2471-627e-4000-838e-db3d7c621727&quot;
   }
+}</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java">
+      <ranges>
+        <range start1="7" end1="8" start2="7" end2="7" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="42" end1="42" start2="41" end2="42" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="56" end1="57" start2="56" end2="57" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="139" end1="139" start2="139" end2="143" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="239" end1="242" start2="243" end2="246" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="249" end1="250" start2="253" end2="254" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="251" end1="251" start2="255" end2="263" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="252" end1="253" start2="264" end2="264" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="4" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="18" end1="18" start2="18" end2="19" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="19" end1="19" start2="20" end2="21" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="23" end1="23" start2="25" end2="26" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="24" end1="25" start2="27" end2="28" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="35" end1="35" start2="38" end2="60" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="52" end1="53" start2="77" end2="78" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="90" end1="91" start2="115" end2="116" changelist="bd11a90a-041e-48d4-9005-5403c8c91059" />
+        <range start1="160" end1="161" start2="185" end2="186" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="196" end1="197" start2="221" end2="222" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="205" end1="209" start2="230" end2="230" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="211" end1="213" start2="232" end2="234" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="215" end1="216" start2="236" end2="237" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="223" end1="240" start2="244" end2="245" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="248" end1="249" start2="253" end2="306" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="251" end1="251" start2="308" end2="385" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -70,6 +361,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
+    "JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted.executor": "Run",
     "JUnit.EstablishCurrencyTests.executor": "Run",
     "JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor": "Run",
     "JUnit.SharkCurrencySerializationTest.executor": "Run",
@@ -105,7 +397,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived">
+  <component name="RunManager" selected="JUnit.EstablishCurrencyTests">
     <configuration name="EstablishCurrencyTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -186,10 +478,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.EstablishCurrencyTests" />
-        <item itemvalue="JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency" />
         <item itemvalue="JUnit.SharkCurrencySerializationTest" />
       </list>
     </recent_temporary>
@@ -310,6 +602,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="bobDoc null fix" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java</url>
+          <line>263</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="dataString.hash" />

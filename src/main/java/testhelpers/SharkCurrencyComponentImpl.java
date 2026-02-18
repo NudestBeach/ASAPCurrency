@@ -5,7 +5,6 @@ import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
 import currency.classes.GroupSignings;
 import exepections.ASAPCurrencyException;
-import listener.SharkCurrencyListener;
 import listener.SharkCurrencyListenerManager;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
@@ -40,6 +39,7 @@ public class SharkCurrencyComponentImpl
         extends SharkCurrencyListenerManager
         implements SharkCurrencyComponent, ASAPMessageReceivedListener {
 
+    public final String INVITE_CHANNEL_URI = "//group-document//invite";
     private final SharkPKIComponent sharkPKIComponent;
     private ASAPPeer asapPeer;
 
@@ -54,7 +54,7 @@ public class SharkCurrencyComponentImpl
         try{
             // 1. Get Name of the Currency URI
             String currencyNameURI = currency.getCurrencyName();
-            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT+currencyNameURI;
+            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameURI;
             ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
             if (currencyNameURI == null || currencyNameURI.isEmpty()) {
                 throw new ASAPCurrencyException("Currency URI cannot be empty");
@@ -137,6 +137,10 @@ public class SharkCurrencyComponentImpl
         try {
             // Initialisiere Storage, damit der Peer auf dieses Format hört
             this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+
+            // Create a new Channel for the specific Group invites
+            storage.createChannel(INVITE_CHANNEL_URI);
         } catch (IOException e) {
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
@@ -237,9 +241,9 @@ public class SharkCurrencyComponentImpl
              daos.writeInt(docBytes.length);
             daos.write(docBytes);
 
-            byte[] fullContent = baos.toByteArray();
-
-             this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, peerId, fullContent);
+            byte[] fullContentOfInvite = baos.toByteArray();
+            CharSequence inviteURI = INVITE_CHANNEL_URI;
+            this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, inviteURI, fullContentOfInvite);
 
         } catch(ASAPException | IOException e) {
             throw new ASAPCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
@@ -247,10 +251,17 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void asapMessagesReceived(ASAPMessages asapMessages, String s, List<ASAPHop> list) throws IOException {
+    public void asapMessagesReceived(ASAPMessages asapMessages, String sender, List<ASAPHop> list) throws IOException {
         try {
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+            //Checking URI
+            CharSequence uri = asapMessages.getURI();
+            if(uri.toString().equals(INVITE_CHANNEL_URI)) {
+                System.out.println("DEBUG: Invite received!");
+                receivedInvite(asapMessages, sender);
+                return;
+            }
 
+            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             for (int i = 0; i < asapMessages.size(); i++) {
                 byte[] msgContent = asapMessages.getMessage(i, false);
 
