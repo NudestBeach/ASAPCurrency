@@ -224,7 +224,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions
                 .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
         Assertions
-                .assertTrue(verifiedAliceSig, "Bob Signatur ist ungültig");
+                .assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
 
     }
 
