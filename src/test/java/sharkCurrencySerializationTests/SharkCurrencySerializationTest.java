@@ -2,9 +2,8 @@ package sharkCurrencySerializationTests;
 
 import Group.SharkGroupDocument;
 import currency.classes.Currency;
-import currency.classes.GroupSignings;
+import Group.GroupSignings;
 import currency.classes.LocalCurrency;
-import exepections.ASAPCurrencyException;
 import net.sharksystem.asap.ASAPException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

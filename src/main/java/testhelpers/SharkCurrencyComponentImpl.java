@@ -3,33 +3,22 @@ package testhelpers;
 import Group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
-import currency.classes.GroupSignings;
+import Group.GroupSignings;
 import exepections.ASAPCurrencyException;
 import listener.SharkCurrencyListenerManager;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.asap.crypto.ASAPKeyStore;
-import net.sharksystem.asap.crypto.InMemoASAPKeyStore;
-import net.sharksystem.asap.persons.SharkPKIFacadeImpl;
-import net.sharksystem.asap.pki.ASAPCertificateStorage;
-import net.sharksystem.asap.pki.ASAPStorageBasedCertificates;
-import net.sharksystem.asap.pki.SharkPKIFacade;
 import net.sharksystem.pki.SharkPKIComponent;
-import net.sharksystem.utils.SerializationHelper;
-import net.sharksystem.utils.testsupport.TestConstants;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import static net.sharksystem.utils.SerializationHelper.characterSequence2bytes;
 
 /**
  * An implementation to test our Currency-Component which we need for testing

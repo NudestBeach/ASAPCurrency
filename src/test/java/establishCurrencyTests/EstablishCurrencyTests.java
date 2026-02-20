@@ -441,7 +441,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
         Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
         Assertions.assertTrue(verifiedDavidSig, "David Signatur ist ungültig");
-
     }
+
 
 }

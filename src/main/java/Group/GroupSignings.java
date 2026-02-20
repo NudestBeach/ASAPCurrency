@@ -1,6 +1,5 @@
-package currency.classes;
+package Group;
 
-//TODO: in Group package verschieben
 public enum GroupSignings {
 
     SIGNED_BY_NONE,

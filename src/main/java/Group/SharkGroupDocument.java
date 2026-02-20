@@ -1,7 +1,6 @@
 package Group;
 
 import currency.classes.Currency;
-import currency.classes.GroupSignings;
 import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.asap.ASAPException;
