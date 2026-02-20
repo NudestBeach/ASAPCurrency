@@ -21,7 +21,7 @@ public class SharkGroupDocument {
     private ArrayList<CharSequence> whitelistMember;
     private final boolean encrypted;
     private final boolean balanceVisible;
-    private final GroupSignings groupDocState;
+    private GroupSignings groupDocState;
     private final Map<CharSequence,byte[]> currentMembers = new HashMap<>(); //<PeerId, Signature>
 
     /**
@@ -94,6 +94,31 @@ public class SharkGroupDocument {
         }
         this.currentMembers.put(peerId, signature);
         return true;
+    }
+
+    /**
+     * Prüft ob der aktuelle Gruppendokument State aktuell ist
+     * und aktuallisiert ihn bei Bedarf
+     * TODO: updateGroupDocState benutzen
+     */
+    private void updateGroupDocState() {
+        if (this.whitelistMember == null || this.whitelistMember.isEmpty()) return;
+
+        boolean allSigned = true;
+        for (CharSequence expetedMember : this.whitelistMember){
+            boolean found = this.currentMembers.keySet().stream()
+                    .anyMatch(member -> member.toString().equals(expetedMember.toString()));
+
+            if (!found) {
+                allSigned = false;
+                break;
+            }
+        }
+        if (allSigned){
+            this.groupDocState = GroupSignings.SIGNED_BY_ALL;
+        } else {
+            this.groupDocState = GroupSignings.SIGNED_BY_SOME;
+        }
     }
 
     // --- Serialisierung: Objekt -> byte[] ---
