@@ -25,6 +25,14 @@
             <systemPath>${project.basedir}/lib/SharkPKI.jar</systemPath>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.21.0</version>
+            <scope>compile</scope>
+        </dependency>
+
         <dependency>
             <groupId>net.sharksystem</groupId>
             <artifactId>SharkPeer</artifactId>
