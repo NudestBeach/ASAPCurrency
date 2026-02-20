@@ -381,6 +381,67 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
         this.aliceCurrencyComponent
                 .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName, "Hi Clara, join my group!", CLARA_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName, "Hi David, join my group!", DAVID_ID);
+
+        // 4. Encounter
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.davidSharkPeer, true);
+
+        // 5. Accept Invitation
+        this.bobImpl.acceptInvite(this.bobImpl.getSharkGroupDocument(currencyName));
+        this.claraImpl.acceptInvite(this.claraImpl.getSharkGroupDocument(currencyName));
+        this.davidImpl.acceptInvite(this.davidImpl.getSharkGroupDocument(currencyName));
+
+        // 6.(Assertions)
+        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
+
+        byte[] groupId = aliceDoc.getGroupId();
+
+        Assertions.assertNotNull(bobDoc, "Bob document ist null.");
+        Assertions.assertNotNull(claraDoc, "Clara document ist null.");
+        Assertions.assertNotNull(davidDoc, "David document ist null.");
+
+        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupId, claraDoc.getGroupId(), "Die GroupID bei Clara muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupId, davidDoc.getGroupId(), "Die GroupID bei David muss mit der von Alice übereinstimmen.");
+
+        // Alice hat sich selbst und alle anderen Alice + sich selbst (2)
+        Assertions.assertEquals(7,
+                aliceDoc.getCurrentMembers().size() +
+                        bobDoc.getCurrentMembers().size() +
+                        claraDoc.getCurrentMembers().size() +
+                        davidDoc.getCurrentMembers().size(),
+                "Die Summe der Mitglieder in den lokalen Dokumenten stimmt nicht.");
+
+        byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
+        byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+        byte[] claraSignature = claraDoc.getCurrentMembers().get(CLARA_ID);
+        byte[] davidSignature = davidDoc.getCurrentMembers().get(DAVID_ID);
+
+        boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(groupId, aliceSignature, ALICE_ID,
+                ((SharkPKIComponent) aliceSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(groupId, bobSignature, BOB_ID,
+                ((SharkPKIComponent) bobSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        boolean verifiedClaraSig = ASAPCryptoAlgorithms.verify(groupId, claraSignature, CLARA_ID,
+                ((SharkPKIComponent) claraSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        boolean verifiedDavidSig = ASAPCryptoAlgorithms.verify(groupId, davidSignature, DAVID_ID,
+                ((SharkPKIComponent) davidSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        Assertions.assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
+        Assertions.assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
+        Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
+        Assertions.assertTrue(verifiedDavidSig, "David Signatur ist ungültig");
+
     }
 
 }

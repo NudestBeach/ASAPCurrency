@@ -271,7 +271,7 @@ public class SharkCurrencyComponentImpl
 
                     // 1. signiere das Group Document (Einladung annehmen)
                     byte[] mySignature = net.sharksystem.asap.crypto.ASAPCryptoAlgorithms.sign(
-                            doc.sharkDocumentToByte(), asapPeer.getASAPKeyStore());
+                            doc.getGroupId(), asapPeer.getASAPKeyStore());
 
                     doc.addMember(this.asapPeer.getPeerID(), mySignature);
 
