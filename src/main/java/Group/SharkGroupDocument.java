@@ -87,6 +87,7 @@ public class SharkGroupDocument {
     }
 
     public boolean addMember(CharSequence peerId, byte[] signature) {
+        System.out.println("DEBUG: ADD AUSGE für: " + peerId);
         if(peerId == null || peerId.length()==0) return false;
         if(signature==null || signature.length==0) return false;
         if (this.currentMembers.containsKey(peerId)) {

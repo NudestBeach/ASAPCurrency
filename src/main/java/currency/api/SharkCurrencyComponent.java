@@ -1,10 +1,12 @@
 package currency.api;
 
 
+import Group.SharkGroupDocument;
 import currency.classes.Currency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.ASAPFormats;
 import net.sharksystem.SharkComponent;
+import net.sharksystem.asap.ASAPSecurityException;
 
 import java.util.ArrayList;
 
@@ -122,4 +124,11 @@ public interface SharkCurrencyComponent extends SharkComponent {
      */
     int getBalance(CharSequence currencyName) throws ASAPCurrencyException;
 
+    /**
+     * this will execute the acceptInvite() method from the listener but first
+     * it signs the document given in the parameter :D
+     *
+     * @param sharkGroupDocument document that has yet to be signed
+     */
+    void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPCurrencyException, ASAPSecurityException;
 }

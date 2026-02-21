@@ -7,6 +7,9 @@
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Projekt-Struktur angepasst: GroupSignings in Group Package verschoben">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
@@ -107,7 +110,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived">
+  <component name="RunManager" selected="JUnit.EstablishCurrencyTests.receiveInviteListenerAcceptedTest">
     <configuration name="EstablishCurrencyTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -189,10 +192,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
-        <item itemvalue="JUnit.EstablishCurrencyTests.sendGroupInviteToMoreThanOnePersonAndAccept" />
         <item itemvalue="JUnit.EstablishCurrencyTests.receiveInviteListenerAcceptedTest" />
         <item itemvalue="JUnit.EstablishCurrencyTests" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.sendGroupInviteToMoreThanOnePersonAndAccept" />
         <item itemvalue="JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted" />
       </list>
     </recent_temporary>
@@ -323,6 +326,19 @@
     <option name="LAST_COMMIT_MESSAGE" value="Projekt-Struktur angepasst: GroupSignings in Group Package verschoben" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Group/SharkGroupDocument.java</url>
+          <line>88</line>
+          <properties class="Group.SharkGroupDocument" method="addMember">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="dataString.hash" />

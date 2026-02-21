@@ -60,6 +60,7 @@ public class SharkCurrencyComponentImpl
             }
             boolean successAddMember = sharkGroupDocument
                     .addMember(this.asapPeer.getPeerID(),signature);
+            System.out.println("DEBUG: added: " + this.asapPeer.getPeerID());
             if(!successAddMember) {
                 throw new ASAPCurrencyException("Error in adding member to group");
             }
@@ -117,6 +118,19 @@ public class SharkCurrencyComponentImpl
     @Override
     public int getBalance(CharSequence currencyName) throws ASAPCurrencyException {
         return 0;
+    }
+
+    @Override
+    public void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPCurrencyException, ASAPSecurityException {
+        if(sharkGroupDocument==null) {
+            throw new ASAPCurrencyException("Can not accept and sign document because it is null");
+        } else {
+            ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
+            byte[] signature = ASAPCryptoAlgorithms
+                    .sign(sharkGroupDocument.getGroupId(), ks);
+            sharkGroupDocument.addMember(this.asapPeer.getPeerID(), signature);
+            this.acceptInvite(sharkGroupDocument);
+        }
     }
 
     //Sets-Up the PKI for our peer
@@ -261,8 +275,6 @@ public class SharkCurrencyComponentImpl
                     // 1. signiere das Group Document (Einladung annehmen)
                     byte[] mySignature = net.sharksystem.asap.crypto.ASAPCryptoAlgorithms.sign(
                             doc.getGroupId(), this.sharkPKIComponent.getASAPKeyStore());
-
-                    doc.addMember(this.asapPeer.getPeerID(), mySignature);
 
                     // 2. speicher das Group Dokument ab
                     String cName = doc.getAssignedCurrency().getCurrencyName();

@@ -252,7 +252,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
@@ -262,15 +261,14 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
 
         //5. Bob will accept the invitation
-
-        this.bobImpl.acceptInvite(this.bobImpl.getSharkGroupDocument(currencyName));
+        this.bobImpl.acceptInviteAndSign(bobDoc);
 
         // 6.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
@@ -289,22 +287,23 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                         .getASAPKeyStore());
 
         Assertions
-                .assertNotNull(bobDoc, "Bob document ist null.");
+                .assertNotNull(bobDoc, "Bob document is null.");
         Assertions
                 .assertArrayEquals(groupId,
                         bobDoc.getGroupId(),
-                        "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+                        "GroupId of Bobs document has to be the same as Alices .");
+        //we expect 2 members each, alice and bob, so 4 in  total 0,1,2,3
         Assertions
-                .assertEquals(3,
-                        bobDoc.getCurrentMembers().size()
-                                + aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
-        //Alice and Bob have to be verified
+                .assertEquals(2,
+                        bobDoc.getCurrentMembers().size());
         Assertions
-                .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
-        Assertions
-                .assertTrue(verifiedAliceSig, "Bob Signatur ist ungültig");
+                .assertEquals(2,
+                        aliceDoc.getCurrentMembers().size());
 
-
+        Assertions
+                .assertTrue(verifiedAliceSig, "Alice signature is not verified");
+        Assertions
+                .assertTrue(verifiedAliceSig, "Bob signature is not verified");
     }
 
 
@@ -332,7 +331,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
@@ -343,10 +341,11 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
-        //5. Bob will accept the invitation
-
+        //5. Bob will decline the invitation
         this.bobImpl.declineInvite(this.bobImpl.getSharkGroupDocument(currencyName));
 
+        //6. Assertions
+        //Assertions.
 
     }
 
