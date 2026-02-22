@@ -266,6 +266,8 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         //5. Bob will accept the invitation
         this.bobImpl.acceptInviteAndSign(bobDoc);
 
+        Thread.sleep(2000);
+
         // 6.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();

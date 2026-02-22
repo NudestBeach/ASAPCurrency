@@ -29,6 +29,7 @@ public class SharkCurrencyComponentImpl
         implements SharkCurrencyComponent, ASAPMessageReceivedListener {
 
     public final String INVITE_CHANNEL_URI = "//group-document//invite";
+    public final String NEW_MEMBER_URI = "//group-document//new-member";
     private final SharkPKIComponent sharkPKIComponent;
     private ASAPPeer asapPeer;
 
@@ -121,7 +122,7 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPCurrencyException, ASAPSecurityException {
+    public void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPException {
         if(sharkGroupDocument==null) {
             throw new ASAPCurrencyException("Can not accept and sign document because it is null");
         } else {
@@ -130,6 +131,24 @@ public class SharkCurrencyComponentImpl
                     .sign(sharkGroupDocument.getGroupId(), ks);
             sharkGroupDocument.addMember(this.asapPeer.getPeerID(), signature);
             this.acceptInvite(sharkGroupDocument);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            DataOutputStream dos = new DataOutputStream(baos);
+
+            String currencyName = sharkGroupDocument.getAssignedCurrency().getCurrencyName();
+            String peerID = this.asapPeer.getPeerID().toString();
+            try {
+                dos.write(signature);
+                dos.writeUTF(peerID);
+                dos.writeUTF(currencyName);
+                dos.writeInt(signature.length);
+                dos.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            byte[] signatureAndIDAsContent = baos.toByteArray();
+            this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, NEW_MEMBER_URI, signatureAndIDAsContent);
         }
     }
 
@@ -141,9 +160,9 @@ public class SharkCurrencyComponentImpl
             // Initialisiere Storage, damit der Peer auf dieses Format hört
             this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-
-            // Create a new Channel for the specific Group invites
+            // Create a new channel for different notis on start of a peer:
             storage.createChannel(INVITE_CHANNEL_URI);
+            storage.createChannel(NEW_MEMBER_URI);
         } catch (IOException e) {
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
@@ -263,6 +282,11 @@ public class SharkCurrencyComponentImpl
                 receivedInvite(asapMessages, sender);
                 return;
             }
+            if(uri.toString().equals(NEW_MEMBER_URI)) {
+                System.out.println("DEBUG: New member notification received!");
+                CharSequence currencyName = receivedNewMemberNoti(asapMessages,sender, this);
+                return;
+            }
 
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             for (int i = 0; i < asapMessages.size(); i++) {
@@ -293,6 +317,27 @@ public class SharkCurrencyComponentImpl
         } catch (Exception e) {
             System.err.println("Fehler beim Verarbeiten der empfangenen Nachricht: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    public String receivedNewMemberNoti(ASAPMessages message, String sender, SharkCurrencyComponent scc) {
+        try {
+            byte[] messageData = message.getMessage(0, false);
+
+            ByteArrayInputStream bais = new ByteArrayInputStream(messageData);
+            DataInputStream dis = new DataInputStream(bais);
+
+            String peerID = dis.readUTF();
+            String currencyName = dis.readUTF();
+            int sigLength = dis.readInt();
+            byte[] signature = new byte[sigLength];
+            dis.readFully(signature);
+            this.getSharkGroupDocument(currencyName).addMember(peerID, signature);
+            return currencyName;
+        } catch (ASAPException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

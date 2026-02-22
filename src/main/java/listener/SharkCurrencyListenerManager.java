@@ -2,6 +2,7 @@ package listener;
 
 
 import Group.SharkGroupDocument;
+import currency.api.SharkCurrencyComponent;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.listenermanager.GenericListenerImplementation;
