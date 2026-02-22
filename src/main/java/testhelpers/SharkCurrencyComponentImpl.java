@@ -210,8 +210,8 @@ public class SharkCurrencyComponentImpl
                 System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
-
-            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(0, false));
+            int lastMessageIndex = messages.size()-1;
+            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(lastMessageIndex, false));
             if (doc == null) {
                 throw new ASAPException("Konnte SharkGroupDocument nicht parsen.");
             }
@@ -329,10 +329,13 @@ public class SharkCurrencyComponentImpl
 
             String peerID = dis.readUTF();
             String currencyName = dis.readUTF();
+            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
             int sigLength = dis.readInt();
             byte[] signature = new byte[sigLength];
             dis.readFully(signature);
             this.getSharkGroupDocument(currencyName).addMember(peerID, signature);
+            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+            storage.add(groupURI, this.getSharkGroupDocument(currencyName).sharkDocumentToByte());
             return currencyName;
         } catch (ASAPException e) {
             throw new RuntimeException(e);

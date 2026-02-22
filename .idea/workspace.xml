@@ -6,10 +6,38 @@
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Projekt-Struktur angepasst: GroupSignings in Group Package verschoben">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2FAliceTalerD.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2FAliceTalerD.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/EstablishCurrencyTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
