@@ -181,12 +181,15 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        Thread.sleep(2000);
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+
+        this.bobImpl.acceptInviteAndSign(bobDoc);
 
 
         // 5.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
@@ -301,7 +304,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions
                 .assertTrue(verifiedAliceSig, "Alice signature is not verified");
         Assertions
-                .assertTrue(verifiedAliceSig, "Bob signature is not verified");
+                .assertTrue(verifiedBobSig, "Bob signature is not verified");
     }
 
 
