@@ -1,4 +1,5 @@
 package establishCurrencyTests;
+import group.GroupSignings;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import org.apache.commons.io.FileUtils;
@@ -293,6 +294,11 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 .assertArrayEquals(groupId,
                         bobDoc.getGroupId(),
                         "GroupId of Bobs document has to be the same as Alices .");
+        Assertions
+                .assertEquals(GroupSignings.SIGNED_BY_ALL,
+                        bobDoc.getGroupDocState(),
+                        "Bobs Group Document is not SIGNED_BY_ALL");
+
         //we expect 2 members each, alice and bob, so 4 in  total 0,1,2,3
         Assertions
                 .assertEquals(2,
@@ -415,6 +421,11 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
         Assertions.assertArrayEquals(groupId, claraDoc.getGroupId(), "Die GroupID bei Clara muss mit der von Alice übereinstimmen.");
         Assertions.assertArrayEquals(groupId, davidDoc.getGroupId(), "Die GroupID bei David muss mit der von Alice übereinstimmen.");
+
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, aliceDoc.getGroupDocState(), "Alice Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, bobDoc.getGroupDocState(), "Bobs Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, davidDoc.getGroupDocState(), "Davids Group Document is not SIGNED_BY_SOME");
 
         // Alice hat sich selbst und alle anderen Alice + sich selbst (2)
         Assertions.assertEquals(7,

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="EstablishCurrencyTests: successfullGroupInviteSendAndReceived() Test mit acceptInviteAndSign() für Bob angepasst.">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/establishCurrencyTests/EstablishCurrencyTests.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
@@ -190,10 +192,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.EstablishCurrencyTests.sendGroupInviteToMoreThanOnePersonAndAccept" />
-        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.EstablishCurrencyTests.receiveInviteListenerAcceptedTest" />
-        <item itemvalue="JUnit.EstablishCurrencyTests.receiveInviteListenerDeniedTest" />
         <item itemvalue="JUnit.EstablishCurrencyTests" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived" />
+        <item itemvalue="JUnit.EstablishCurrencyTests.receiveInviteListenerDeniedTest" />
       </list>
     </recent_temporary>
   </component>
@@ -300,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771868036527</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst.">
+      <option name="closed" value="true" />
+      <created>1771868302253</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771868302253</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +339,8 @@
     <MESSAGE value="verifying own Signatur in Test fix: Every Peer receiving a Group Document is now signing the Group ID instead of whole Document" />
     <MESSAGE value="Projekt-Struktur angepasst: GroupSignings in Group Package verschoben" />
     <MESSAGE value="EstablishCurrencyTests: successfullGroupInviteSendAndReceived() Test mit acceptInviteAndSign() für Bob angepasst." />
-    <option name="LAST_COMMIT_MESSAGE" value="EstablishCurrencyTests: successfullGroupInviteSendAndReceived() Test mit acceptInviteAndSign() für Bob angepasst." />
+    <MESSAGE value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
+    <option name="LAST_COMMIT_MESSAGE" value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

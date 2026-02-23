@@ -94,13 +94,13 @@ public class SharkGroupDocument {
             return false;
         }
         this.currentMembers.put(peerId, signature);
+        updateGroupDocState();
         return true;
     }
 
     /**
      * Prüft ob der aktuelle Gruppendokument State aktuell ist
      * und aktuallisiert ihn bei Bedarf
-     * TODO: updateGroupDocState benutzen
      */
     private void updateGroupDocState() {
         if (this.whitelistMember == null || this.whitelistMember.isEmpty()) return;
