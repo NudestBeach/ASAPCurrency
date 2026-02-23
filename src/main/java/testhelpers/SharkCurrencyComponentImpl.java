@@ -1,9 +1,9 @@
 package testhelpers;
 
-import Group.SharkGroupDocument;
+import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import currency.classes.Currency;
-import Group.GroupSignings;
+import group.GroupSignings;
 import exepections.ASAPCurrencyException;
 import listener.SharkCurrencyListenerManager;
 import net.sharksystem.*;
@@ -138,10 +138,10 @@ public class SharkCurrencyComponentImpl
             String currencyName = sharkGroupDocument.getAssignedCurrency().getCurrencyName();
             String peerID = this.asapPeer.getPeerID().toString();
             try {
-                dos.write(signature);
                 dos.writeUTF(peerID);
                 dos.writeUTF(currencyName);
                 dos.writeInt(signature.length);
+                dos.write(signature);
                 dos.flush();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -211,7 +211,7 @@ public class SharkCurrencyComponentImpl
                 return null;
             }
             int lastMessageIndex = messages.size()-1;
-            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(lastMessageIndex, false));
+            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(lastMessageIndex, true));
             if (doc == null) {
                 throw new ASAPException("Konnte SharkGroupDocument nicht parsen.");
             }
@@ -322,20 +322,22 @@ public class SharkCurrencyComponentImpl
 
     public String receivedNewMemberNoti(ASAPMessages message, String sender, SharkCurrencyComponent scc) {
         try {
-            byte[] messageData = message.getMessage(0, false);
+            byte[] messageData = message.getMessage(0, true);
 
+            //--------Read all data from the message ------------------------
             ByteArrayInputStream bais = new ByteArrayInputStream(messageData);
             DataInputStream dis = new DataInputStream(bais);
-
             String peerID = dis.readUTF();
             String currencyName = dis.readUTF();
-            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
             int sigLength = dis.readInt();
             byte[] signature = new byte[sigLength];
             dis.readFully(signature);
-            this.getSharkGroupDocument(currencyName).addMember(peerID, signature);
+            //---------------------------------------------------------------
+            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            storage.add(groupURI, this.getSharkGroupDocument(currencyName).sharkDocumentToByte());
+            SharkGroupDocument doc = this.getSharkGroupDocument(currencyName);
+            doc.addMember(peerID, signature);
+            storage.add(groupURI, doc.sharkDocumentToByte());
             return currencyName;
         } catch (ASAPException e) {
             throw new RuntimeException(e);

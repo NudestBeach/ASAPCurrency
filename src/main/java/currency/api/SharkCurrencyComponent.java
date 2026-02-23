@@ -1,7 +1,7 @@
 package currency.api;
 
 
-import Group.SharkGroupDocument;
+import group.SharkGroupDocument;
 import currency.classes.Currency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.ASAPFormats;

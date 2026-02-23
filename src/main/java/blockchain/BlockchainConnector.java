@@ -1,4 +1,4 @@
-package Blockchain;
+package blockchain;
 
 import java.math.BigInteger;
 //TODO ist noch nicht eingunden ins projekt,

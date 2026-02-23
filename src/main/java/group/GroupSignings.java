@@ -1,4 +1,4 @@
-package Group;
+package group;
 
 public enum GroupSignings {
 

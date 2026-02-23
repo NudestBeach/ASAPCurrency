@@ -1,4 +1,4 @@
-package Group;
+package group;
 
 import currency.classes.Currency;
 import currency.classes.LocalCurrency;

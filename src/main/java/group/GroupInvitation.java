@@ -1,6 +1,5 @@
-package Group;
+package group;
 
-import currency.api.SharkCurrencyComponent;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPPeer;
 import net.sharksystem.asap.ASAPStorage;

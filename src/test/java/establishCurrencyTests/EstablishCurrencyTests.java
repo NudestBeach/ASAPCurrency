@@ -1,5 +1,5 @@
 package establishCurrencyTests;
-import Group.SharkGroupDocument;
+import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import org.apache.commons.io.FileUtils;
 import currency.classes.Currency;
@@ -7,18 +7,13 @@ import currency.classes.LocalCurrency;
 import exepections.ASAPCurrencyException;
 
 import net.sharksystem.asap.*;
-import net.sharksystem.utils.streams.StreamPairImpl;
 import net.sharksystem.SharkException;
-import net.sharksystem.asap.ASAPEncounterManagerImpl;
-import net.sharksystem.asap.apps.TCPServerSocketAcceptor;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 
 import net.sharksystem.pki.SharkPKIComponent;
 
-import net.sharksystem.utils.streams.StreamPairImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testHelper.AsapCurrencyTestHelper;
 
@@ -27,7 +22,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -266,6 +260,8 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         //5. Bob will accept the invitation
         this.bobImpl.acceptInviteAndSign(bobDoc);
 
+        Thread.sleep(2000);
+        this.runEncounter(this.bobSharkPeer,this.aliceSharkPeer,true);
         Thread.sleep(2000);
 
         // 6.(Assertions)

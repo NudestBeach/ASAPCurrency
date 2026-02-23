@@ -1,8 +1,6 @@
 package listener;
 
-import Group.SharkGroupDocument;
-import currency.classes.Promise;
-import exepections.WrongDestinationException;
+import group.SharkGroupDocument;
 
 /**
  * Listener interface for receiving notifications about currency events.

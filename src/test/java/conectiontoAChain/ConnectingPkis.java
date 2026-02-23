@@ -1,11 +1,9 @@
 package conectiontoAChain;
 
-import Blockchain.Connecting;
-import okhttp3.Credentials;
+import blockchain.Connecting;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.http.HttpService;
 
 import java.io.IOException;
 

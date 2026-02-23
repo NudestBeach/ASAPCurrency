@@ -1,4 +1,4 @@
-package Blockchain;
+package blockchain;
 
 import org.web3j.protocol.Web3j;
 
