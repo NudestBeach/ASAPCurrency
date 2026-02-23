@@ -391,16 +391,20 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         this.runEncounter(this.aliceSharkPeer, this.claraSharkPeer, true);
         this.runEncounter(this.aliceSharkPeer, this.davidSharkPeer, true);
 
-        // 5. Accept Invitation
-        this.bobImpl.acceptInvite(this.bobImpl.getSharkGroupDocument(currencyName));
-        this.claraImpl.acceptInvite(this.claraImpl.getSharkGroupDocument(currencyName));
-        this.davidImpl.acceptInvite(this.davidImpl.getSharkGroupDocument(currencyName));
+        Thread.sleep(2000);
 
-        // 6.(Assertions)
+        // Received Group Documents
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
+
+        // 5. Accept Invitation
+        this.bobImpl.acceptInviteAndSign(bobDoc);
+        this.claraImpl.acceptInviteAndSign(claraDoc);
+        this.davidImpl.acceptInviteAndSign(davidDoc);
+
+        // 6.(Assertions)
 
         byte[] groupId = aliceDoc.getGroupId();
 
