@@ -42,13 +42,18 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         if (this.bobSharkPeer != null) {
             this.bobSharkPeer.stop();
         }
+
+        Thread.sleep(500);
         File testFolder = new File("testResultsRootFolder");
+        System.out.println("DEBUG: Absoluter Pfad: " + testFolder.getAbsolutePath());
+        System.out.println("DEBUG: Existiert: " + testFolder.exists());
+
         if (testFolder.exists()) {
             try {
                 FileUtils.forceDelete(testFolder);
                 System.out.println("Deleted: " + testFolder.getAbsolutePath());
             } catch (IOException e) {
-                System.err.println("Konnte nicht löschen - File noch gelockt: " + e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }
