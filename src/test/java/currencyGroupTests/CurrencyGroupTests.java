@@ -1,4 +1,4 @@
-package establishCurrencyTests;
+package currencyGroupTests;
 import group.GroupSignings;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
@@ -27,15 +27,15 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
+public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
-    public EstablishCurrencyTests() {
-        super(EstablishCurrencyTests.class.getSimpleName());
+    public CurrencyGroupTests() {
+        super(CurrencyGroupTests.class.getSimpleName());
     }
 
     @BeforeEach
     void setUp() {
-        String testClassName = EstablishCurrencyTests.class.getSimpleName();
+        String testClassName = CurrencyGroupTests.class.getSimpleName();
         String[] peerNames = {ALICE_NAME, BOB_NAME, CLARA_NAME, DAVID_NAME};
         for (String peer : peerNames) {
             File peerFolder = new File("testResultsRootFolder/" + testClassName + "/" + peer);
@@ -172,7 +172,6 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
@@ -183,16 +182,12 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
         Thread.sleep(2000);
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-
-        this.bobImpl.acceptInviteAndSign(bobDoc);
-
 
         // 5.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
-        byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
-        byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+        byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
                 groupId,
                 aliceSignature,
@@ -200,30 +195,26 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
                 ((SharkPKIComponent) aliceSharkPeer
                         .getComponent(SharkPKIComponent.class))
                         .getASAPKeyStore());
-        boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(
-                groupId,
-                bobSignature,
-                BOB_ID,
-                ((SharkPKIComponent) bobSharkPeer
-                        .getComponent(SharkPKIComponent.class))
-                        .getASAPKeyStore());
 
+        Assertions
+                .assertNotNull(aliceDoc, "Bob document ist null.");
         Assertions
                 .assertNotNull(bobDoc, "Bob document ist null.");
         Assertions
                 .assertArrayEquals(groupId,
                         bobDoc.getGroupId(),
                         "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+
+        //we expect 1 member. Just alice because bob didn't do anything yet
         Assertions
-                .assertEquals(3,
-                        bobDoc.getCurrentMembers().size()
-                                + aliceDoc.getCurrentMembers().size()); //we expect 2 members each, alice and bob
-        //Alice and Bob have to be verified
+                .assertEquals(1,
+                        aliceDoc.getCurrentMembers().size());
+        Assertions
+                .assertEquals(1,
+                        bobDoc.getCurrentMembers().size());
+        //Alice signature has to be verified
         Assertions
                 .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
-        Assertions
-                .assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
-
     }
 
 
@@ -259,10 +250,9 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
 
         //5. Bob will accept the invitation
-        this.bobImpl.acceptInviteAndSign(bobDoc);
+        this.bobImpl.acceptInviteAndSign(currencyName);
 
         Thread.sleep(2000);
         this.runEncounter(this.bobSharkPeer,this.aliceSharkPeer,true);
@@ -270,9 +260,11 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 6.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
         byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+        System.out.println("DEBUG: bob sig: " + bobSignature);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
                 groupId,
                 aliceSignature,
@@ -399,20 +391,26 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         Thread.sleep(2000);
 
-        // Received Group Documents
+        // 5. Accept Invitation
+        this.bobImpl.acceptInviteAndSign(currencyName);
+        this.claraImpl.acceptInviteAndSign(currencyName);
+        this.davidImpl.acceptInviteAndSign(currencyName);
+
+        Thread.sleep(1000);
+        this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(2000);
+
+        // 6.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
-
-        // 5. Accept Invitation
-        this.bobImpl.acceptInviteAndSign(bobDoc);
-        this.claraImpl.acceptInviteAndSign(claraDoc);
-        this.davidImpl.acceptInviteAndSign(davidDoc);
-
-        // 6.(Assertions)
-
         byte[] groupId = aliceDoc.getGroupId();
+        System.out.println("DEBUG: Alice doc members: " + aliceDoc.getCurrentMembers());
 
         Assertions.assertNotNull(bobDoc, "Bob document ist null.");
         Assertions.assertNotNull(claraDoc, "Clara document ist null.");
@@ -427,13 +425,22 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_SOME");
         Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, davidDoc.getGroupDocState(), "Davids Group Document is not SIGNED_BY_SOME");
 
-        // Alice hat sich selbst und alle anderen Alice + sich selbst (2)
-        Assertions.assertEquals(7,
-                aliceDoc.getCurrentMembers().size() +
-                        bobDoc.getCurrentMembers().size() +
-                        claraDoc.getCurrentMembers().size() +
+        Assertions
+                .assertEquals(4,
+                        aliceDoc.getCurrentMembers().size(),
+                        "Alice docs member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        bobDoc.getCurrentMembers().size(),
+                        "Bob docs member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        claraDoc.getCurrentMembers().size(),
+                        "Clara docs member count is not correct");
+        Assertions
+                .assertEquals(4,
                         davidDoc.getCurrentMembers().size(),
-                "Die Summe der Mitglieder in den lokalen Dokumenten stimmt nicht.");
+                        "David docs member count is not correct");
 
         byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
@@ -442,13 +449,10 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(groupId, aliceSignature, ALICE_ID,
                 ((SharkPKIComponent) aliceSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
-
         boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(groupId, bobSignature, BOB_ID,
                 ((SharkPKIComponent) bobSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
-
         boolean verifiedClaraSig = ASAPCryptoAlgorithms.verify(groupId, claraSignature, CLARA_ID,
                 ((SharkPKIComponent) claraSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
-
         boolean verifiedDavidSig = ASAPCryptoAlgorithms.verify(groupId, davidSignature, DAVID_ID,
                 ((SharkPKIComponent) davidSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
 

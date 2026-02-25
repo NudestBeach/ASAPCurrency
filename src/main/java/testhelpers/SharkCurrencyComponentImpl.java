@@ -122,7 +122,8 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPException {
+    public void acceptInviteAndSign(CharSequence currencyName) throws ASAPException, IOException {
+        SharkGroupDocument sharkGroupDocument = this.getSharkGroupDocument(currencyName);
         if(sharkGroupDocument==null) {
             throw new ASAPCurrencyException("Can not accept and sign document because it is null");
         } else {
@@ -130,16 +131,16 @@ public class SharkCurrencyComponentImpl
             byte[] signature = ASAPCryptoAlgorithms
                     .sign(sharkGroupDocument.getGroupId(), ks);
             sharkGroupDocument.addMember(this.asapPeer.getPeerID(), signature);
+            byte[] newDocSerialized = sharkGroupDocument.sharkDocumentToByte();
+            this.asapPeer.getASAPStorage(CURRENCY_FORMAT).add(SharkGroupDocument.DOCUMENT_FORMAT+currencyName, newDocSerialized);
             this.acceptInvite(sharkGroupDocument);
-
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baos);
 
-            String currencyName = sharkGroupDocument.getAssignedCurrency().getCurrencyName();
             String peerID = this.asapPeer.getPeerID().toString();
             try {
                 dos.writeUTF(peerID);
-                dos.writeUTF(currencyName);
+                dos.writeUTF(currencyName.toString());
                 dos.writeInt(signature.length);
                 dos.write(signature);
                 dos.flush();

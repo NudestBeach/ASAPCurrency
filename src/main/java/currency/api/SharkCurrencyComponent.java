@@ -9,6 +9,7 @@ import net.sharksystem.SharkComponent;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPSecurityException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -127,9 +128,9 @@ public interface SharkCurrencyComponent extends SharkComponent {
 
     /**
      * this will execute the acceptInvite() method from the listener but first
-     * it signs the document given in the parameter :D
+     * it signs the document which currency name is given in the parameter :D
      *
-     * @param sharkGroupDocument document that has yet to be signed
+     * @param currencyName name of the currency for the group
      */
-    void acceptInviteAndSign(SharkGroupDocument sharkGroupDocument) throws ASAPCurrencyException, ASAPSecurityException, ASAPException;
+    void acceptInviteAndSign(CharSequence currencyName) throws ASAPCurrencyException, ASAPSecurityException, ASAPException, IOException;
 }
