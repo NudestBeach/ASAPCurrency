@@ -3,6 +3,7 @@ package testHelper;
 import currency.api.SharkCurrencyComponent;
 import currency.api.SharkCurrencyComponentFactory;
 import net.sharksystem.SharkException;
+import net.sharksystem.SharkPeer;
 import net.sharksystem.SharkTestPeerFS;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.testhelper.SharkPKITesthelper;
@@ -149,5 +150,15 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         this.davidImpl =
                 (SharkCurrencyComponentImpl) davidSharkPeer.getComponent(SharkCurrencyComponent.class);
         AsapCurrencyTestHelper.testNumber++;
+    }
+
+    protected void stopPeerSafely(SharkPeer peer) {
+        if (peer != null) {
+            try {
+                peer.stop();
+            } catch (Exception e) {
+                System.err.println("Error stopping peers: " + e.getMessage());
+            }
+        }
     }
 }

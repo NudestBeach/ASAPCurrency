@@ -15,6 +15,7 @@ import net.sharksystem.pki.SharkPKIComponent;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testHelper.AsapCurrencyTestHelper;
 
@@ -32,32 +33,27 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
         super(EstablishCurrencyTests.class.getSimpleName());
     }
 
-
-    @AfterEach
-    void tearDown() throws Exception {
-
-        if (this.aliceSharkPeer != null) {
-            this.aliceSharkPeer.stop();
-        }
-        if (this.bobSharkPeer != null) {
-            this.bobSharkPeer.stop();
-        }
-
-        Thread.sleep(500);
-        File testFolder = new File("testResultsRootFolder");
-        System.out.println("DEBUG: Absoluter Pfad: " + testFolder.getAbsolutePath());
-        System.out.println("DEBUG: Existiert: " + testFolder.exists());
-
-        if (testFolder.exists()) {
-            try {
-                FileUtils.forceDelete(testFolder);
-                System.out.println("Deleted: " + testFolder.getAbsolutePath());
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
+    @BeforeEach
+    void setUp() {
+        String testClassName = EstablishCurrencyTests.class.getSimpleName();
+        String[] peerNames = {ALICE_NAME, BOB_NAME, CLARA_NAME, DAVID_NAME};
+        for (String peer : peerNames) {
+            File peerFolder = new File("testResultsRootFolder/" + testClassName + "/" + peer);
+            if (peerFolder.exists()) {
+                try {
+                    FileUtils.cleanDirectory(peerFolder);
+                } catch (IOException ignored) {}
             }
         }
     }
 
+    @AfterEach
+    void tearDown() {
+        stopPeerSafely(this.aliceSharkPeer);
+        stopPeerSafely(this.bobSharkPeer);
+        stopPeerSafely(this.claraSharkPeer);
+        stopPeerSafely(this.davidSharkPeer);
+    }
 
     @Test
     public void aliceCreatesAGroupWithLocalCurrency()
@@ -79,7 +75,7 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 2. Alice creates a new Group using the created Currency
         this.aliceCurrencyComponent.establishGroup(dummyCurrency,
-                new ArrayList<CharSequence>(),
+                new ArrayList<>(),
                 false,
                 true);
         SharkGroupDocument testDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
@@ -139,13 +135,12 @@ public class EstablishCurrencyTests extends AsapCurrencyTestHelper {
 
         // 3. Checking the result
         Exception exception
-                = assertThrows(ASAPCurrencyException.class, () -> {
-            this.aliceCurrencyComponent.establishGroup(membersToBeInvited,
-                    dummyCurrency,
-                    new ArrayList<CharSequence>(),
-                    false,
-                    true);
-        });
+                = assertThrows(ASAPCurrencyException.class, () ->
+                this.aliceCurrencyComponent.establishGroup(membersToBeInvited,
+                        dummyCurrency,
+                        new ArrayList<>(),
+                        false,
+                        true));
         String expectedMessage = "Can not invite peers that are not on the whitelist.";
         String actualMessage = exception.getMessage();
         assertTrue(actualMessage.contains(expectedMessage));
