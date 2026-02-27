@@ -152,7 +152,7 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         AsapCurrencyTestHelper.testNumber++;
     }
 
-    protected void stopPeerSafely(SharkPeer peer) {
+    protected static void stopPeerSafely(SharkPeer peer) {
         if (peer != null) {
             try {
                 peer.stop();

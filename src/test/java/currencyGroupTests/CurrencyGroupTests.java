@@ -13,10 +13,7 @@ import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 
 import net.sharksystem.pki.SharkPKIComponent;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import testHelper.AsapCurrencyTestHelper;
 
 
@@ -85,7 +82,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         // 3. Checking results
         ASAPStorage aliceStorage = aliceSharkPeer.getASAPPeer()
                 .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-        Map<CharSequence, byte[]> members = testDoc.getCurrentMembers();
+        Map<String, byte[]> members = testDoc.getCurrentMembers();
         boolean channelExists = aliceStorage.channelExists(groupUriA);
         boolean verified = ASAPCryptoAlgorithms.verify(
                 groupId, //Content der signiert wurde
@@ -350,7 +347,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
 
     @Test
-    public void sendGroupInviteToMoreThanOnePersonAndAccept() throws SharkException, IOException, InterruptedException {
+    public void sendGroupInviteTo3PeersAndAllAccept() throws SharkException, IOException, InterruptedException {
         this.setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice();
 
         // 1. Alice arranges a new local Currency
@@ -391,17 +388,26 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         Thread.sleep(2000);
 
-        // 5. Accept Invitation
+        // 5.1 Accept Invitation
         this.bobImpl.acceptInviteAndSign(currencyName);
-        this.claraImpl.acceptInviteAndSign(currencyName);
-        this.davidImpl.acceptInviteAndSign(currencyName);
-
         Thread.sleep(1000);
         this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
         Thread.sleep(1000);
+        this.claraImpl.acceptInviteAndSign(currencyName);
+        Thread.sleep(1000);
         this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
         Thread.sleep(1000);
+        this.davidImpl.acceptInviteAndSign(currencyName);
+        Thread.sleep(1000);
         this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        //5.2 more encounters (we need better solution for this xd)
+        this.runEncounter(this.bobSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.bobSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.claraSharkPeer, true);
         Thread.sleep(2000);
 
         // 6.(Assertions)
@@ -420,10 +426,10 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertArrayEquals(groupId, claraDoc.getGroupId(), "Die GroupID bei Clara muss mit der von Alice übereinstimmen.");
         Assertions.assertArrayEquals(groupId, davidDoc.getGroupId(), "Die GroupID bei David muss mit der von Alice übereinstimmen.");
 
-        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, aliceDoc.getGroupDocState(), "Alice Group Document is not SIGNED_BY_SOME");
-        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, bobDoc.getGroupDocState(), "Bobs Group Document is not SIGNED_BY_SOME");
-        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_SOME");
-        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, davidDoc.getGroupDocState(), "Davids Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, aliceDoc.getGroupDocState(), "Alice Group Document is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, bobDoc.getGroupDocState(), "Bobs Group Document is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, davidDoc.getGroupDocState(), "Davids Group Document is not SIGNED_BY_ALL");
 
         Assertions
                 .assertEquals(4,

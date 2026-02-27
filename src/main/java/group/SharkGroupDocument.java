@@ -22,7 +22,7 @@ public class SharkGroupDocument {
     private final boolean encrypted;
     private final boolean balanceVisible;
     private GroupSignings groupDocState;
-    private final Map<CharSequence,byte[]> currentMembers = new HashMap<>(); //<PeerId, Signature>
+    private final Map<String,byte[]> currentMembers = new HashMap<>(); //<PeerId, Signature>
 
     /**
      * Public constructor setting a new GroupId
@@ -48,7 +48,6 @@ public class SharkGroupDocument {
         }
         this.groupCreator = groupCreator;
         this.assignedCurrency = assignedCurrency;
-        this.whitelistMember = whitelistMember;
         this.encrypted = encrypted;
         this.balanceVisible = balanceVisible;
         this.groupDocState = (groupDocState != null) ? groupDocState : GroupSignings.SIGNED_BY_NONE;
@@ -79,7 +78,6 @@ public class SharkGroupDocument {
         }
         this.groupCreator = groupCreator;
         this.assignedCurrency = assignedCurrency;
-        this.whitelistMember = whitelistMember;
         this.encrypted = encrypted;
         this.balanceVisible = balanceVisible;
         this.groupDocState = (groupDocState != null) ? groupDocState : GroupSignings.SIGNED_BY_NONE;
@@ -90,10 +88,11 @@ public class SharkGroupDocument {
         System.out.println("DEBUG: ADD AUSGE für: " + peerId);
         if(peerId == null || peerId.length()==0) return false;
         if(signature==null || signature.length==0) return false;
-        if (this.currentMembers.containsKey(peerId)) {
+        String peerIdStr = peerId.toString();
+        if (this.currentMembers.containsKey(peerIdStr)) {
             return false;
         }
-        this.currentMembers.put(peerId, signature);
+        this.currentMembers.put(peerIdStr, signature);
         updateGroupDocState();
         return true;
     }
@@ -154,7 +153,7 @@ public class SharkGroupDocument {
         documentVariables.add(this.groupDocState.name());
 
         StringBuilder membersSb = new StringBuilder();
-        for (Map.Entry<CharSequence, byte[]> entry : this.currentMembers.entrySet()) {
+        for (Map.Entry<String, byte[]> entry : this.currentMembers.entrySet()) {
             membersSb.append(entry.getKey()).append("=")
                     .append(Base64.getEncoder().encodeToString(entry.getValue()))
                     .append(LIST_DELIMITER);
@@ -303,6 +302,6 @@ public class SharkGroupDocument {
     public boolean isEncrypted() { return encrypted; }
     public GroupSignings getGroupDocState() { return groupDocState; }
     public boolean isBalanceVisible() { return balanceVisible; }
-    public Map<CharSequence, byte[]> getCurrentMembers() { return currentMembers; }
+    public Map<String, byte[]> getCurrentMembers() { return currentMembers; }
     public ArrayList getWhitelistMember() { return whitelistMember; }
 }

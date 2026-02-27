@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * An implementation to test our Currency-Component which we need for testing
@@ -193,7 +194,6 @@ public class SharkCurrencyComponentImpl
                     return SharkGroupDocument.fromByte(docBytes);
                 }
             } catch (Exception innerEx) {
-                // Falls beides fehlschlägt
             }
         }
         return null;
@@ -211,12 +211,26 @@ public class SharkCurrencyComponentImpl
                 System.err.println("DEBUG: No messages found in channel " + groupUri);
                 return null;
             }
-            int lastMessageIndex = messages.size()-1;
-            SharkGroupDocument doc = parseSharkGroupDocument(messages.getMessage(lastMessageIndex, true));
-            if (doc == null) {
-                throw new ASAPException("Konnte SharkGroupDocument nicht parsen.");
+            SharkGroupDocument base = null;
+            for (int i = 0; i < messages.size(); i++) {
+                try {
+                    SharkGroupDocument doc = parseSharkGroupDocument(
+                            messages.getMessage(i, true));
+                    if (doc == null) continue;
+
+                    if (base == null) {
+                        base = doc;
+                    } else {
+                        for (Map.Entry<String, byte[]> entry :
+                                doc.getCurrentMembers().entrySet()) {
+                            base.addMember(entry.getKey(), entry.getValue());
+                        }
+                    }
+                } catch (Exception e) {
+                }
             }
-            return doc;
+            System.out.println("DEBUG: " + this.asapPeer.getPeerID() + " messages size: " + messages.size() + " Group size: " + base.getCurrentMembers().size());
+            return base;
         } catch (IOException e){
             throw new RuntimeException(e);
         } catch (ASAPException e){
@@ -323,7 +337,9 @@ public class SharkCurrencyComponentImpl
 
     public String receivedNewMemberNoti(ASAPMessages message, String sender, SharkCurrencyComponent scc) {
         try {
-            byte[] messageData = message.getMessage(0, true);
+            System.out.println("DEBUG: I "+this.asapPeer.getPeerID()+" received a new message from: " + sender + " message size is: " + message.size());
+            int lastindex = message.size()-1;
+            byte[] messageData = message.getMessage(lastindex, true);
 
             //--------Read all data from the message ------------------------
             ByteArrayInputStream bais = new ByteArrayInputStream(messageData);
@@ -337,8 +353,11 @@ public class SharkCurrencyComponentImpl
             CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             SharkGroupDocument doc = this.getSharkGroupDocument(currencyName);
+            System.out.println("DEBUG: VOR addMember - doc hat Members: " + doc.getCurrentMembers().keySet());
             doc.addMember(peerID, signature);
+            System.out.println("DEBUG: NACH addMember - doc hat Members: " + doc.getCurrentMembers().keySet());
             storage.add(groupURI, doc.sharkDocumentToByte());
+            System.out.println("Added"  + peerID + " to " + groupURI + " iam " + this.asapPeer.getPeerID() + " so member size is now: " + doc.getCurrentMembers());
             return currencyName;
         } catch (ASAPException e) {
             throw new RuntimeException(e);
