@@ -338,10 +338,39 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
         //5. Bob will decline the invitation
-        this.bobImpl.declineInvite(this.bobImpl.getSharkGroupDocument(currencyName));
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+        this.bobImpl.declineInvite(bobDoc);
 
         //6. Assertions
         //Assertions.
+
+        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+
+        // Überprüfen, dass Bob nicht Teil der Gruppe im lokalen Dokument von Bob ist
+        Assertions.assertFalse(
+                bobDoc.getCurrentMembers().containsKey(BOB_ID),
+                "Bob darf nicht in seinem eigenen GroupDocument als Mitglied gelistet sein, da er abgelehnt hat."
+        );
+
+        // Überprüfen, dass Bob nicht Teil der Gruppe im lokalen Dokument von Alice ist
+        Assertions.assertFalse(
+                aliceDoc.getCurrentMembers().containsKey(BOB_ID),
+                "Bob darf nicht in Alices GroupDocument auftauchen, da er der Gruppe nicht beigetreten ist."
+        );
+
+        // Überprüfen, dass die Gruppe bei Alice nach wie vor nur 1 Mitglied (Alice selbst) hat
+        Assertions.assertEquals(
+                1,
+                aliceDoc.getCurrentMembers().size(),
+                "Alices GroupDocument sollte exakt 1 Mitglied enthalten."
+        );
+
+        // Der Status der Gruppe muss SIGNED_BY_SOME sein (da Bob auf der Whitelist steht, aber nicht signiert hat)
+        Assertions.assertEquals(
+                GroupSignings.SIGNED_BY_SOME,
+                aliceDoc.getGroupDocState(),
+                "Der DocState muss SIGNED_BY_SOME sein, da noch nicht alle Whitelist-Member beigetreten sind."
+        );
 
     }
 
@@ -466,6 +495,12 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
         Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
         Assertions.assertTrue(verifiedDavidSig, "David Signatur ist ungültig");
+    }
+
+    @Test
+    public void sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() throws SharkException, IOException, InterruptedException {
+        //TODO
+
     }
 
 
