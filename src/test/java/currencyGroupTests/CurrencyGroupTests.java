@@ -499,9 +499,79 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
     @Test
     public void sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() throws SharkException, IOException, InterruptedException {
-        //TODO
+        this.setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice();
 
+        // 1. Alice arranges a new local Currency
+        CharSequence currencyName = "AliceTalerH";
+        Currency dummyCurrency = new LocalCurrency(
+                false,
+                currencyName.toString(),
+                "A test Currency"
+        );
+
+        // 2. Alice creates a new Group and whitelists Bob, Clara and David
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+        whitelist.add(CLARA_ID);
+        whitelist.add(DAVID_ID);
+
+        this.aliceCurrencyComponent.establishGroup(
+                dummyCurrency,
+                whitelist,
+                false,
+                true);
+
+        // Zeit zum sicheren establishen der Gruppe
+        Thread.sleep(2000);
+
+        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName, "Hi Clara, join my group!", CLARA_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(currencyName, "Hi David, join my group!", DAVID_ID);
+
+        // 4. Encounter
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.davidSharkPeer, true);
+
+        Thread.sleep(2000);
+
+        // 5. Accept and decline invitation
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
+
+        // Bob and Clara accept
+        this.bobImpl.acceptInvite(bobDoc);
+        this.claraImpl.acceptInvite(claraDoc);
+
+        // David declines
+        this.davidImpl.declineInvite(davidDoc);
+
+        // Encounters
+        Thread.sleep(1000);
+        this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
+
+        this.runEncounter(this.bobSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.bobSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.claraSharkPeer, true);
+        Thread.sleep(2000);
+
+
+        // 6.(Assertions)
+        // TODO: Fix and more Assertions
+        Assertions.assertTrue(bobDoc.getCurrentMembers().containsKey(BOB_ID), "Bob sollte Mitglied der Gruppe sein.");
+        Assertions.assertTrue(claraDoc.getCurrentMembers().containsKey(CLARA_ID), "Clara sollte Mitglied der Gruppe sein.");
+        Assertions.assertFalse(davidDoc.getCurrentMembers().containsKey(DAVID_ID), "David sollte kein Mitglied der Gruppe sein.");
     }
-
-
 }
