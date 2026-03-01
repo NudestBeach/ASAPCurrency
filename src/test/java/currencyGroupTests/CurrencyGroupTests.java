@@ -540,15 +540,14 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Thread.sleep(2000);
 
         // 5. Accept and decline invitation
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
         SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
 
         // Bob and Clara accept
-        this.bobImpl.acceptInvite(bobDoc);
-        this.claraImpl.acceptInvite(claraDoc);
+        this.bobImpl.acceptInviteAndSign(currencyName);
+        this.claraImpl.acceptInviteAndSign(currencyName);
 
         // David declines
+        // TODO: David kann currencyName nicht ablehnen
         this.davidImpl.declineInvite(davidDoc);
 
         // Encounters
@@ -569,7 +568,10 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
 
         // 6.(Assertions)
-        // TODO: Fix and more Assertions
+        // TODO: More Assertions
+        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
+
         Assertions.assertTrue(bobDoc.getCurrentMembers().containsKey(BOB_ID), "Bob sollte Mitglied der Gruppe sein.");
         Assertions.assertTrue(claraDoc.getCurrentMembers().containsKey(CLARA_ID), "Clara sollte Mitglied der Gruppe sein.");
         Assertions.assertFalse(davidDoc.getCurrentMembers().containsKey(DAVID_ID), "David sollte kein Mitglied der Gruppe sein.");

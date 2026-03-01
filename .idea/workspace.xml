@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst.">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
     </list>
@@ -313,7 +313,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771868302253</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test">
+      <option name="closed" value="true" />
+      <created>1772397494290</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1772397494290</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +351,8 @@
     <MESSAGE value="Projekt-Struktur angepasst: GroupSignings in Group Package verschoben" />
     <MESSAGE value="EstablishCurrencyTests: successfullGroupInviteSendAndReceived() Test mit acceptInviteAndSign() für Bob angepasst." />
     <MESSAGE value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
-    <option name="LAST_COMMIT_MESSAGE" value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
+    <MESSAGE value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
