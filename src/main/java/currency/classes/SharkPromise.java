@@ -8,8 +8,6 @@ import java.io.Serializable;
  */
 public interface Promise {
 
-    public static final String PROMISE_FORMAT = "application://x-asap-currency-promise";
-
     /**
      * Unique identifier of the promise.
      */
