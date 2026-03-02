@@ -2,17 +2,14 @@ package currency.classes;
 
 import exepections.ASAPCurrencyException;
 import net.sharksystem.asap.ASAPException;
-import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The Currency interface represents a currency.
  * It can be implemented by classes that represent a specific currency.
  */
-public interface Currency {
+public interface SharkCurrency {
 
     /**
      * Returns the ID of the currency.
