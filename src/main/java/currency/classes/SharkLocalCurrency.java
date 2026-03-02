@@ -11,21 +11,21 @@ import java.util.*;
 /**
  *
  */
-public class LocalCurrency implements Currency {
+public class SharkLocalCurrency implements SharkCurrency {
     private boolean globalLimit;
     private String currencyName;
     private String specification;
     private  byte[] id;
 
 
-    public LocalCurrency(boolean globalLimit, String currencyName, String specification) {
+    public SharkLocalCurrency(boolean globalLimit, String currencyName, String specification) {
         this.globalLimit = globalLimit;
         this.currencyName = currencyName;
         this.specification = specification;
         this.id = UUID.randomUUID().toString().getBytes(StandardCharsets.UTF_8);
     }
 
-    private LocalCurrency(byte[] id, boolean globalLimit, String currencyName, String specification) {
+    private SharkLocalCurrency(byte[] id, boolean globalLimit, String currencyName, String specification) {
         this.id = id;
         this.globalLimit = globalLimit;
         this.currencyName = currencyName;
@@ -48,7 +48,7 @@ public class LocalCurrency implements Currency {
         }
     }
 
-    public static LocalCurrency fromByte(byte[] data) throws IOException, ASAPCurrencyException {
+    public static SharkLocalCurrency fromByte(byte[] data) throws IOException, ASAPCurrencyException {
         if (data == null) return null;
 
         String dataString = SerializationHelper.bytes2str(data);
@@ -65,7 +65,7 @@ public class LocalCurrency implements Currency {
         String spec = currencyVariables.get(2).toString();
         boolean limit = parseBoolean(currencyVariables.get(3));
 
-        return new LocalCurrency(id, limit, name, spec);
+        return new SharkLocalCurrency(id, limit, name, spec);
     }
 
     private static boolean parseBoolean(CharSequence cs) {

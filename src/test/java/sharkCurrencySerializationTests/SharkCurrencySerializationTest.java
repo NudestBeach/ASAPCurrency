@@ -1,9 +1,9 @@
 package sharkCurrencySerializationTests;
 
 import group.SharkGroupDocument;
-import currency.classes.Currency;
+import currency.classes.SharkCurrency;
 import group.GroupSignings;
-import currency.classes.LocalCurrency;
+import currency.classes.SharkLocalCurrency;
 import net.sharksystem.asap.ASAPException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ public class SharkCurrencySerializationTest {
         // 1. ARRANGE
         // Hinweis: groupId wird im Konstruktor zufällig generiert, daher setzen wir sie hier nicht manuell.
         String creatorId = "alice";
-        Currency currency = new LocalCurrency(false, "AliceCoin", "TestSpec");
+        SharkCurrency currency = new SharkLocalCurrency(false, "AliceCoin", "TestSpec");
 
         // Liste erstellen
         ArrayList<CharSequence> whitelist = new ArrayList<>();

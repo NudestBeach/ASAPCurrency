@@ -1,8 +1,10 @@
 package testhelpers;
 
+import currency.classes.SharkInMemoPromise;
+import currency.classes.SharkPromise;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
-import currency.classes.Currency;
+import currency.classes.SharkCurrency;
 import group.GroupSignings;
 import exepections.ASAPCurrencyException;
 import listener.SharkCurrencyListenerManager;
@@ -39,7 +41,7 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void establishGroup(Currency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+    public void establishGroup(SharkCurrency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
         this.checkComponentRunning();
         SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.getPeerID(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
         try{
@@ -85,13 +87,13 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void establishGroup(Currency currency, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+    public void establishGroup(SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
         // pass the method to the other establishGroup methode with null for whitelisted
         this.establishGroup(currency, null, encrypted, balanceVisible);
     }
 
     @Override
-    public void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+    public void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
 
         // 0. Check method call validity
         this.checkComponentRunning();
@@ -108,13 +110,24 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
+    public void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws ASAPCurrencyException {
 
     }
 
     @Override
     public void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note) throws ASAPCurrencyException {
 
+    }
+
+    @Override
+    public void createPromise(int amount,
+                              SharkCurrency referenceValue,
+                              byte[] groupId,
+                              CharSequence creditorId,
+                              CharSequence debtorId,
+                              boolean asCreditor) {
+        SharkPromise promise =
+                new SharkInMemoPromise(amount, referenceValue, groupId, creditorId, debtorId);
     }
 
     @Override

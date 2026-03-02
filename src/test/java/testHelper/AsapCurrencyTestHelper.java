@@ -21,6 +21,10 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
     public final String subRootFolder;
+
+    public AsapCurrencyTestHelper() {
+    }
+
     //private static int portNumber = 5000;
     public static int getPortNumber() {
         try (java.net.ServerSocket socket = new java.net.ServerSocket(0)) {

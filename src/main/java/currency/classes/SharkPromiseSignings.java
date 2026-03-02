@@ -1,6 +1,6 @@
 package currency.classes;
 
-public enum PromiseSignings {
+public enum SharkPromiseSignings {
     UNSIGNED,
     SIGNED_BY_DEBITOR,
     SIGNED_BY_CREDITOR,

@@ -1,7 +1,7 @@
 package group;
 
-import currency.classes.Currency;
-import currency.classes.LocalCurrency;
+import currency.classes.SharkCurrency;
+import currency.classes.SharkLocalCurrency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.utils.SerializationHelper;
@@ -17,7 +17,7 @@ public class SharkGroupDocument {
     private static final String LIST_DELIMITER = ":::";
     private final byte[] groupId;
     private final CharSequence groupCreator;
-    private final Currency assignedCurrency;
+    private final SharkCurrency assignedCurrency;
     private ArrayList<CharSequence> whitelistMember;
     private final boolean encrypted;
     private final boolean balanceVisible;
@@ -28,7 +28,7 @@ public class SharkGroupDocument {
      * Public constructor setting a new GroupId
      */
     public SharkGroupDocument(CharSequence groupCreator,
-                              Currency assignedCurrency,
+                              SharkCurrency assignedCurrency,
                               ArrayList<CharSequence> whitelistMember,
                               boolean encrypted,
                               boolean balanceVisible,
@@ -58,7 +58,7 @@ public class SharkGroupDocument {
      * PRIVATE Constructor where we set the groupId
      */
     private SharkGroupDocument(byte[] groupId,CharSequence groupCreator,
-                               Currency assignedCurrency,
+                               SharkCurrency assignedCurrency,
                                ArrayList<CharSequence> whitelistMember,
                                boolean encrypted,
                                boolean balanceVisible,
@@ -138,7 +138,7 @@ public class SharkGroupDocument {
 
         // 3. Currency
         if (this.assignedCurrency != null) {
-            byte[] currencyBytes = ((LocalCurrency)this.assignedCurrency).toByte();
+            byte[] currencyBytes = ((SharkLocalCurrency)this.assignedCurrency).toByte();
             documentVariables.add(Base64.getEncoder().encodeToString(currencyBytes));
         } else {
             documentVariables.add(EMPTY_PLACEHOLDER);
@@ -196,11 +196,11 @@ public class SharkGroupDocument {
         String cId = documentVariables.get(idx++).toString();
 
         // 3. Currency
-        Currency currency = null;
+        SharkCurrency currency = null;
         String currencyData = documentVariables.get(idx++).toString();
         if (!currencyData.equals(EMPTY_PLACEHOLDER)) {
             byte[] currencyBytes = Base64.getDecoder().decode(currencyData);
-            currency = LocalCurrency.fromByte(currencyBytes);
+            currency = SharkLocalCurrency.fromByte(currencyBytes);
         }
 
         // 4. Whitelist
@@ -298,7 +298,7 @@ public class SharkGroupDocument {
     // --- Getter ---
     public byte[] getGroupId() { return groupId; }
     public CharSequence getGroupCreator() { return groupCreator; }
-    public Currency getAssignedCurrency() { return assignedCurrency; }
+    public SharkCurrency getAssignedCurrency() { return assignedCurrency; }
     public boolean isEncrypted() { return encrypted; }
     public GroupSignings getGroupDocState() { return groupDocState; }
     public boolean isBalanceVisible() { return balanceVisible; }

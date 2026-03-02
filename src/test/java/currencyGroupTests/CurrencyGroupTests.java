@@ -3,8 +3,8 @@ import group.GroupSignings;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import org.apache.commons.io.FileUtils;
-import currency.classes.Currency;
-import currency.classes.LocalCurrency;
+import currency.classes.SharkCurrency;
+import currency.classes.SharkLocalCurrency;
 import exepections.ASAPCurrencyException;
 
 import net.sharksystem.asap.*;
@@ -61,7 +61,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerA";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,                // global limit
                 currencyName.toString(),        // Name
                 "A test Currency"               // Spec
@@ -118,7 +118,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerB";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,                // global limit
                 currencyName.toString(),        // Name
                 "A test Currency"               // Spec
@@ -153,7 +153,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerC";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
                 "A test Currency"
@@ -216,7 +216,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerD";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
                 "A test Currency"
@@ -305,7 +305,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerF";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
                 "A test Currency"
@@ -375,7 +375,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerG";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
                 "A test Currency"
@@ -497,7 +497,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 1. Alice arranges a new local Currency
         CharSequence currencyName = "AliceTalerH";
-        Currency dummyCurrency = new LocalCurrency(
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
                 "A test Currency"
