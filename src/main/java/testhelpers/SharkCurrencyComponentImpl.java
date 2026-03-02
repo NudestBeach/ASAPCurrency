@@ -159,7 +159,7 @@ public class SharkCurrencyComponentImpl
     public void onStart(ASAPPeer asapPeer) throws SharkException {
         this.asapPeer = asapPeer;
         try {
-            // Initialisiere Storage, damit der Peer auf dieses Format hört
+            // Initialize storage for peer to listen to the ASAPCurrency application
             this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             // Create a new channel for different notis on start of a peer:
@@ -295,12 +295,12 @@ public class SharkCurrencyComponentImpl
             if(uri.toString().equals(INVITE_CHANNEL_URI)) {
                 System.out.println("DEBUG: Invite received!");
                 receivedInvite(asapMessages, sender);
-                return;
+                return; // add these returns, they are important
             }
             if(uri.toString().equals(NEW_MEMBER_URI)) {
                 System.out.println("DEBUG: New member notification received!");
                 CharSequence currencyName = receivedNewMemberNoti(asapMessages,sender, this);
-                return;
+                return; // add these returns, they are important
             }
 
             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);

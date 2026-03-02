@@ -182,7 +182,6 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 5.(Assertions)
         SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
         byte[] groupId = aliceDoc.getGroupId();
         byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
@@ -196,19 +195,14 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions
                 .assertNotNull(aliceDoc, "Bob document ist null.");
         Assertions
-                .assertNotNull(bobDoc, "Bob document ist null.");
-        Assertions
-                .assertArrayEquals(groupId,
-                        bobDoc.getGroupId(),
-                        "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+                .assertThrows(ASAPException.class, () -> {
+            this.bobImpl.getSharkGroupDocument(currencyName);
+        });
 
         //we expect 1 member. Just alice because bob didn't do anything yet
         Assertions
                 .assertEquals(1,
                         aliceDoc.getCurrentMembers().size());
-        Assertions
-                .assertEquals(1,
-                        bobDoc.getCurrentMembers().size());
         //Alice signature has to be verified
         Assertions
                 .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
