@@ -1,8 +1,7 @@
 package currency.api;
 
 
-import group.SharkGroupDocument;
-import currency.classes.Currency;
+import currency.classes.SharkCurrency;
 import exepections.ASAPCurrencyException;
 import net.sharksystem.ASAPFormats;
 import net.sharksystem.SharkComponent;
@@ -41,7 +40,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroup(Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
+    void establishGroup(SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
 
@@ -56,7 +55,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroup(Currency currency, boolean encrypted, boolean balanceVisible)
+    void establishGroup(SharkCurrency currency, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
     /**
@@ -74,7 +73,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
+    void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
     /**
@@ -90,7 +89,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
      * @throws ASAPCurrencyException If the group/channel cannot be established.
      */
-    void establishGroup(ArrayList<CharSequence> inviteMembers, Currency currency, boolean encrypted, boolean balanceVisible)
+    void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, boolean encrypted, boolean balanceVisible)
             throws ASAPCurrencyException;
 
     /**
@@ -115,6 +114,22 @@ public interface SharkCurrencyComponent extends SharkComponent {
      */
     void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note)
             throws ASAPCurrencyException;
+
+    /**
+     * creates a SharkPromise object
+     *
+     * @param amount the amount of the currency
+     * @param referenceValue a Shark Currency which this promise references
+     * @param creditorId id of creditor
+     * @param debtorId id of debitor
+     * @param asCreditor is this bond created with you as the creditor true/false
+     */
+    void createPromise(int amount,
+                       SharkCurrency referenceValue,
+                       byte[] groupId,
+                       CharSequence creditorId,
+                       CharSequence debtorId,
+                       boolean asCreditor);
 
 
     /**
