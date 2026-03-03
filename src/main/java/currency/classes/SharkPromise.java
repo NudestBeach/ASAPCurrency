@@ -8,6 +8,9 @@ import exepections.SharkPromiseException;
  */
 public interface SharkPromise {
 
+    int SIGNED_MASK = 0x1;
+    int ENCRYPTED_MASK = 0x2;
+
     // These URIs will tell you(the listener) what to do
     String SHARK_PROMISE_OVERALL_FORMAT = "//shark-promise//";
     String SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED = "signAsCreditor";

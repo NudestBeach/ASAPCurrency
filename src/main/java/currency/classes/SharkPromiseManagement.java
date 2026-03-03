@@ -22,7 +22,7 @@ public class SharkPromiseManagement {
         }
     }
 
-    public void signAsDebtor(ASAPKeyStore asapKeyStore, SharkPromise promise) throws SharkPromiseException, ASAPSecurityException, IOException {
+    public static void signAsDebtor(ASAPKeyStore asapKeyStore, SharkPromise promise) throws SharkPromiseException, ASAPSecurityException, IOException {
         if (!asapKeyStore.getOwner().equals(promise.getDebtorID())) {
             throw new SharkPromiseException("The provided keyStore owner ("
                     + asapKeyStore.getOwner()

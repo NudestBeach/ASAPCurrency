@@ -7,17 +7,9 @@
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkCurrency.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkInMemoPromise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkInMemoPromise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkLocalCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkLocalCurrency.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSignings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSignings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sendingPromisesTests/PromisesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sendingPromisesTests/PromisesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/sharkCurrencySerializationTests/SharkCurrencySerializationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sharkCurrencySerializationTests/SharkCurrencySerializationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
@@ -31,8 +23,8 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>

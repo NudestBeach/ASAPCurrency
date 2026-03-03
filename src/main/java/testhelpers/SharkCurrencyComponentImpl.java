@@ -2,6 +2,8 @@ package testhelpers;
 
 import currency.classes.SharkInMemoPromise;
 import currency.classes.SharkPromise;
+import currency.classes.SharkPromiseManagement;
+import exepections.SharkPromiseException;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import currency.classes.SharkCurrency;
@@ -19,9 +21,7 @@ import java.io.DataInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * An implementation to test our Currency-Component which we need for testing
@@ -115,7 +115,7 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note) throws ASAPCurrencyException {
+    public void sendPromise(CharSequence currencyName, CharSequence sender, Set<CharSequence> receiver, boolean sign, boolean encrypt, CharSequence uri) throws ASAPCurrencyException {
 
     }
 
@@ -125,9 +125,33 @@ public class SharkCurrencyComponentImpl
                               byte[] groupId,
                               CharSequence creditorId,
                               CharSequence debtorId,
-                              boolean asCreditor) {
+                              boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, ASAPCurrencyException {
         SharkPromise promise =
                 new SharkInMemoPromise(amount, referenceValue, groupId, creditorId, debtorId);
+        Set<CharSequence> receiver = new HashSet<>();
+        ASAPKeyStore keystore = this.sharkPKIComponent.getASAPKeyStore();
+        CharSequence currencyName = promise.getReferenceValue().getCurrencyName();
+        if(asCreditor) {
+            SharkPromiseManagement
+                    .signAsCreditor(keystore, promise);
+            receiver.add(promise.getDebtorID());
+            this.sendPromise(currencyName,
+                    promise.getCreditorID(),
+                    receiver,
+                    true,
+                    true,
+                    SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_DEB);
+        } else {
+            SharkPromiseManagement
+                    .signAsDebtor(keystore, promise);
+            receiver.add(promise.getCreditorID());
+            this.sendPromise(currencyName,
+                    promise.getDebtorID(),
+                    receiver,
+                    true,
+                    true,
+                    SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED);
+        }
     }
 
     @Override
