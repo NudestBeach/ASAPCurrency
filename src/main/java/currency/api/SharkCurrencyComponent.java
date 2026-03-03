@@ -3,6 +3,7 @@ package currency.api;
 
 import currency.classes.SharkCurrency;
 import exepections.ASAPCurrencyException;
+import exepections.SharkPromiseException;
 import net.sharksystem.ASAPFormats;
 import net.sharksystem.SharkComponent;
 import net.sharksystem.asap.ASAPException;
@@ -129,7 +130,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
                        byte[] groupId,
                        CharSequence creditorId,
                        CharSequence debtorId,
-                       boolean asCreditor);
+                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException;
 
 
     /**
