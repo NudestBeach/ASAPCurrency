@@ -11,6 +11,7 @@ import net.sharksystem.asap.ASAPSecurityException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 
 
 /**
@@ -108,12 +109,14 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * Sends a specific amount of Currency to another peer.
      * Creates a transaction, serializes it, signs it and adds it to the ASAP channel.
      * @param currencyName The name of the currency group.
-     * @param recipientId  The ASAP Peer ID of the recipient.
-     * @param amount       The amount to transfer.
-     * @param note         An optional note for the transaction.
+     * @param sender ID of sender
+     * @param receiver The ASAP Peer IDs of the recipients.
+     * @param sign true if this promise should be signed by sender
+     * @param encrypt true if this prmoise should be encrypted
+     * @param uri the uri of this promise
      * @throws ASAPCurrencyException If the Promise cannot be sent due to error.
      */
-    void sendPromise(CharSequence currencyName, CharSequence recipientId, int amount, CharSequence note)
+    void sendPromise(CharSequence currencyName, CharSequence sender, Set<CharSequence> receiver, boolean sign, boolean encrypt, CharSequence uri)
             throws ASAPCurrencyException;
 
     /**
@@ -130,7 +133,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
                        byte[] groupId,
                        CharSequence creditorId,
                        CharSequence debtorId,
-                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException;
+                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, ASAPCurrencyException;
 
 
     /**
