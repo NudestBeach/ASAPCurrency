@@ -2,7 +2,7 @@ package group;
 
 import currency.classes.SharkCurrency;
 import currency.classes.SharkLocalCurrency;
-import exepections.ASAPCurrencyException;
+import exepections.SharkCurrencyException;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.utils.SerializationHelper;
 
@@ -172,7 +172,7 @@ public class SharkGroupDocument {
      * @param data The byte array containing the serialized SharkGroupDocument data.
      * @return A new SharkGroupDocument object.
      */
-    public static SharkGroupDocument fromByte(byte[] data) throws IOException, ASAPCurrencyException {
+    public static SharkGroupDocument fromByte(byte[] data) throws IOException, SharkCurrencyException {
         if (data == null) return null;
 
         // Bytes zurück in String wandeln
@@ -235,7 +235,7 @@ public class SharkGroupDocument {
         }
 
         if(doc==null || doc.groupId.length<=0) {
-            throw new ASAPCurrencyException("Error in group-document serialization");
+            throw new SharkCurrencyException("Error in group-document serialization");
         }
 
         return doc;

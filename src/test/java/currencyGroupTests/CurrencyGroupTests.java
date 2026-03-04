@@ -5,7 +5,7 @@ import currency.api.SharkCurrencyComponent;
 import org.apache.commons.io.FileUtils;
 import currency.classes.SharkCurrency;
 import currency.classes.SharkLocalCurrency;
-import exepections.ASAPCurrencyException;
+import exepections.SharkCurrencyException;
 
 import net.sharksystem.asap.*;
 import net.sharksystem.SharkException;
@@ -132,7 +132,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 3. Checking the result
         Exception exception
-                = assertThrows(ASAPCurrencyException.class, () ->
+                = assertThrows(SharkCurrencyException.class, () ->
                 this.aliceCurrencyComponent.establishGroup(membersToBeInvited,
                         dummyCurrency,
                         new ArrayList<>(),
@@ -321,7 +321,6 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-        //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
@@ -534,6 +533,8 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Thread.sleep(2000);
 
         // 5. Accept and decline invitation
+
+        //TODO muss noch gerändert werden weil macht keinen sinn schon das doc zu erkennen
         SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
 
         // Bob and Clara accept
@@ -570,4 +571,17 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(claraDoc.getCurrentMembers().containsKey(CLARA_ID), "Clara sollte Mitglied der Gruppe sein.");
         Assertions.assertFalse(davidDoc.getCurrentMembers().containsKey(DAVID_ID), "David sollte kein Mitglied der Gruppe sein.");
     }
+
+    @Test
+    public void groupWith2WhitlistedButInvite3(){
+        //TODO implement
+    }
+
+
+    @Test
+    public void sendEncryptedInvitation(){
+
+    }
+
+
 }

@@ -1,6 +1,6 @@
 package currency.classes;
 
-import exepections.ASAPCurrencyException;
+import exepections.SharkCurrencyException;
 import net.sharksystem.asap.ASAPException;
 
 import java.io.IOException;
@@ -39,6 +39,6 @@ public interface SharkCurrency {
      * Turns the Currency object into a byte[] for serialization purposes
      * @return the byte series of this currency object
      */
-    byte[] toByte() throws ASAPCurrencyException, IOException, ASAPException;
+    byte[] toByte() throws SharkCurrencyException, IOException, ASAPException;
 
 }

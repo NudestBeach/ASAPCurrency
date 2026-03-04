@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerManagerNEW.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerNEW.java" afterDir="false" />
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added Assertions when denied an Accept. &#10;Added Ideas of Testcases for Promises.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerNEW.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkCurrencyListenerNEW.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
     </list>
-    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="" />
+    <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M">
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSerializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java" afterDir="false" />
+    </list>
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +56,23 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/testhelpers/SharkCurrencyComponentImpl.java">
+      <ranges>
+        <range start1="33" end1="35" start2="33" end2="33" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="404" end1="404" start2="402" end2="411" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/currency/classes/SharkPromiseSerializer.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="6" end1="6" start2="7" end2="8" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="7" end1="10" start2="9" end2="10" changelist="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" />
+        <range start1="89" end1="89" start2="89" end2="153" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+        <range start1="110" end1="110" start2="174" end2="199" changelist="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>

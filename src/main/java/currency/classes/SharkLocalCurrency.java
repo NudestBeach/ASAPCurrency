@@ -1,6 +1,6 @@
 package currency.classes;
 
-import exepections.ASAPCurrencyException;
+import exepections.SharkCurrencyException;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.utils.SerializationHelper;
 
@@ -44,18 +44,18 @@ public class SharkLocalCurrency implements SharkCurrency {
             String serializedString = SerializationHelper.collection2String(currencyVariables);
             return SerializationHelper.str2bytes(serializedString);
         } else {
-            throw new ASAPCurrencyException("Failure serializing currency to byte");
+            throw new SharkCurrencyException("Failure serializing currency to byte");
         }
     }
 
-    public static SharkLocalCurrency fromByte(byte[] data) throws IOException, ASAPCurrencyException {
+    public static SharkLocalCurrency fromByte(byte[] data) throws IOException, SharkCurrencyException {
         if (data == null) return null;
 
         String dataString = SerializationHelper.bytes2str(data);
         List<CharSequence> currencyVariables = SerializationHelper.string2CharSequenceList(dataString);
 
         if (currencyVariables.size() < 4) {
-            throw new ASAPCurrencyException("Invalid currency format: expected 4 parts, got " + currencyVariables.size());
+            throw new SharkCurrencyException("Invalid currency format: expected 4 parts, got " + currencyVariables.size());
         }
 
 

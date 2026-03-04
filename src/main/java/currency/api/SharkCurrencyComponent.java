@@ -2,12 +2,13 @@ package currency.api;
 
 
 import currency.classes.SharkCurrency;
-import exepections.ASAPCurrencyException;
+import exepections.SharkCurrencyException;
 import exepections.SharkPromiseException;
 import net.sharksystem.ASAPFormats;
 import net.sharksystem.SharkComponent;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPSecurityException;
+import net.sharksystem.asap.ASAPStorage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * Shark-Currency URI format
      */
     public static final String CURRENCY_FORMAT = "application://x-asap-currency";
+    public final String INVITE_CHANNEL_URI = "//group-document//invite";
+    public final String NEW_MEMBER_URI = "//group-document//new-member";
 
     /**
      * Establishes a new currency group with specific configuration.
@@ -40,10 +43,10 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param whitelisted    It stands the different peers, which are allowed to communicate with each other
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     * @throws SharkCurrencyException If the group/channel cannot be established.
      */
     void establishGroup(SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
 
     /**
@@ -55,10 +58,10 @@ public interface SharkCurrencyComponent extends SharkComponent {
      *
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     * @throws SharkCurrencyException If the group/channel cannot be established.
      */
     void establishGroup(SharkCurrency currency, boolean encrypted, boolean balanceVisible)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
     /**
      * Establishes a new currency group with specific configuration.
@@ -73,10 +76,10 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param whitelisted    It stands the different peers, which are allowed to communicate with each other
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     * @throws SharkCurrencyException If the group/channel cannot be established.
      */
     void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
     /**
      * Establishes a new currency group with specific configuration.
@@ -89,10 +92,10 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param inviteMembers  List of group members who will automatically be invited
      * @param encrypted      If true, the communication within this group will be encrypted.
      * @param balanceVisible If true, members are allowed to see the balances of others (application logic).
-     * @throws ASAPCurrencyException If the group/channel cannot be established.
+     * @throws SharkCurrencyException If the group/channel cannot be established.
      */
     void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, boolean encrypted, boolean balanceVisible)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
     /**
      * It is used for to Invite Members to a Group which has no invited Members as a list.
@@ -103,7 +106,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
      *
      */
     void invitePeerToGroup(CharSequence currencyNameUri, String optionalMessage, CharSequence peerId)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
     /**
      * Sends a specific amount of Currency to another peer.
@@ -114,10 +117,10 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param sign true if this promise should be signed by sender
      * @param encrypt true if this prmoise should be encrypted
      * @param uri the uri of this promise
-     * @throws ASAPCurrencyException If the Promise cannot be sent due to error.
+     * @throws SharkCurrencyException If the Promise cannot be sent due to error.
      */
     void sendPromise(CharSequence currencyName, CharSequence sender, Set<CharSequence> receiver, boolean sign, boolean encrypt, CharSequence uri)
-            throws ASAPCurrencyException;
+            throws SharkCurrencyException;
 
     /**
      * creates a SharkPromise object
@@ -133,7 +136,7 @@ public interface SharkCurrencyComponent extends SharkComponent {
                        byte[] groupId,
                        CharSequence creditorId,
                        CharSequence debtorId,
-                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, ASAPCurrencyException;
+                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, SharkCurrencyException;
 
 
     /**
@@ -141,9 +144,9 @@ public interface SharkCurrencyComponent extends SharkComponent {
      *
      * @param currencyName The name of the currency.
      * @return The current balance.
-     * @throws ASAPCurrencyException If the history cannot be read.
+     * @throws SharkCurrencyException If the history cannot be read.
      */
-    int getBalance(CharSequence currencyName) throws ASAPCurrencyException;
+    int getBalance(CharSequence currencyName) throws SharkCurrencyException;
 
     /**
      * this will execute the acceptInvite() method from the listener but first
@@ -151,5 +154,13 @@ public interface SharkCurrencyComponent extends SharkComponent {
      *
      * @param currencyName name of the currency for the group
      */
-    void acceptInviteAndSign(CharSequence currencyName) throws ASAPCurrencyException, ASAPSecurityException, ASAPException, IOException;
+    void acceptInviteAndSign(CharSequence currencyName) throws SharkCurrencyException, ASAPSecurityException, ASAPException, IOException;
+
+    /**
+     *
+     * @return
+     * @throws IOException
+     * @throws ASAPException
+     */
+    ASAPStorage getASAPStorage() throws IOException, ASAPException;
 }
