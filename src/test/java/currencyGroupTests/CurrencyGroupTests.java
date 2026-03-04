@@ -85,7 +85,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Map<String, byte[]> members = testDoc.getCurrentMembers();
         boolean channelExists = aliceStorage.channelExists(groupUriA);
         boolean verified = ASAPCryptoAlgorithms.verify(
-                groupId, //Content der signiert wurde
+                groupId, // Content which was signed
                 aliceSignature,
                 ALICE_ID,
                 ((SharkPKIComponent) aliceSharkPeer
