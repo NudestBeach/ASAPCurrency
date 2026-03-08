@@ -10,15 +10,15 @@ import java.io.IOException;
 public class SharkCurrencyListenerManagerNEW
         extends GenericListenerImplementation<SharkCurrencyListenerNEW> {
 
-    public void addSharkBondReceivedListener(SharkCurrencyListenerNEW listener) {
+    public void addSharkCurrencyListener(SharkCurrencyListenerNEW listener) {
         this.addListener(listener);
     }
 
-    public void removeSharkBondReceivedListener(SharkCurrencyListenerNEW listener) {
+    public void removeSharkCurrencyListener(SharkCurrencyListenerNEW listener) {
         this.removeListener(listener);
     }
 
-    protected void notifySharkBondReceivedListener(
+    protected void notifySharkCurrencyListener(
             CharSequence uri) {
 
         SharkCurrencyNotifier sharkCurrencyNotifier =

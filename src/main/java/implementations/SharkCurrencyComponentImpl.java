@@ -1,15 +1,19 @@
-package testhelpers;
+package implementations;
 
 import currency.classes.SharkInMemoPromise;
 import currency.classes.SharkPromise;
 import currency.classes.SharkPromiseManagement;
+import currency.storage.SharkCurrencyStorage;
 import exepections.SharkPromiseException;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
 import currency.classes.SharkCurrency;
 import group.GroupSignings;
 import exepections.SharkCurrencyException;
+import listener.SharkCurrencyListener;
 import listener.SharkCurrencyListenerManager;
+import listener.SharkCurrencyListenerManagerNEW;
+import listener.SharkCurrencyListenerNEW;
 import net.sharksystem.*;
 import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
@@ -28,28 +32,26 @@ import java.util.*;
  * WORK IN PROGRESS!!!!!
  */
 public class SharkCurrencyComponentImpl
-        extends SharkCurrencyListenerManager
+        extends SharkCurrencyListenerManagerNEW
         implements SharkCurrencyComponent, ASAPMessageReceivedListener {
 
     private final SharkPKIComponent sharkPKIComponent;
     private ASAPPeer asapPeer;
+    private SharkCurrencyListenerNEW sharkCurrencyListenerNEW;
+    private SharkCurrencyStorage sharkCurrencyStorage;
 
     public SharkCurrencyComponentImpl(SharkPKIComponent pki) throws SharkException {
         this.sharkPKIComponent = pki;
     }
 
     @Override
-    public void establishGroup(SharkCurrency currency, ArrayList whitelistMember, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
+    public byte[] establishGroup(SharkCurrency currency, ArrayList<CharSequence> whitelistMember, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
         this.checkComponentRunning();
         SharkGroupDocument sharkGroupDocument = new SharkGroupDocument(this.asapPeer.getPeerID(), currency, whitelistMember , encrypted, balanceVisible, GroupSignings.SIGNED_BY_NONE);
         try{
             // 1. Get Name of the Currency URI
-            String currencyNameURI = currency.getCurrencyName();
-            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameURI;
+            byte[] groupId = sharkGroupDocument.getGroupId();
             ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
-            if (currencyNameURI == null || currencyNameURI.isEmpty()) {
-                throw new SharkCurrencyException("Currency URI cannot be empty");
-            }
 
             // 2. sign document and add yourself to the group
             byte[] signature = ASAPCryptoAlgorithms
@@ -67,31 +69,24 @@ public class SharkCurrencyComponentImpl
                 throw new SharkCurrencyException("Error in adding member to group");
             }
 
-            // 3. Get ASAP Storage for our Currency Format
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
+            // 3. save the newly created document
+            this.sharkCurrencyStorage.saveGroupDocument(groupId, sharkGroupDocument);
+            return groupId;
 
-            // 4. Create a new Channel for the specific Group
-            storage.createChannel(groupURI);
-
-            // 5. Serialize the document
-            byte[] serializedDocument = sharkGroupDocument.sharkDocumentToByte();
-
-            // 6. Save document in Storage
-            storage.add(groupURI, serializedDocument);
-
-        } catch (IOException | ASAPException e){
+        } catch (ASAPException e){
             throw new SharkCurrencyException(e.getMessage());
         }
     }
 
     @Override
-    public void establishGroup(SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
+    public byte[] establishGroup(SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
         // pass the method to the other establishGroup methode with null for whitelisted
-        this.establishGroup(currency, null, encrypted, balanceVisible);
+        byte[] groupId = this.establishGroup(currency, null, encrypted, balanceVisible);
+        return groupId;
     }
 
     @Override
-    public void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
+    public byte[] establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, ArrayList<CharSequence> whitelisted, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
 
         // 0. Check method call validity
         this.checkComponentRunning();
@@ -108,8 +103,8 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
-
+    public byte[] establishGroup(ArrayList<CharSequence> inviteMembers, SharkCurrency currency, boolean encrypted, boolean balanceVisible) throws SharkCurrencyException {
+        return null;
     }
 
     @Override
@@ -159,34 +154,37 @@ public class SharkCurrencyComponentImpl
 
     @Override
     public void acceptInviteAndSign(CharSequence currencyName) throws ASAPException, IOException {
-        SharkGroupDocument sharkGroupDocument = this.getSharkGroupDocument(currencyName);
-        if(sharkGroupDocument==null) {
-            throw new SharkCurrencyException("Can not accept and sign document because it is null");
-        } else {
-            ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
-            byte[] signature = ASAPCryptoAlgorithms
-                    .sign(sharkGroupDocument.getGroupId(), ks);
-            sharkGroupDocument.addMember(this.asapPeer.getPeerID(), signature);
-            byte[] newDocSerialized = sharkGroupDocument.sharkDocumentToByte();
-            this.asapPeer.getASAPStorage(CURRENCY_FORMAT).add(SharkGroupDocument.DOCUMENT_FORMAT+currencyName, newDocSerialized);
-            this.acceptInvite(sharkGroupDocument);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            DataOutputStream dos = new DataOutputStream(baos);
 
-            String peerID = this.asapPeer.getPeerID().toString();
-            try {
-                dos.writeUTF(peerID);
-                dos.writeUTF(currencyName.toString());
-                dos.writeInt(signature.length);
-                dos.write(signature);
-                dos.flush();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        //get doc from pending invites
+        SharkGroupDocument sharkGroupDocument
+                = this.sharkCurrencyStorage.getPendingInvite(currencyName.toString());
+        byte[] groupId = sharkGroupDocument.getGroupId();
 
-            byte[] signatureAndIDAsContent = baos.toByteArray();
-            this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, NEW_MEMBER_URI, signatureAndIDAsContent);
-        }
+        //sign doc and add yourself
+        ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
+        byte[] signature = ASAPCryptoAlgorithms
+                .sign(sharkGroupDocument.getGroupId(), ks);
+        sharkGroupDocument.addMember(this.asapPeer.getPeerID(), signature);
+
+        //safe doc to your storage
+        this.sharkCurrencyStorage.saveGroupDocument(groupId,sharkGroupDocument);
+
+        //remove the pending invite since you accepted
+        this.sharkCurrencyStorage.removePendingInvite(currencyName.toString());
+
+        //package your member data for notifying the members
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        DataOutputStream dos = new DataOutputStream(baos);
+        String peerID = this.asapPeer.getPeerID().toString();
+        dos.writeUTF(peerID);
+        dos.writeInt(groupId.length);
+        dos.write(groupId);
+        dos.writeInt(signature.length);
+        dos.write(signature);
+        dos.flush();
+
+        byte[] signatureAndIDAsContent = baos.toByteArray();
+        this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, NEW_MEMBER_URI, signatureAndIDAsContent);
     }
 
     //Sets-Up the PKI for our peer
@@ -196,20 +194,15 @@ public class SharkCurrencyComponentImpl
         try {
             // Initialize storage for peer to listen to the ASAPCurrency application
             this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            // Create a new channel for different notis on start of a peer:
-            storage.createChannel(INVITE_CHANNEL_URI);
-            storage.createChannel(NEW_MEMBER_URI);
+            this.sharkCurrencyStorage = new SharkCurrencyStorageImpl();
+            this.asapPeer.addASAPMessageReceivedListener(SharkCurrencyComponent.CURRENCY_FORMAT, this);
         } catch (IOException e) {
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
-
-        this.asapPeer.addASAPMessageReceivedListener(SharkCurrencyComponent.CURRENCY_FORMAT,
-                this);
     }
 
     // Hilfsmethode zum robusten Parsen
-    private SharkGroupDocument parseSharkGroupDocument(byte[] data) {
+    public static SharkGroupDocument parseSharkGroupDocument(byte[] data) {
         if (data == null || data.length == 0) return null;
 
         try {
@@ -296,26 +289,27 @@ public class SharkCurrencyComponentImpl
             throw new SharkCurrencyException("peer not started and/or pki not initialized");
     }
 
-    // Bearbeitet: sendASAPMessage (persistent) statt sendTransientASAPMessage
     @Override
-    public void invitePeerToGroup(CharSequence currencyNameUri, String optionalMessage, CharSequence peerId)
+    public void invitePeerToGroup(byte[] groupId, String optionalMessage, CharSequence peerId)
             throws SharkCurrencyException {
 
         this.checkComponentRunning();
 
+        SharkGroupDocument sharkGroupDocument = this.sharkCurrencyStorage.getGroupDocument(groupId);
+
         try {
-             byte[] docBytes = this.getSharkGroupDocumentSerialized(currencyNameUri);
+             byte[] docBytes =  sharkGroupDocument.sharkDocumentToByte();
 
              ByteArrayOutputStream baos = new ByteArrayOutputStream();
              DataOutputStream daos = new DataOutputStream(baos);
 
              daos.writeUTF(optionalMessage != null ? optionalMessage : "");
              daos.writeInt(docBytes.length);
-            daos.write(docBytes);
+             daos.write(docBytes);
 
-            byte[] fullContentOfInvite = baos.toByteArray();
-            CharSequence inviteURI = INVITE_CHANNEL_URI;
-            this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, inviteURI, fullContentOfInvite);
+             byte[] fullContentOfInvite = baos.toByteArray();
+             CharSequence inviteURI = INVITE_CHANNEL_URI;
+             this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, inviteURI, fullContentOfInvite);
 
         } catch(ASAPException | IOException e) {
             throw new SharkCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
@@ -325,47 +319,9 @@ public class SharkCurrencyComponentImpl
     @Override
     public void asapMessagesReceived(ASAPMessages asapMessages, String sender, List<ASAPHop> list) throws IOException {
         try {
-            //Checking URI
             CharSequence uri = asapMessages.getURI();
-            if(uri.toString().equals(INVITE_CHANNEL_URI)) {
-                System.out.println("DEBUG: Invite received!");
-                receivedInvite(asapMessages, sender);
-                return; // add these returns, they are important
-            }
-            if(uri.toString().equals(NEW_MEMBER_URI)) {
-                System.out.println("DEBUG: New member notification received!");
-                CharSequence currencyName = receivedNewMemberNoti(asapMessages,sender, this);
-                return; // add these returns, they are important
-            }
-
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            for (int i = 0; i < asapMessages.size(); i++) {
-                byte[] msgContent = asapMessages.getMessage(i, false);
-
-                SharkGroupDocument doc = parseSharkGroupDocument(msgContent);
-
-                if (doc != null && doc.getAssignedCurrency() != null) {
-
-                    // 1. signiere das Group Document (Einladung annehmen)
-                    byte[] mySignature = net.sharksystem.asap.crypto.ASAPCryptoAlgorithms.sign(
-                            doc.getGroupId(), this.sharkPKIComponent.getASAPKeyStore());
-
-                    // 2. speicher das Group Dokument ab
-                    String cName = doc.getAssignedCurrency().getCurrencyName();
-                    CharSequence targetGroupUri = SharkGroupDocument.DOCUMENT_FORMAT + cName;
-
-                    // Kanal erstellen, falls er noch nicht existiert
-                    if (!storage.channelExists(targetGroupUri)) {
-                        storage.createChannel(targetGroupUri);
-                    }
-
-                    storage.add(targetGroupUri, doc.sharkDocumentToByte());
-
-                    System.out.println("DEBUG: Auto-accepted and cleaned Invite for " + cName);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Fehler beim Verarbeiten der empfangenen Nachricht: " + e.getMessage());
+            this.notifySharkCurrencyListener(uri);
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -408,5 +364,20 @@ public class SharkCurrencyComponentImpl
 
     public SharkPKIComponent getSharkPKIComponent() {
         return this.sharkPKIComponent;
+    }
+
+    public CharSequence getPeerIdOfImpl() {
+        return this.asapPeer.getPeerID();
+    }
+
+    @Override
+    public SharkCurrencyStorage getSharkCurrencyStorage() {
+        return this.sharkCurrencyStorage;
+    }
+
+    @Override
+    public void subscribeSharkCurrencyListener(SharkCurrencyListenerNEW listener) {
+        this.sharkCurrencyListenerNEW = listener;
+        this.addSharkCurrencyListener(listener);
     }
 }

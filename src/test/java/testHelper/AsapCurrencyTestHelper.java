@@ -2,13 +2,15 @@ package testHelper;
 
 import currency.api.SharkCurrencyComponent;
 import currency.api.SharkCurrencyComponentFactory;
+import implementations.SharkCurrencyListenerImpl;
+import listener.SharkCurrencyListenerNEW;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeer;
 import net.sharksystem.SharkTestPeerFS;
 import net.sharksystem.pki.SharkPKIComponent;
 import net.sharksystem.testhelper.SharkPKITesthelper;
 import net.sharksystem.testhelper.SharkPeerTestHelper;
-import testhelpers.SharkCurrencyComponentImpl;
+import implementations.SharkCurrencyComponentImpl;
 
 import java.io.IOException;
 
@@ -21,9 +23,6 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
     public final String subRootFolder;
-
-    public AsapCurrencyTestHelper() {
-    }
 
     //private static int portNumber = 5000;
     public static int getPortNumber() {
@@ -93,6 +92,9 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         this.aliceImpl =
                 (SharkCurrencyComponentImpl) aliceSharkPeer.getComponent(SharkCurrencyComponent.class);
         AsapCurrencyTestHelper.testNumber++;
+
+        SharkCurrencyListenerNEW aliceListener = new SharkCurrencyListenerImpl(this.aliceCurrencyComponent);
+        this.aliceCurrencyComponent.subscribeSharkCurrencyListener(aliceListener);
     }
 
     /**

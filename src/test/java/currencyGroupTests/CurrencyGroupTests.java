@@ -168,6 +168,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 whitelist,
                 false,
                 true);
+        byte[] groupId = this.aliceCurrencyComponent.getSharkCurrencyStorage().
 
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);

@@ -10,6 +10,13 @@ import net.sharksystem.pki.SharkPKIComponent;
  */
 public interface SharkCurrencyMessageHandler {
 
-    //logic for the individual message handling will be implemented here
-    void handle(CharSequence uri, ASAPStorage storage, SharkPKIComponent pki);
+    /**
+     * logic for handling different kinds of messages will be implemented here
+     *
+     * @param uri uri of the message which tells us the type of message
+     * @param storage
+     * @param pki
+     * @param sender
+     */
+    void handle(CharSequence uri, ASAPStorage storage, SharkPKIComponent pki, CharSequence sender);
 }
