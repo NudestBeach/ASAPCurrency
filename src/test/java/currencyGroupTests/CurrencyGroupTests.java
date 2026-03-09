@@ -1,4 +1,5 @@
 package currencyGroupTests;
+import currency.storage.SharkCurrencyStorage;
 import group.GroupSignings;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
@@ -13,6 +14,7 @@ import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 
 import net.sharksystem.pki.SharkPKIComponent;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import testHelper.AsapCurrencyTestHelper;
 
@@ -163,27 +165,25 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
                 true);
-        byte[] groupId = this.aliceCurrencyComponent.getSharkCurrencyStorage().
 
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
         Thread.sleep(2000);
 
         // 5.(Assertions)
-        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = aliceDoc.getGroupId();
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
         byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
                 groupId,
@@ -194,12 +194,16 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                         .getASAPKeyStore());
 
         Assertions
-                .assertNotNull(aliceDoc, "Bob document ist null.");
+                .assertNotNull(aliceDoc, "Alice document ist null.");
+        //bob does not have the document stored -> Exception when asking for it
         Assertions
-                .assertThrows(ASAPException.class, () -> {
-            this.bobImpl.getSharkGroupDocument(currencyName);
+                .assertThrows(SharkCurrencyException.class, () -> {
+            this.bobStorage.getGroupDocument(groupId);
         });
-
+        //bob should have the invite pending
+        Assertions
+                .assertEquals(groupId, this.bobStorage
+                        .getPendingInvite(currencyName.toString()).getGroupId());
         //we expect 1 member. Just alice because bob didn't do anything yet
         Assertions
                 .assertEquals(1,
@@ -227,7 +231,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
@@ -238,7 +242,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
@@ -251,12 +255,10 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Thread.sleep(2000);
 
         // 6.(Assertions)
-        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = aliceDoc.getGroupId();
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
+        SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
         byte[] aliceSignature = bobDoc.getCurrentMembers().get(ALICE_ID);
         byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
-        System.out.println("DEBUG: bob sig: " + bobSignature);
         boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(
                 groupId,
                 aliceSignature,
@@ -290,11 +292,13 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions
                 .assertEquals(2,
                         aliceDoc.getCurrentMembers().size());
-
+        //both signatures are verified
         Assertions
                 .assertTrue(verifiedAliceSig, "Alice signature is not verified");
         Assertions
                 .assertTrue(verifiedBobSig, "Bob signature is not verified");
+        //bob should have no pending invites, since he accepted
+        Assertions.assertFalse(this.bobStorage.hasPendingInvites());
     }
 
 
@@ -316,7 +320,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
@@ -326,37 +330,30 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
 
         //5. Bob will decline the invitation
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        this.bobImpl.declineInvite(bobDoc);
+        this.bobImpl.declineInvite(currencyName);
 
         //6. Assertions
-        //Assertions.
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
 
-        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
+        Assertions.assertEquals(1,aliceDoc.getCurrentMembers().size());
 
-        // Überprüfen, dass Bob nicht Teil der Gruppe im lokalen Dokument von Bob ist
-        Assertions.assertFalse(
-                bobDoc.getCurrentMembers().containsKey(BOB_ID),
-                "Bob darf nicht in seinem eigenen GroupDocument als Mitglied gelistet sein, da er abgelehnt hat."
-        );
+        Assertions.assertFalse(this.bobStorage.hasPendingInvites());
+
+        Assertions
+                .assertThrows(SharkCurrencyException.class, () -> {
+                    this.bobStorage.getGroupDocument(groupId);
+                });
 
         // Überprüfen, dass Bob nicht Teil der Gruppe im lokalen Dokument von Alice ist
         Assertions.assertFalse(
                 aliceDoc.getCurrentMembers().containsKey(BOB_ID),
                 "Bob darf nicht in Alices GroupDocument auftauchen, da er der Gruppe nicht beigetreten ist."
-        );
-
-        // Überprüfen, dass die Gruppe bei Alice nach wie vor nur 1 Mitglied (Alice selbst) hat
-        Assertions.assertEquals(
-                1,
-                aliceDoc.getCurrentMembers().size(),
-                "Alices GroupDocument sollte exakt 1 Mitglied enthalten."
         );
 
         // Der Status der Gruppe muss SIGNED_BY_SOME sein (da Bob auf der Whitelist steht, aber nicht signiert hat)

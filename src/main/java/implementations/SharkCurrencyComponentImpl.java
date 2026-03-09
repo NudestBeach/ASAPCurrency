@@ -99,7 +99,7 @@ public class SharkCurrencyComponentImpl
                 throw new SharkCurrencyException("Can not invite peers that are not on the whitelist.");
             }
         }
-
+        return null; //TODO...
     }
 
     @Override
@@ -185,6 +185,11 @@ public class SharkCurrencyComponentImpl
 
         byte[] signatureAndIDAsContent = baos.toByteArray();
         this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, NEW_MEMBER_URI, signatureAndIDAsContent);
+    }
+
+    @Override
+    public void declineInvite(CharSequence currencyName) {
+        this.sharkCurrencyStorage.removePendingInvite(currencyName.toString());
     }
 
     //Sets-Up the PKI for our peer

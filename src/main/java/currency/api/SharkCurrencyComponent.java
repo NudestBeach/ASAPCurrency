@@ -165,6 +165,14 @@ public interface SharkCurrencyComponent extends SharkComponent {
     void acceptInviteAndSign(CharSequence currencyName) throws SharkCurrencyException, ASAPSecurityException, ASAPException, IOException;
 
     /**
+     * declines an invite to a group,
+     * it will remove the invite form pending invites in storage
+     *
+     * @param currencyName name of the group currency you were invited from
+     */
+    void declineInvite(CharSequence currencyName);
+
+    /**
      *
      * @return
      * @throws IOException

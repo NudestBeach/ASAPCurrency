@@ -1,6 +1,7 @@
 package currency.storage;
 
 import currency.classes.SharkPromise;
+import exepections.SharkCurrencyException;
 import group.SharkGroupDocument;
 
 /**
@@ -9,10 +10,11 @@ import group.SharkGroupDocument;
  */
 public interface SharkCurrencyStorage {
 
-    //Group-Document Storage Methods
+    //GROUP-DOCUMENT STORAGE METHODS
     void saveGroupDocument(byte[] groupId, SharkGroupDocument doc);
-    SharkGroupDocument getGroupDocument(byte[] groupId);
+    SharkGroupDocument getGroupDocument(byte[] groupId) throws SharkCurrencyException;
     void addMemberToGroupDocument(byte[] groupId, CharSequence peerId, byte[] signature);
+    boolean hasPendingInvites();
 
     //INVITE STORAGE METHODS
     void savePendingInvite(String currencyName, SharkGroupDocument doc, String optionalMessage);

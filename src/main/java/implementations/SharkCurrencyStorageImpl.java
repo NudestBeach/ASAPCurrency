@@ -21,8 +21,12 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
     }
 
     @Override
-    public SharkGroupDocument getGroupDocument(byte[] groupId) {
-        return this.groupDocuments.get(toKey(groupId));
+    public SharkGroupDocument getGroupDocument(byte[] groupId) throws SharkCurrencyException {
+        if(this.groupDocuments.containsKey(groupId)) {
+            return this.groupDocuments.get(toKey(groupId));
+        } else {
+            throw new SharkCurrencyException("Document with ID: " + groupId + " not found in Storage");
+        }
     }
 
     @Override
@@ -48,6 +52,11 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
     @Override
     public void removePendingInvite(String currencyName) {
         this.pendingInvites.remove(currencyName);
+    }
+
+    @Override
+    public boolean hasPendingInvites() {
+        return !this.pendingInvites.isEmpty();
     }
 
     @Override
