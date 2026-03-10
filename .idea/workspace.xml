@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
@@ -108,6 +109,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
@@ -339,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773156558689</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java">
+      <option name="closed" value="true" />
+      <created>1773160385660</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1773160385660</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,9 +381,19 @@
     <MESSAGE value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
     <MESSAGE value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
     <MESSAGE value="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java" />
+    <MESSAGE value="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java</url>
+          <line>678</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="dataString.hash" />

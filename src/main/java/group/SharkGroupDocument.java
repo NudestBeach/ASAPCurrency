@@ -8,6 +8,7 @@ import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.security.cert.CertificateRevokedException;
 import java.util.*;
 
 public class SharkGroupDocument {
@@ -89,6 +90,21 @@ public class SharkGroupDocument {
         if(peerId == null || peerId.length()==0) return false;
         if(signature==null || signature.length==0) return false;
         String peerIdStr = peerId.toString();
+
+        // Prüfen ob Peer in der Whitelist (falls vorhanden)
+        boolean isWhitelisted = false;
+        for(CharSequence wlMember : this.whitelistMember){
+            if (wlMember.toString().equals(peerIdStr)){
+                isWhitelisted = true;
+                break;
+            }
+        }
+
+        if(!isWhitelisted){
+            System.err.println("Peer " + peerIdStr + " abgelehnt, da er sich nicht auf der Whitelist befindet!");
+            return false;
+        }
+
         if (this.currentMembers.containsKey(peerIdStr)) {
             return false;
         }

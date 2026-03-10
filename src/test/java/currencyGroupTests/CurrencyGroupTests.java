@@ -624,7 +624,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
-                false,
+                true,
                 true);
 
         // Zeit zum sicheren establishen der Gruppe
@@ -653,7 +653,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         // Bob, Clara and David try to accept the invitation
         this.bobImpl.acceptInviteAndSign(currencyName);
         this.claraImpl.acceptInviteAndSign(currencyName);
-        //TODO: Exception, wenn David probiert der Gruppe beizutreten, implementieren
+        //TODO: Exception werfen, da David nicht in Whitelist?
         this.davidImpl.acceptInviteAndSign(currencyName);
 
         // Encounters
@@ -677,6 +677,11 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
         SharkGroupDocument claraDoc = this.claraStorage.getGroupDocument(groupId);
         SharkGroupDocument davidDoc = this.davidStorage.getGroupDocument(groupId);
+
+        // David kann nicht auf das
+        Assertions.assertThrows(SharkCurrencyException.class, () -> {
+            this.davidStorage.getGroupDocument(groupId);
+        });
 
         Assertions.assertNotNull(aliceDoc, "Alice document ist null.");
         Assertions.assertNotNull(bobDoc, "Bob document ist null.");
