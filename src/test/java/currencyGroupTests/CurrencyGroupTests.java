@@ -560,16 +560,48 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
 
         // 6.(Assertions)
-        // TODO: More Assertions
         SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
         SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
         SharkGroupDocument claraDoc = this.claraStorage.getGroupDocument(groupId);
 
-        Assertions.assertEquals(3, aliceDoc.getCurrentMembers().size());
-        Assertions.assertEquals(3, bobDoc.getCurrentMembers().size());
-        Assertions.assertEquals(3, claraDoc.getCurrentMembers().size());
+        Assertions.assertNotNull(aliceDoc, "Alice document ist null.");
+        Assertions.assertNotNull(bobDoc, "Bob document ist null.");
+        Assertions.assertNotNull(claraDoc, "Clara document ist null.");
 
+        Assertions.assertEquals(3, aliceDoc.getCurrentMembers().size(), "Alice docs member count is not correct");
+        Assertions.assertEquals(3, bobDoc.getCurrentMembers().size(), "Bobs docs member count is not correct");
+        Assertions.assertEquals(3, claraDoc.getCurrentMembers().size(), "Claras docs member count is not correct");
 
+        Assertions.assertArrayEquals(groupId, aliceDoc.getGroupId(), "Die GroupID bei Alice muss mit der von ihr erstellten Gruppe übereinstimmen.");
+        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupId, claraDoc.getGroupId(), "Die GroupID bei Clara muss mit der von Alice übereinstimmen.");
+
+        // Group Document muss SIGNED_BY_SOME sein, da David in der Whitelist steht, allerdings die Gruppeneinladung abgelehnt hat
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, aliceDoc.getGroupDocState(), "Alice Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, bobDoc.getGroupDocState(), "Bobs Group Document is not SIGNED_BY_SOME");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_SOME, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_SOME");
+
+        byte[] aliceSignature = aliceDoc.getCurrentMembers().get(ALICE_ID);
+        byte[] bobSignature = bobDoc.getCurrentMembers().get(BOB_ID);
+        byte[] claraSignature = claraDoc.getCurrentMembers().get(CLARA_ID);
+
+        boolean verifiedAliceSig = ASAPCryptoAlgorithms.verify(groupId, aliceSignature, ALICE_ID,
+                ((SharkPKIComponent) aliceSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedBobSig = ASAPCryptoAlgorithms.verify(groupId, bobSignature, BOB_ID,
+                ((SharkPKIComponent) bobSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedClaraSig = ASAPCryptoAlgorithms.verify(groupId, claraSignature, CLARA_ID,
+                ((SharkPKIComponent) claraSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        Assertions.assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
+        Assertions.assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
+        Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
+
+        Assertions.assertFalse(this.bobStorage.hasPendingInvites(),
+                "Bob should not have pending invited");
+        Assertions.assertFalse(this.claraStorage.hasPendingInvites(),
+                "Clara should not have pending invited");
+        Assertions.assertFalse(this.davidStorage.hasPendingInvites(),
+                "David should not have pending invited");
     }
 
     @Test
