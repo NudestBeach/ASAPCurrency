@@ -384,7 +384,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         whitelist.add(CLARA_ID);
         whitelist.add(DAVID_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
@@ -395,11 +395,11 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Clara, join my group!", CLARA_ID);
+                .invitePeerToGroup(groupId, "Hi Clara, join my group!", CLARA_ID);
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi David, join my group!", DAVID_ID);
+                .invitePeerToGroup(groupId, "Hi David, join my group!", DAVID_ID);
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
@@ -431,13 +431,12 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Thread.sleep(2000);
 
         // 6.(Assertions)
-        SharkGroupDocument aliceDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = aliceDoc.getGroupId();
-        System.out.println("DEBUG: Alice doc members: " + aliceDoc.getCurrentMembers());
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
+        SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
+        SharkGroupDocument claraDoc = this.claraStorage.getGroupDocument(groupId);
+        SharkGroupDocument davidDoc = this.davidStorage.getGroupDocument(groupId);
 
+        Assertions.assertNotNull(aliceDoc, "Alice document ist null.");
         Assertions.assertNotNull(bobDoc, "Bob document ist null.");
         Assertions.assertNotNull(claraDoc, "Clara document ist null.");
         Assertions.assertNotNull(davidDoc, "David document ist null.");
@@ -486,6 +485,13 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(verifiedBobSig, "Bob Signatur ist ungültig");
         Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
         Assertions.assertTrue(verifiedDavidSig, "David Signatur ist ungültig");
+
+        Assertions.assertFalse(this.bobStorage.hasPendingInvites(),
+                "Bob should not have pending invited");
+        Assertions.assertFalse(this.claraStorage.hasPendingInvites(),
+                "Clara should not have pending invited");
+        Assertions.assertFalse(this.davidStorage.hasPendingInvites(),
+                "David should not have pending invited");
     }
 
     @Test
@@ -506,7 +512,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         whitelist.add(CLARA_ID);
         whitelist.add(DAVID_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
@@ -517,11 +523,11 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Clara, join my group!", CLARA_ID);
+                .invitePeerToGroup(groupId, "Hi Clara, join my group!", CLARA_ID);
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi David, join my group!", DAVID_ID);
+                .invitePeerToGroup(groupId, "Hi David, join my group!", DAVID_ID);
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
@@ -531,17 +537,11 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Thread.sleep(2000);
 
         // 5. Accept and decline invitation
-
-        //TODO muss noch gerändert werden weil macht keinen sinn schon das doc zu erkennen
-        SharkGroupDocument davidDoc = this.davidImpl.getSharkGroupDocument(currencyName);
-
         // Bob and Clara accept
         this.bobImpl.acceptInviteAndSign(currencyName);
         this.claraImpl.acceptInviteAndSign(currencyName);
-
         // David declines
-        // TODO: David kann currencyName nicht ablehnen
-        this.davidImpl.declineInvite(davidDoc);
+        this.davidImpl.declineInvite(currencyName);
 
         // Encounters
         Thread.sleep(1000);
@@ -562,12 +562,13 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
         // 6.(Assertions)
         // TODO: More Assertions
-        SharkGroupDocument bobDoc = this.bobImpl.getSharkGroupDocument(currencyName);
-        SharkGroupDocument claraDoc = this.claraImpl.getSharkGroupDocument(currencyName);
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
+        SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
+        SharkGroupDocument claraDoc = this.claraStorage.getGroupDocument(groupId);
 
-        Assertions.assertTrue(bobDoc.getCurrentMembers().containsKey(BOB_ID), "Bob sollte Mitglied der Gruppe sein.");
-        Assertions.assertTrue(claraDoc.getCurrentMembers().containsKey(CLARA_ID), "Clara sollte Mitglied der Gruppe sein.");
-        Assertions.assertFalse(davidDoc.getCurrentMembers().containsKey(DAVID_ID), "David sollte kein Mitglied der Gruppe sein.");
+        Assertions.assertEquals(3, aliceDoc.getCurrentMembers().size());
+        Assertions.assertEquals(3, bobDoc.getCurrentMembers().size());
+        Assertions.assertEquals(3, claraDoc.getCurrentMembers().size());
     }
 
     @Test
