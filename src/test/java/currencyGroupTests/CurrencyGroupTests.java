@@ -69,9 +69,6 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 "A test Currency"               // Spec
         );
 
-        // uri is: //group-document//AliceTalerA
-        CharSequence groupUriA = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
-
         // 2. Alice creates a new Group using the created Currency
         byte[] groupId = this.aliceCurrencyComponent.establishGroup(dummyCurrency,
                 new ArrayList<>(),
@@ -81,10 +78,6 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         byte[] aliceSignature = testDoc.getCurrentMembers().get(ALICE_ID);
 
         // 3. Checking results
-        ASAPStorage aliceStorage = aliceSharkPeer.getASAPPeer()
-                .getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-        Map<String, byte[]> members = testDoc.getCurrentMembers();
-        boolean channelExists = aliceStorage.channelExists(groupUriA);
         boolean verified = ASAPCryptoAlgorithms.verify(
                 groupId, // Content which was signed
                 aliceSignature,
@@ -95,19 +88,12 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions
                 .assertEquals(ALICE_ID, testDoc.getGroupCreator());
         Assertions
-                .assertTrue(channelExists, "Channel does not exist");
-        Assertions
                 .assertTrue(verified, "The Signature of Alice could not have been verified");
-        Assertions.assertTrue(members.containsKey(ALICE_ID));
-        Assertions.assertArrayEquals(aliceSignature, members.get(ALICE_ID),
+        Assertions
+                .assertEquals(1,testDoc.getCurrentMembers().size());
+        Assertions
+                .assertArrayEquals(aliceSignature, testDoc.getCurrentMembers().get(ALICE_ID),
                 "The saved signature is different than the original one");
-
-        // TODO: Check all the channel
-        // 4. Do some cleaning
-        aliceStorage.removeChannel(groupUriA);
-        aliceStorage.removeChannel("//group-documentAliceTalerA");
-        aliceStorage.removeChannel("AliceTalerA");
-        System.out.println("DEBUG: all channels: " + aliceStorage.getChannelURIs());
     }
 
     @Test
@@ -199,6 +185,10 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 .assertThrows(SharkCurrencyException.class, () -> {
             this.bobStorage.getGroupDocument(groupId);
         });
+
+        Assertions
+                .assertEquals(1,this.bobStorage.getPendingInviteSize(currencyName.toString()));
+
         //bob should have the invite pending
         Assertions
                 .assertEquals(groupId, this.bobStorage

@@ -15,6 +15,7 @@ public interface SharkCurrencyStorage {
     SharkGroupDocument getGroupDocument(byte[] groupId) throws SharkCurrencyException;
     void addMemberToGroupDocument(byte[] groupId, CharSequence peerId, byte[] signature);
     boolean hasPendingInvites();
+    int getPendingInviteSize(String currencyName);
 
     //INVITE STORAGE METHODS
     void savePendingInvite(String currencyName, SharkGroupDocument doc, String optionalMessage);
