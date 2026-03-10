@@ -5,7 +5,7 @@ import net.sharksystem.SharkComponentFactory;
 import net.sharksystem.SharkException;
 import net.sharksystem.SharkPeer;
 import net.sharksystem.pki.SharkPKIComponent;
-import testhelpers.SharkCurrencyComponentImpl;
+import implementations.SharkCurrencyComponentImpl;
 
 /**
  * Factory of the currency component bounding it to the SharkPki
