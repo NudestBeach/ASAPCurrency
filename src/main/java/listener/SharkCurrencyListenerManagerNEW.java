@@ -20,7 +20,7 @@ public class SharkCurrencyListenerManagerNEW
 
     protected void notifySharkCurrencyListener(
             CharSequence uri) {
-
+        System.out.println("DEBUG: notifySharkCurrencyListener called for uri: " + uri);
         SharkCurrencyNotifier sharkCurrencyNotifier =
                 new SharkCurrencyNotifier(uri);
 

@@ -113,7 +113,7 @@ public class SharkCurrencyComponentImpl
     }
 
     @Override
-    public void createPromise(int amount,
+    public CharSequence createPromise(int amount,
                               SharkCurrency referenceValue,
                               byte[] groupId,
                               CharSequence creditorId,
@@ -134,6 +134,7 @@ public class SharkCurrencyComponentImpl
                     true,
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_DEB);
+            return promise.getPromiseID();
         } else {
             SharkPromiseManagement
                     .signAsDebtor(keystore, promise);
@@ -144,6 +145,7 @@ public class SharkCurrencyComponentImpl
                     true,
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED);
+            return promise.getPromiseID();
         }
     }
 
@@ -241,7 +243,7 @@ public class SharkCurrencyComponentImpl
             ASAPChannel channel = storage.getChannel(groupUri);
             ASAPMessages messages = channel.getMessages();
             if (messages.size() == 0) {
-                System.err.println("DEBUG: No messages found in channel " + groupUri);
+                System.err.println("DEBUG: A No messages found in channel " + groupUri);
                 return null;
             }
             SharkGroupDocument base = null;
@@ -279,7 +281,7 @@ public class SharkCurrencyComponentImpl
              ASAPChannel channel = storage.getChannel(groupUri);
              ASAPMessages messages = channel.getMessages();
              if(messages.size() == 0) {
-                 System.err.println("DEBUG: No messages found in channel " + groupUri);
+                 System.err.println("DEBUG: B No messages found in channel " + groupUri);
                  return null;
              }
              return messages.getMessage(0, false);
@@ -299,10 +301,13 @@ public class SharkCurrencyComponentImpl
             throws SharkCurrencyException {
 
         this.checkComponentRunning();
-
         SharkGroupDocument sharkGroupDocument = this.sharkCurrencyStorage.getGroupDocument(groupId);
 
         try {
+            if(!sharkGroupDocument.getWhitelistMember().contains(peerId)) {
+                throw new SharkCurrencyException("Peer with id: " + peerId + " can not be invited because this peer is not whitelisted.");
+            }
+
              byte[] docBytes =  sharkGroupDocument.sharkDocumentToByte();
 
              ByteArrayOutputStream baos = new ByteArrayOutputStream();

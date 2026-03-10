@@ -23,10 +23,8 @@ public class SharkNewMemberHandler implements SharkCurrencyMessageHandler{
     public void handle(CharSequence uri, ASAPStorage storage, SharkPKIComponent pki, CharSequence sender) {
 
         try {
-            ASAPChannel newMemberChannel = storage.getChannel(uri);
-            ASAPMessages messages = newMemberChannel.getMessages();
+            ASAPMessages messages = storage.getChannel(uri).getMessages(false);
             System.out.println("DEBUG: received a new member message from: " + sender + " message size is: " + messages.size());
-
             //--------Read all data from the message ------------------------
             for (int i = 0; i < messages.size(); i++) {
                 byte[] messageData = messages.getMessage(i, true);

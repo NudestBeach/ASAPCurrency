@@ -73,12 +73,11 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         CharSequence groupUriA = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
 
         // 2. Alice creates a new Group using the created Currency
-        this.aliceCurrencyComponent.establishGroup(dummyCurrency,
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(dummyCurrency,
                 new ArrayList<>(),
                 false,
                 true);
-        SharkGroupDocument testDoc = this.aliceImpl.getSharkGroupDocument(currencyName);
-        byte[] groupId = testDoc.getGroupId();
+        SharkGroupDocument testDoc = this.aliceStorage.getGroupDocument(groupId);
         byte[] aliceSignature = testDoc.getCurrentMembers().get(ALICE_ID);
 
         // 3. Checking results
@@ -569,6 +568,8 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertEquals(3, aliceDoc.getCurrentMembers().size());
         Assertions.assertEquals(3, bobDoc.getCurrentMembers().size());
         Assertions.assertEquals(3, claraDoc.getCurrentMembers().size());
+
+
     }
 
     @Test

@@ -22,7 +22,7 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
 
     @Override
     public SharkGroupDocument getGroupDocument(byte[] groupId) throws SharkCurrencyException {
-        if(this.groupDocuments.containsKey(groupId)) {
+        if(this.groupDocuments.containsKey(toKey(groupId))) {
             return this.groupDocuments.get(toKey(groupId));
         } else {
             throw new SharkCurrencyException("Document with ID: " + groupId + " not found in Storage");
@@ -68,6 +68,15 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
     public void removeSharkPromiseFromStorage(CharSequence promiseId) {
         this.sharkPromiseStore.removeIf(promise ->
                 promise.getPromiseID().toString().equals(promiseId.toString()));
+    }
+
+    @Override
+    public SharkPromise getSharkPromiseFromStorage(CharSequence promiseId) {
+        return this.sharkPromiseStore.stream()
+                .filter(promise ->
+                        promise.getPromiseID().toString().equals(promiseId.toString()))
+                .findFirst()
+                .orElse(null);
     }
 
     //this method is needed because of hashingf purposes

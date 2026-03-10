@@ -138,8 +138,9 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @param creditorId id of creditor
      * @param debtorId id of debitor
      * @param asCreditor is this bond created with you as the creditor true/false
+     * @return promiseId id of created promise
      */
-    void createPromise(int amount,
+    CharSequence createPromise(int amount,
                        SharkCurrency referenceValue,
                        byte[] groupId,
                        CharSequence creditorId,

@@ -24,5 +24,6 @@ public interface SharkCurrencyStorage {
     //PROMISE STORAGE METHODS
     void addSharkPromiseToStorage(SharkPromise promise);
     void removeSharkPromiseFromStorage(CharSequence promiseId);
+    SharkPromise getSharkPromiseFromStorage(CharSequence promiseId);
 
 }

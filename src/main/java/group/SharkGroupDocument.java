@@ -102,23 +102,14 @@ public class SharkGroupDocument {
      * und aktuallisiert ihn bei Bedarf
      */
     private void updateGroupDocState() {
-        if (this.whitelistMember == null || this.whitelistMember.isEmpty()) return;
-
-        boolean allSigned = true;
-        for (CharSequence expetedMember : this.whitelistMember){
-            boolean found = this.currentMembers.keySet().stream()
-                    .anyMatch(member -> member.toString().equals(expetedMember.toString()));
-
-            if (!found) {
-                allSigned = false;
-                break;
-            }
+        if (this.whitelistMember == null || this.whitelistMember.isEmpty()
+                || this.currentMembers.isEmpty()) {
+            this.groupDocState = GroupSignings.SIGNED_BY_NONE;
+            return;
         }
-        if (allSigned){
-            this.groupDocState = GroupSignings.SIGNED_BY_ALL;
-        } else {
-            this.groupDocState = GroupSignings.SIGNED_BY_SOME;
-        }
+        this.groupDocState = (this.whitelistMember.size() == this.currentMembers.size())
+                ? GroupSignings.SIGNED_BY_ALL
+                : GroupSignings.SIGNED_BY_SOME;
     }
 
     // --- Serialisierung: Objekt -> byte[] ---

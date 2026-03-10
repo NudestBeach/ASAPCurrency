@@ -2,13 +2,14 @@ package sendingPromisesTests;
 
 import currency.classes.SharkCurrency;
 import currency.classes.SharkLocalCurrency;
+import currency.classes.SharkPromise;
 import currencyGroupTests.CurrencyGroupTests;
 import net.sharksystem.SharkException;
-import net.sharksystem.asap.ASAPSecurityException;
 import net.sharksystem.asap.pki.CredentialMessageInMemo;
 import net.sharksystem.pki.SharkPKIComponent;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testHelper.AsapCurrencyTestHelper;
@@ -22,6 +23,10 @@ public class PromisesTest extends AsapCurrencyTestHelper {
     public PromisesTest() {
         super(PromisesTest.class.getSimpleName());
     }
+
+
+
+    byte[] groupIdA = null;
 
     @BeforeEach
     void setUp() throws SharkException, InterruptedException, IOException {
@@ -40,7 +45,7 @@ public class PromisesTest extends AsapCurrencyTestHelper {
         this.setUpScenarioEstablishCurrency_2_BobAndAlice();
 
 
-        CharSequence currencyName = "AliceTalerC";
+        CharSequence currencyName = "CurrencyForPromiseTests";
         SharkCurrency dummyCurrency = new SharkLocalCurrency(
                 false,
                 currencyName.toString(),
@@ -51,22 +56,21 @@ public class PromisesTest extends AsapCurrencyTestHelper {
         ArrayList<CharSequence> whitelist = new ArrayList<>();
         whitelist.add(BOB_ID);
 
-        this.aliceCurrencyComponent.establishGroup(
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
                 dummyCurrency,
                 whitelist,
                 false,
                 true);
+        this.groupIdA=groupId;
 
         //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
         this.aliceCurrencyComponent
-                .invitePeerToGroup(currencyName, "Hi Bob, join my group!", BOB_ID);
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
 
         // 4. Encounter
-        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
-        Thread.sleep(2000);
 
 
     }
@@ -80,7 +84,13 @@ public class PromisesTest extends AsapCurrencyTestHelper {
     }
 
     @Test
-    public void createPromise() throws SharkException, IOException {
+    public void createPromise() throws SharkException, IOException, InterruptedException {
+
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        Thread.sleep(2000);
+
+
+
 
         SharkPKIComponent alicePKI = (SharkPKIComponent) this.aliceSharkPeer.getComponent(SharkPKIComponent.class);
         SharkPKIComponent bobPKI = (SharkPKIComponent) this.bobSharkPeer.getComponent(SharkPKIComponent.class);
@@ -93,13 +103,19 @@ public class PromisesTest extends AsapCurrencyTestHelper {
         CredentialMessageInMemo bobCredentialMessage = new CredentialMessageInMemo(BOB_ID, BOB_NAME, System.currentTimeMillis(), bobPKI.getPublicKey());
         alicePKI.acceptAndSignCredential(bobCredentialMessage);
 
-//        this.aliceComponent = (SharkCreditMoneyComponent) this.alicePeer.getComponent(SharkCreditMoneyComponent.class);
-//        this.bobComponent = (SharkCreditMoneyComponent) this.bobPeer.getComponent(SharkCreditMoneyComponent.class);
-//
-//        // Add SharkBondReceivedListener Implementation
-//        SharkBondsReceivedListener aliceListener = new DummySharkBondReceivedListener(this.aliceComponent);
-//        this.aliceComponent.subscribeBondReceivedListener(aliceListener);
-//
+        CharSequence promiseId = this.aliceCurrencyComponent.createPromise(2,
+                this.aliceStorage.getGroupDocument(groupIdA).getAssignedCurrency(),
+                groupIdA,
+                ALICE_ID, //creditor
+                BOB_ID, //debtor
+                true);
+
+
+        Assertions.assertNotNull(this.aliceStorage.getSharkPromiseFromStorage(promiseId));
+
+
+
+
 //        SharkBondsReceivedListener bobListener = new DummySharkBondReceivedListener(this.bobComponent);
 //        this.bobComponent.subscribeBondReceivedListener(bobListener);
 //
