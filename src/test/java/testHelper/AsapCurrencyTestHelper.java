@@ -147,6 +147,10 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         this.claraImpl =
                 (SharkCurrencyComponentImpl) claraSharkPeer.getComponent(SharkCurrencyComponent.class);
         AsapCurrencyTestHelper.testNumber++;
+
+        SharkCurrencyListenerNEW claraListener = new SharkCurrencyListenerImpl(this.claraCurrencyComponent);
+        this.claraCurrencyComponent.subscribeSharkCurrencyListener(claraListener);
+        this.claraStorage=this.claraCurrencyComponent.getSharkCurrencyStorage();
     }
 
     /**
@@ -167,6 +171,10 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         this.davidImpl =
                 (SharkCurrencyComponentImpl) davidSharkPeer.getComponent(SharkCurrencyComponent.class);
         AsapCurrencyTestHelper.testNumber++;
+
+        SharkCurrencyListenerNEW davidListener = new SharkCurrencyListenerImpl(this.davidCurrencyComponent);
+        this.davidCurrencyComponent.subscribeSharkCurrencyListener(davidListener);
+        this.davidStorage=this.davidCurrencyComponent.getSharkCurrencyStorage();
     }
 
     protected static void stopPeerSafely(SharkPeer peer) {
