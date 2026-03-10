@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
@@ -349,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773160385660</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können.">
+      <option name="closed" value="true" />
+      <created>1773162000445</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1773162000445</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,18 +389,10 @@
     <MESSAGE value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
     <MESSAGE value="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java" />
     <MESSAGE value="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java" />
+    <MESSAGE value="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können." />
+    <option name="LAST_COMMIT_MESSAGE" value="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java</url>
-          <line>678</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="dataString.hash" />
