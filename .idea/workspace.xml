@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added Assertions when denied an Accept. &#10;Added Ideas of Testcases for Promises.">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/SharkCredentials/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/David_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" afterPath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" afterDir="false" />
@@ -78,6 +77,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.CurrencyGroupTests.executor": "Run",
+    "JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3.executor": "Run",
     "JUnit.CurrencyGroupTests.receiveInviteListenerAcceptedTest.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor": "Run",
@@ -122,7 +122,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline">
+  <component name="RunManager" selected="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3">
     <configuration name="CurrencyGroupTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -134,6 +134,22 @@
       <option name="PACKAGE_NAME" value="currencyGroupTests" />
       <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CurrencyGroupTests.groupWith2WhitlistedButInvite3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="currencyGroupTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="currencyGroupTests" />
+      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
+      <option name="METHOD_NAME" value="groupWith2WhitlistedButInvite3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -186,29 +202,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ASAPJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="currencyGroupTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="currencyGroupTests" />
-      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
-      <option name="METHOD_NAME" value="sendGroupInviteToMoreThanOnePersonAndAccept" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3" />
         <item itemvalue="JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline" />
         <item itemvalue="JUnit.CurrencyGroupTests" />
         <item itemvalue="JUnit.CurrencyGroupTests.receiveInviteListenerAcceptedTest" />
         <item itemvalue="JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept" />
-        <item itemvalue="JUnit.CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +331,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772397494290</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java">
+      <option name="closed" value="true" />
+      <created>1773156558689</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773156558689</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +370,8 @@
     <MESSAGE value="EstablishCurrencyTests: successfullGroupInviteSendAndReceived() Test mit acceptInviteAndSign() für Bob angepasst." />
     <MESSAGE value="EstablishCurrencyTests: sendGroupInviteToMoreThanOnePersonAndAccept() Test mit acceptInviteAndSign() für Bob, Clara &amp; David angepasst." />
     <MESSAGE value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arbeiten am sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() Test" />
+    <MESSAGE value="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Assertions for sendGroupInviteTo3PeersAnd2AcceptAnd1Decline() in CurrencyGroupTests.java" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

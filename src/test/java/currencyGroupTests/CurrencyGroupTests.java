@@ -605,8 +605,89 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
     }
 
     @Test
-    public void groupWith2WhitlistedButInvite3(){
-        //TODO implement
+    public void groupWith2WhitlistedButInvite3() throws SharkException, InterruptedException, IOException {
+        this.setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice();
+
+        // 1. Alice arranges a new local Currency
+        CharSequence currencyName = "AliceTalerI";
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
+                false,
+                currencyName.toString(),
+                "A test Currency"
+        );
+
+        // 2. Alice creates a new Group and whitelists Bob and Clara, without David
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+        whitelist.add(CLARA_ID);
+
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
+                dummyCurrency,
+                whitelist,
+                false,
+                true);
+
+        // Zeit zum sicheren establishen der Gruppe
+        Thread.sleep(2000);
+
+        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupId, "Hi Clara, join my group!", CLARA_ID);
+
+        // Erwartete Exception für Davids Einladung
+        Exception exception = assertThrows(SharkCurrencyException.class, () -> {
+            this.aliceCurrencyComponent
+                    .invitePeerToGroup(groupId, "Hi David, join my group!", DAVID_ID);
+        });
+
+        // 4. Encounter
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.davidSharkPeer, true);
+
+        Thread.sleep(2000);
+
+        // 5. Accept and decline invitation
+        // Bob, Clara and David try to accept the invitation
+        this.bobImpl.acceptInviteAndSign(currencyName);
+        this.claraImpl.acceptInviteAndSign(currencyName);
+        //TODO: Exception, wenn David probiert der Gruppe beizutreten, implementieren
+        this.davidImpl.acceptInviteAndSign(currencyName);
+
+        // Encounters
+        Thread.sleep(1000);
+        this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
+
+        this.runEncounter(this.bobSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.bobSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.claraSharkPeer, true);
+        Thread.sleep(2000);
+
+        // 6.(Assertions)
+        SharkGroupDocument aliceDoc = this.aliceStorage.getGroupDocument(groupId);
+        SharkGroupDocument bobDoc = this.bobStorage.getGroupDocument(groupId);
+        SharkGroupDocument claraDoc = this.claraStorage.getGroupDocument(groupId);
+        SharkGroupDocument davidDoc = this.davidStorage.getGroupDocument(groupId);
+
+        Assertions.assertNotNull(aliceDoc, "Alice document ist null.");
+        Assertions.assertNotNull(bobDoc, "Bob document ist null.");
+        Assertions.assertNotNull(claraDoc, "Clara document ist null.");
+        Assertions.assertNotNull(davidDoc, "David document ist null.");
+
+        // Überprüfung, ob erwartete Exception für Davids Einladung geworfen wurde
+        String exceptedMessage = "Fehler bei Einladung: Peer with id: " + DAVID_ID + " can not be invited because this peer is not whitelisted.";
+        assertTrue(exception.getMessage().contains(exceptedMessage));
+
+
     }
 
 
