@@ -23,7 +23,11 @@ import static net.sharksystem.utils.testsupport.TestConstants.ROOT_DIRECTORY;
 public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
 
     private static int testNumber = 0;
-    public final String subRootFolder;
+    public  String subRootFolder;
+
+    public void initSubRootFolder(String testVariant, String testName) {
+        this.subRootFolder = ROOT_DIRECTORY + testVariant + "/" + testName + "/";
+    }
 
     //private static int portNumber = 5000;
     public static int getPortNumber() {

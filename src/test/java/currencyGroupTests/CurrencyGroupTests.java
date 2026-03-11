@@ -1,20 +1,17 @@
 package currencyGroupTests;
-import currency.storage.SharkCurrencyStorage;
 import group.GroupSignings;
 import group.SharkGroupDocument;
-import currency.api.SharkCurrencyComponent;
-import org.apache.commons.io.FileUtils;
 import currency.classes.SharkCurrency;
 import currency.classes.SharkLocalCurrency;
 import exepections.SharkCurrencyException;
 
-import net.sharksystem.asap.*;
 import net.sharksystem.SharkException;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 
 import net.sharksystem.pki.SharkPKIComponent;
 
-import org.junit.Assert;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.*;
 import testHelper.AsapCurrencyTestHelper;
 
@@ -33,17 +30,13 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
     }
 
     @BeforeEach
-    void setUp() {
-        String testClassName = CurrencyGroupTests.class.getSimpleName();
-        String[] peerNames = {ALICE_NAME, BOB_NAME, CLARA_NAME, DAVID_NAME};
-        for (String peer : peerNames) {
-            File peerFolder = new File("testResultsRootFolder/" + testClassName + "/" + peer);
-            if (peerFolder.exists()) {
-                try {
-                    FileUtils.cleanDirectory(peerFolder);
-                } catch (IOException ignored) {}
-            }
-        }
+    void setUp(TestInfo testInfo) {
+        String testName = testInfo.getDisplayName()
+                .replaceAll("[^a-zA-Z0-9]", "_");
+        this.initSubRootFolder(
+                CurrencyGroupTests.class.getSimpleName(),
+                testName
+        );
     }
 
     @AfterEach
@@ -178,8 +171,10 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                         .getComponent(SharkPKIComponent.class))
                         .getASAPKeyStore());
 
+        System.out.println("DEBUG: GROUPID created by Alice: " + groupId);
+
         Assertions
-                .assertNotNull(aliceDoc, "Alice document ist null.");
+                .assertNotNull(aliceDoc, "Alice document is null.");
         //bob does not have the document stored -> Exception when asking for it
         Assertions
                 .assertThrows(SharkCurrencyException.class, () -> {
@@ -187,11 +182,14 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         });
 
         Assertions
+                .assertArrayEquals(groupId, this.aliceStorage.getGroupDocument(groupId).getGroupId());
+
+        Assertions
                 .assertEquals(1,this.bobStorage.getPendingInviteSize(currencyName.toString()));
 
         //bob should have the invite pending
         Assertions
-                .assertEquals(groupId, this.bobStorage
+                .assertArrayEquals(groupId, this.bobStorage
                         .getPendingInvite(currencyName.toString()).getGroupId());
         //we expect 1 member. Just alice because bob didn't do anything yet
         Assertions
@@ -199,7 +197,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                         aliceDoc.getCurrentMembers().size());
         //Alice signature has to be verified
         Assertions
-                .assertTrue(verifiedAliceSig, "Alice Signatur ist ungültig");
+                .assertTrue(verifiedAliceSig, "Alice signature is not verified");
     }
 
 

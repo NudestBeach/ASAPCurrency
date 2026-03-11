@@ -308,6 +308,7 @@ public class SharkCurrencyComponentImpl
                 throw new SharkCurrencyException("Peer with id: " + peerId + " can not be invited because this peer is not whitelisted.");
             }
 
+            System.out.println("DEBUG: groupId right before sending it: " + sharkGroupDocument.getGroupId());
              byte[] docBytes =  sharkGroupDocument.sharkDocumentToByte();
 
              ByteArrayOutputStream baos = new ByteArrayOutputStream();

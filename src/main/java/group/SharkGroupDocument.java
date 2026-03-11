@@ -194,10 +194,9 @@ public class SharkGroupDocument {
 
         int idx = 0;
 
-        // 1. GroupID lesen und IGNORIEREN
-        // Wir müssen den Token konsumieren, damit der Index stimmt,
-        // aber der Konstruktor erzeugt eine neue ID, daher nutzen wir diesen Wert nicht.
+        // 1. GroupID
         byte[] gId = safeCharSequenceToBytes(documentVariables.get(idx++));
+        System.out.println("DEBUG: gId right after parsing!: " + gId);
 
         // 2. GroupCreator
         String cId = documentVariables.get(idx++).toString();
