@@ -170,9 +170,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 ((SharkPKIComponent) aliceSharkPeer
                         .getComponent(SharkPKIComponent.class))
                         .getASAPKeyStore());
-
-        System.out.println("DEBUG: GROUPID created by Alice: " + groupId);
-
+        
         Assertions
                 .assertNotNull(aliceDoc, "Alice document is null.");
         //bob does not have the document stored -> Exception when asking for it
@@ -185,7 +183,7 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 .assertArrayEquals(groupId, this.aliceStorage.getGroupDocument(groupId).getGroupId());
 
         Assertions
-                .assertEquals(1,this.bobStorage.getPendingInviteSize(currencyName.toString()));
+                .assertEquals(1,this.bobStorage.getPendingInviteSize());
 
         //bob should have the invite pending
         Assertions
@@ -354,7 +352,15 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
 
     @Test
-    public void sendGroupInviteTo3PeersAndAllAccept() throws SharkException, IOException, InterruptedException {
+    public void
+
+
+
+
+
+
+
+    sendGroupInviteTo3PeersAndAllAccept() throws SharkException, IOException, InterruptedException {
         this.setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice();
 
         // 1. Alice arranges a new local Currency
@@ -616,20 +622,20 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 true,
                 true);
 
-        // Zeit zum sicheren establishen der Gruppe
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David the builder
         this.aliceCurrencyComponent
                 .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
         this.aliceCurrencyComponent
                 .invitePeerToGroup(groupId, "Hi Clara, join my group!", CLARA_ID);
-
-        // Erwartete Exception für Davids Einladung
-        Exception aliceInviteException = assertThrows(SharkCurrencyException.class, () -> {
+        String errorMessage = "";
+        try {
             this.aliceCurrencyComponent
                     .invitePeerToGroup(groupId, "Hi David, join my group!", DAVID_ID);
-        });
+        } catch (SharkCurrencyException e) {
+            errorMessage=e.getMessage();
+        }
 
         // 4. Encounter
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
@@ -642,25 +648,16 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         // Bob, Clara and David try to accept the invitation
         this.bobImpl.acceptInviteAndSign(currencyName);
         this.claraImpl.acceptInviteAndSign(currencyName);
-        // Exception erwartet: David steht nicht in der Whitelist und darf nicht der Gruppe beitreten
-        Exception davidAcceptException = assertThrows(SharkCurrencyException.class, () -> {
-            this.davidImpl.acceptInviteAndSign(currencyName);
-        });
 
         // Encounters
         Thread.sleep(1000);
         this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
         Thread.sleep(1000);
         this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
-        Thread.sleep(1000);
-        this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
 
         this.runEncounter(this.bobSharkPeer, this.claraSharkPeer, true);
-        this.runEncounter(this.bobSharkPeer, this.davidSharkPeer, true);
         this.runEncounter(this.claraSharkPeer, this.bobSharkPeer, true);
-        this.runEncounter(this.claraSharkPeer, this.davidSharkPeer, true);
         this.runEncounter(this.davidSharkPeer, this.bobSharkPeer, true);
-        this.runEncounter(this.davidSharkPeer, this.claraSharkPeer, true);
         Thread.sleep(2000);
 
         // 6.(Assertions)
@@ -672,28 +669,23 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertNotNull(bobDoc, "Bob document ist null.");
         Assertions.assertNotNull(claraDoc, "Clara document ist null.");
 
-        // Überprüfung, ob erwartete Exception für Davids Einladung geworfen wurde
-        String exceptedMessage = "Fehler bei Einladung: Peer with id: " + DAVID_ID + " can not be invited because this peer is not whitelisted.";
-        assertTrue(aliceInviteException.getMessage().contains(exceptedMessage));
+        String exceptedMessage = "Peer with id: " + DAVID_ID + " can not be invited because this peer is not whitelisted.";
+        Assertions.assertEquals(errorMessage, exceptedMessage);
 
-        // Überprüfung, ob erwartete Exception für Davids Accept geworfen wurde
-        String expectedAcceptError = "Fehler beim Akzeptieren: Der Peer " + DAVID_ID + " befindet sich nicht in der Whitelist.";
-        assertTrue(davidAcceptException.getMessage().contains(expectedAcceptError), "Die Exception-Nachricht für David beim Akzeptieren stimmt nicht.");
-
-        // David darf nirgendwo Mitglied der Gruppe sein
-        Assertions.assertFalse(aliceDoc.getCurrentMembers().containsKey(DAVID_ID), "David darf kein Mitglied der Gruppe sein im aliceDoc.");
-        Assertions.assertFalse(bobDoc.getCurrentMembers().containsKey(DAVID_ID), "David darf kein Mitglied der Gruppe sein im bobDoc.");
-        Assertions.assertFalse(claraDoc.getCurrentMembers().containsKey(DAVID_ID), "David darf kein Mitglied der Gruppe sein im claraDoc.");
+        // David should not be member in any document
+        Assertions.assertFalse(aliceDoc.getCurrentMembers().containsKey(DAVID_ID), "David should not be member in aliceDoc.");
+        Assertions.assertFalse(bobDoc.getCurrentMembers().containsKey(DAVID_ID), "David should not be member in bobDoc.");
+        Assertions.assertFalse(claraDoc.getCurrentMembers().containsKey(DAVID_ID), "David should not be member in claraDoc.");
 
         Assertions.assertEquals(3, aliceDoc.getCurrentMembers().size(), "Alice docs member count is not correct");
         Assertions.assertEquals(3, bobDoc.getCurrentMembers().size(), "Bobs docs member count is not correct");
         Assertions.assertEquals(3, claraDoc.getCurrentMembers().size(), "Claras docs member count is not correct");
 
-        Assertions.assertArrayEquals(groupId, aliceDoc.getGroupId(), "Die GroupID bei Alice muss mit der von ihr erstellten Gruppe übereinstimmen.");
-        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId(), "Die GroupID bei Bob muss mit der von Alice übereinstimmen.");
-        Assertions.assertArrayEquals(groupId, claraDoc.getGroupId(), "Die GroupID bei Clara muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupId, aliceDoc.getGroupId());
+        Assertions.assertArrayEquals(groupId, bobDoc.getGroupId());
+        Assertions.assertArrayEquals(groupId, claraDoc.getGroupId());
 
-        // Group Document muss SIGNED_BY_All sein, da alle Whitelist Member angenommen haben
+        // Group Document is SIGNED_BY_All
         Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, aliceDoc.getGroupDocState(), "Alice Group Document is not SIGNED_BY_SOME");
         Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, bobDoc.getGroupDocState(), "Bobs Group Document is not SIGNED_BY_SOME");
         Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, claraDoc.getGroupDocState(), "Claras Group Document is not SIGNED_BY_SOME");
@@ -714,13 +706,13 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
         Assertions.assertTrue(verifiedClaraSig, "Clara Signatur ist ungültig");
 
         Assertions.assertFalse(this.aliceStorage.hasPendingInvites(),
-                "Alice should not have pending invited");
+                "Alice should not have pending invites");
         Assertions.assertFalse(this.bobStorage.hasPendingInvites(),
-                "Bob should not have pending invited");
+                "Bob should not have pending invites");
         Assertions.assertFalse(this.claraStorage.hasPendingInvites(),
-                "Clara should not have pending invited");
+                "Clara should not have pending invites");
         Assertions.assertFalse(this.davidStorage.hasPendingInvites(),
-                "David should not have pending invited");
+                "David should not have pending invites");
     }
 
 

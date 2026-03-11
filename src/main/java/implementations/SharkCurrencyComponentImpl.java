@@ -186,9 +186,9 @@ public class SharkCurrencyComponentImpl
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream dos = new DataOutputStream(baos);
         String peerID = this.asapPeer.getPeerID().toString();
-        dos.writeUTF(peerID);
         dos.writeInt(groupId.length);
         dos.write(groupId);
+        dos.writeUTF(peerID);
         dos.writeInt(signature.length);
         dos.write(signature);
         dos.flush();
@@ -311,27 +311,29 @@ public class SharkCurrencyComponentImpl
         this.checkComponentRunning();
         SharkGroupDocument sharkGroupDocument = this.sharkCurrencyStorage.getGroupDocument(groupId);
 
-        try {
-            if(!sharkGroupDocument.getWhitelistMember().contains(peerId)) {
-                throw new SharkCurrencyException("Peer with id: " + peerId + " can not be invited because this peer is not whitelisted.");
-            }
+        if(!sharkGroupDocument.getWhitelistMember().contains(peerId)) {
+            throw new SharkCurrencyException("Peer with id: " + peerId + " can not be invited because this peer is not whitelisted.");
+        }
 
+        try {
             System.out.println("DEBUG: groupId right before sending it: " + sharkGroupDocument.getGroupId());
              byte[] docBytes =  sharkGroupDocument.sharkDocumentToByte();
 
              ByteArrayOutputStream baos = new ByteArrayOutputStream();
              DataOutputStream daos = new DataOutputStream(baos);
 
+             daos.writeUTF(peerId.toString());
              daos.writeUTF(optionalMessage != null ? optionalMessage : "");
              daos.writeInt(docBytes.length);
              daos.write(docBytes);
 
              byte[] fullContentOfInvite = baos.toByteArray();
              CharSequence inviteURI = INVITE_CHANNEL_URI;
+            System.out.println("DEBUG: Sending invite to: ");
              this.asapPeer.sendASAPMessage(CURRENCY_FORMAT, inviteURI, fullContentOfInvite);
 
         } catch(ASAPException | IOException e) {
-            throw new SharkCurrencyException("Fehler bei Einladung: " + e.getLocalizedMessage());
+            throw new SharkCurrencyException(e.getLocalizedMessage());
         }
     }
 

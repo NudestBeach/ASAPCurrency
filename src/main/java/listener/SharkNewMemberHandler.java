@@ -1,6 +1,7 @@
 package listener;
 
 import currency.storage.SharkCurrencyStorage;
+import exepections.SharkCurrencyException;
 import net.sharksystem.asap.ASAPChannel;
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
@@ -31,10 +32,16 @@ public class SharkNewMemberHandler implements SharkCurrencyMessageHandler{
 
                 ByteArrayInputStream bais = new ByteArrayInputStream(messageData);
                 DataInputStream dis = new DataInputStream(bais);
-                String peerID = dis.readUTF();
                 int groupIdLength = dis.readInt();
                 byte[] groupId = new byte[groupIdLength];
                 dis.readFully(groupId);
+                try {
+                    this.sharkCurrencyStorage.getGroupDocument(groupId);
+                } catch (SharkCurrencyException e) {
+                    System.out.println("DEBUG: received new member message for unknown group, skipping.");
+                    continue;
+                }
+                String peerID = dis.readUTF();
                 int sigLength = dis.readInt();
                 byte[] signature = new byte[sigLength];
                 dis.readFully(signature);

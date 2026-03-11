@@ -85,7 +85,7 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
         return Base64.getEncoder().encodeToString(groupId);
     }
 
-    public int getPendingInviteSize(String currencyName) {
+    public int getPendingInviteSize() {
         return this.pendingInvites.size();
     }
 }

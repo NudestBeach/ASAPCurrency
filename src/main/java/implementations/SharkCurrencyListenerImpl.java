@@ -19,16 +19,18 @@ public class SharkCurrencyListenerImpl implements SharkCurrencyListenerNEW {
     private final Map<String, SharkCurrencyMessageHandler> handlers = new HashMap<>();
 
     public SharkCurrencyListenerImpl(SharkCurrencyComponent sharkCurrencyComponent) {
+
+        this.sharkCurrencyComponent = (SharkCurrencyComponentImpl) sharkCurrencyComponent;
+
         handlers.put(SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED,
                 new SharkPromiseAskSigCredHandler());
         handlers.put(SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_DEB,
                 new SharkPromiseAskSigDebHandler());
         handlers.put(SharkCurrencyComponent.INVITE_CHANNEL_URI,
-                new SharkGroupInviteHandler(sharkCurrencyComponent.getSharkCurrencyStorage()));
+                new SharkGroupInviteHandler(sharkCurrencyComponent.getSharkCurrencyStorage(),
+                        this.sharkCurrencyComponent.getPeerIdOfImpl().toString()));
         handlers.put(SharkCurrencyComponent.NEW_MEMBER_URI,
                 new SharkNewMemberHandler(sharkCurrencyComponent.getSharkCurrencyStorage()));
-
-        this.sharkCurrencyComponent = (SharkCurrencyComponentImpl) sharkCurrencyComponent;
     }
 
     @Override

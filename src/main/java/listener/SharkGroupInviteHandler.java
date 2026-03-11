@@ -16,9 +16,11 @@ import java.io.IOException;
 public class SharkGroupInviteHandler implements SharkCurrencyMessageHandler {
 
     private final SharkCurrencyStorage sharkCurrencyStorage;
+    private final String thisPeersId;
 
-    public SharkGroupInviteHandler(SharkCurrencyStorage sharkCurrencyStorage) {
+    public SharkGroupInviteHandler(SharkCurrencyStorage sharkCurrencyStorage, String thisPeersId) {
         this.sharkCurrencyStorage = sharkCurrencyStorage;
+        this.thisPeersId=thisPeersId;
     }
 
     @Override
@@ -29,29 +31,40 @@ public class SharkGroupInviteHandler implements SharkCurrencyMessageHandler {
                 System.err.println("DEBUG: No messages found in channel " + uri);
                 return;
             }
-            byte[] inviteData = messages.getMessage(messages.size() - 1, true);
 
-            ByteArrayInputStream bais = new ByteArrayInputStream(inviteData);
-            DataInputStream dais = new DataInputStream(bais);
+            for (int i = 0; i < messages.size(); i++) {
+                byte[] inviteData = messages.getMessage(i, true);
 
-            String optionalMessage = dais.readUTF();
-            if (optionalMessage.isEmpty()) {
-                optionalMessage = null;
+                ByteArrayInputStream bais = new ByteArrayInputStream(inviteData);
+                DataInputStream dais = new DataInputStream(bais);
+
+                String receiver = dais.readUTF();
+                if (!this.thisPeersId.equals(receiver)) {
+                    System.out.println("DEBUG: rejected group invite, because Im not the receiver: "
+                            + this.thisPeersId);
+                    continue;
+                }
+                System.out.println("DEBUG: I got an invite " + this.thisPeersId);
+
+                String optionalMessage = dais.readUTF();
+                if (optionalMessage.isEmpty()) {
+                    optionalMessage = null;
+                }
+
+                int docLength = dais.readInt();
+                byte[] docBytes = new byte[docLength];
+                dais.readFully(docBytes);
+                SharkGroupDocument sharkGroupDocument = SharkGroupDocument.fromByte(docBytes);
+
+                sharkCurrencyStorage
+                        .savePendingInvite(sharkGroupDocument
+                                .getAssignedCurrency()
+                                .getCurrencyName(), sharkGroupDocument, optionalMessage);
+
+                System.out.println("DEBUG: Parsed invite from " + sender);
+                System.out.println("  - Currency: " + sharkGroupDocument.getAssignedCurrency().getCurrencyName());
+                System.out.println("  - Message: " + (optionalMessage != null ? optionalMessage : "(none)"));
             }
-
-            int docLength = dais.readInt();
-            byte[] docBytes = new byte[docLength];
-            dais.readFully(docBytes);
-            SharkGroupDocument sharkGroupDocument = SharkGroupDocument.fromByte(docBytes);
-
-            sharkCurrencyStorage
-                    .savePendingInvite(sharkGroupDocument
-                            .getAssignedCurrency()
-                            .getCurrencyName(), sharkGroupDocument, optionalMessage);
-
-            System.out.println("DEBUG: Parsed invite from " + sender);
-            System.out.println("  - Currency: " + sharkGroupDocument.getAssignedCurrency().getCurrencyName());
-            System.out.println("  - Message: " + (optionalMessage != null ? optionalMessage : "(none)"));
         } catch (IOException | ASAPException e) {
             throw new RuntimeException(e);
         }
