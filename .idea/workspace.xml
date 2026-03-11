@@ -6,27 +6,239 @@
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/group/SharkGroupDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testHelper/AsapCurrencyTestHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/.sharkPeerExtraData" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/.sharkPeerExtraData" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/aliceCreatesAGroupWithLocalCurrency__/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/aliceCreatesAGroupWithLocalCurrency__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/aliceCreatesAGroupWithLocalCurrency__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/aliceCreatesAGroupWithLocalCurrency__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/establishGroupWithMemberThatIsNotWhitelisted__/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/establishGroupWithMemberThatIsNotWhitelisted__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/establishGroupWithMemberThatIsNotWhitelisted__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/establishGroupWithMemberThatIsNotWhitelisted__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/Clara/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/groupWith2WhitlistedButInvite3__/David/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerAcceptedTest__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/receiveInviteListenerDeniedTest__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/Clara/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAnd2AcceptAnd1Decline__/David/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/David_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/Clara/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Bob_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/0/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/1/%2F%2Fgroup-document%2F%2Fnew-member.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/Clara_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/sendGroupInviteTo3PeersAndAllAccept__/David/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/application%3A%2F%2Fx-asap-currency/1/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Alice/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/.sharkPeerExtraData" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/ASAPSharkCertificates/0/asap%2Fcertificate.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/ASAPSharkCertificates/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/SharkCredentials/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/application%3A%2F%2Fx-asap-currency/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.content" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/0/%2F%2Fgroup-document%2F%2Finvite.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/application%3A%2F%2Fx-asap-currency/Alice_ID/asapCurrentAttributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testResultsRootFolder/CurrencyGroupTests/successfullGroupInviteSendAndReceived__/Bob/application%3A%2F%2Fx-asap-currency/asapCurrentAttributes" beforeDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
@@ -91,7 +303,7 @@
     "JUnit.CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
     "JUnit.CurrencyGroupTests.establishGroupWithMemberThatIsNotWhitelisted.executor": "Run",
     "JUnit.CurrencyGroupTests.executor": "Run",
-    "JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3.executor": "Run",
+    "JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3.executor": "Debug",
     "JUnit.CurrencyGroupTests.receiveInviteListenerAcceptedTest.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor": "Run",
@@ -138,7 +350,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CurrencyGroupTests">
+  <component name="RunManager" selected="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3">
     <configuration name="CurrencyGroupTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -220,8 +432,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CurrencyGroupTests" />
         <item itemvalue="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3" />
+        <item itemvalue="JUnit.CurrencyGroupTests" />
         <item itemvalue="JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.CurrencyGroupTests.establishGroupWithMemberThatIsNotWhitelisted" />
         <item itemvalue="JUnit.CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency" />
@@ -408,6 +620,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java</url>
+          <line>636</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="dataString.hash" />

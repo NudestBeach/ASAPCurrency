@@ -162,6 +162,14 @@ public class SharkCurrencyComponentImpl
                 = this.sharkCurrencyStorage.getPendingInvite(currencyName.toString());
         byte[] groupId = sharkGroupDocument.getGroupId();
 
+        if (sharkGroupDocument == null){
+            throw new SharkCurrencyException("Fehler beim Akzeptieren: Es liegt keine Einladung für die Währung " + currencyName + " vor.");
+        }
+        if (!sharkGroupDocument.getWhitelistMember().isEmpty() && !sharkGroupDocument.getWhitelistMember().contains(this.asapPeer.getPeerID().toString())){
+            this.sharkCurrencyStorage.removePendingInvite(currencyName.toString());
+            throw new SharkCurrencyException("Fehler beim Akzeptieren: Der Peer " + asapPeer.getPeerID().toString() + " befindet sich nicht in der Whitelist.");
+        }
+
         //sign doc and add yourself
         ASAPKeyStore ks = this.sharkPKIComponent.getASAPKeyStore();
         byte[] signature = ASAPCryptoAlgorithms
