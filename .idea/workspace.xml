@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- unterschiedliche Whitelisten für beide Gruppen&#10;- in beiden Gruppen lehnt jeweils ein Peer dem Beitritt ab">
+      <change afterPath="$PROJECT_DIR$/src/main/java/blockchain/wallet/WalletManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchain/BlockchainConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchain/BlockchainConnector.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
@@ -28,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="GroupInviteAndRecive" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -96,7 +98,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "blockchain__anbindung",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Eric M/Documents/Projekt_Studium_WiSe2526/ASAPCurrency",
     "node.js.detected.package.eslint": "true",
@@ -370,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773316001110</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- unterschiedliche Whitelisten für beide Gruppen&#10;- in beiden Gruppen lehnt jeweils ein Peer dem Beitritt ab">
+      <option name="closed" value="true" />
+      <created>1773318835654</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1773318835654</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +416,8 @@
     <MESSAGE value="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können." />
     <MESSAGE value="sendInvitationFor2GroupsFromSamePeer() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die vom gleichen Peer ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
     <MESSAGE value="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
-    <option name="LAST_COMMIT_MESSAGE" value="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
+    <MESSAGE value="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- unterschiedliche Whitelisten für beide Gruppen&#10;- in beiden Gruppen lehnt jeweils ein Peer dem Beitritt ab" />
+    <option name="LAST_COMMIT_MESSAGE" value="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- unterschiedliche Whitelisten für beide Gruppen&#10;- in beiden Gruppen lehnt jeweils ein Peer dem Beitritt ab" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
