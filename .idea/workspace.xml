@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="sendInvitationFor2GroupsFromSamePeer() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die vom gleichen Peer ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei">
+    <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M" />
@@ -75,6 +76,8 @@
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor": "Run",
+    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeers.executor": "Run",
+    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline.executor": "Run",
     "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer.executor": "Run",
     "JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived.executor": "Run",
     "JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
@@ -118,7 +121,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeers">
+  <component name="RunManager" selected="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline">
     <configuration name="CurrencyGroupTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -166,6 +169,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="currencyGroupTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="currencyGroupTests" />
+      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
+      <option name="METHOD_NAME" value="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -182,29 +201,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CurrencyGroupTests.successfullGroupInviteSendAndReceived" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ASAPJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="currencyGroupTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="currencyGroupTests" />
-      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
-      <option name="METHOD_NAME" value="successfullGroupInviteSendAndReceived" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline" />
         <item itemvalue="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeers" />
         <item itemvalue="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer" />
         <item itemvalue="JUnit.CurrencyGroupTests" />
         <item itemvalue="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3" />
-        <item itemvalue="JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived" />
       </list>
     </recent_temporary>
   </component>
@@ -359,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773314907475</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei">
+      <option name="closed" value="true" />
+      <created>1773316001110</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1773316001110</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +405,8 @@
     <MESSAGE value="Implementation of groupWith2WhitlistedButInvite3() in CurrencyGroupTests.java" />
     <MESSAGE value="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können." />
     <MESSAGE value="sendInvitationFor2GroupsFromSamePeer() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die vom gleichen Peer ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
-    <option name="LAST_COMMIT_MESSAGE" value="sendInvitationFor2GroupsFromSamePeer() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die vom gleichen Peer ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
+    <MESSAGE value="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
+    <option name="LAST_COMMIT_MESSAGE" value="sendInvitationFor2GroupsFromDifferentPeers() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- alle eingeladenen Peers befinden sich in der Whitelist und treten den Gruppen bei" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
