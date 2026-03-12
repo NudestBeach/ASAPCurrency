@@ -721,5 +721,213 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
 
     }
 
+    @Test
+    public void sendInvitationFor2GroupsFromSamePeer() throws SharkException, InterruptedException, IOException {
+        this.setUpScenarioEstablishCurrency_4_DavidAndClaraAndBobAndAlice();
 
+        // 1. Alice arranges two new local Currencies
+        CharSequence currencyNameA = "AliceTaler1A";
+        SharkCurrency dummyCurrencyA = new SharkLocalCurrency(
+                false,
+                currencyNameA.toString(),
+                "A test Currency"
+        );
+
+        CharSequence currencyNameB = "AliceTaler1B";
+        SharkCurrency dummyCurrencyB = new SharkLocalCurrency(
+                false,
+                currencyNameB.toString(),
+                "A test Currency"
+        );
+
+        // 2. Alice creates two Groups and whitelists Bob, Clara and David for both of them
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+        whitelist.add(CLARA_ID);
+        whitelist.add(DAVID_ID);
+
+        byte[] groupIdA = this.aliceCurrencyComponent.establishGroup(
+                dummyCurrencyA,
+                whitelist,
+                false,
+                true);
+
+        byte[] groupIdB = this.aliceCurrencyComponent.establishGroup(
+                dummyCurrencyB,
+                whitelist,
+                false,
+                true);
+
+        // Zeit zum sicheren establishen der Gruppe
+        Thread.sleep(2000);
+
+        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob, Clara and David
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdA, "Hi Bob, join my group!", BOB_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdA, "Hi Clara, join my group!", CLARA_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdA, "Hi David, join my group!", DAVID_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdB, "Hi Bob, join my group!", BOB_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdB, "Hi Clara, join my group!", CLARA_ID);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupIdB, "Hi David, join my group!", DAVID_ID);
+
+        // 4. Encounter
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.aliceSharkPeer, this.davidSharkPeer, true);
+
+        Thread.sleep(2000);
+
+        // 5.1 Accept Invitation
+        this.bobImpl.acceptInviteAndSign(currencyNameA);
+        this.bobImpl.acceptInviteAndSign(currencyNameB);
+        Thread.sleep(1000);
+        this.runEncounter(this.bobSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.claraImpl.acceptInviteAndSign(currencyNameA);
+        this.claraImpl.acceptInviteAndSign(currencyNameB);
+        Thread.sleep(1000);
+        this.runEncounter(this.claraSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        this.davidImpl.acceptInviteAndSign(currencyNameA);
+        this.davidImpl.acceptInviteAndSign(currencyNameB);
+        Thread.sleep(1000);
+        this.runEncounter(this.davidSharkPeer, this.aliceSharkPeer, true);
+        Thread.sleep(1000);
+        //5.2 more encounters (we need better solution for this xd)
+        this.runEncounter(this.bobSharkPeer, this.claraSharkPeer, true);
+        this.runEncounter(this.bobSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.claraSharkPeer, this.davidSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.bobSharkPeer, true);
+        this.runEncounter(this.davidSharkPeer, this.claraSharkPeer, true);
+        Thread.sleep(2000);
+
+        // 6.(Assertions)
+        SharkGroupDocument aliceDocA = this.aliceStorage.getGroupDocument(groupIdA);
+        SharkGroupDocument bobDocA = this.bobStorage.getGroupDocument(groupIdA);
+        SharkGroupDocument claraDocA = this.claraStorage.getGroupDocument(groupIdA);
+        SharkGroupDocument davidDocA = this.davidStorage.getGroupDocument(groupIdA);
+
+        SharkGroupDocument aliceDocB = this.aliceStorage.getGroupDocument(groupIdB);
+        SharkGroupDocument bobDocB = this.bobStorage.getGroupDocument(groupIdB);
+        SharkGroupDocument claraDocB = this.claraStorage.getGroupDocument(groupIdB);
+        SharkGroupDocument davidDocB = this.davidStorage.getGroupDocument(groupIdB);
+
+        Assertions.assertNotNull(aliceDocA, "Alice document A ist null.");
+        Assertions.assertNotNull(bobDocA, "Bob document A ist null.");
+        Assertions.assertNotNull(claraDocA, "Clara document A ist null.");
+        Assertions.assertNotNull(davidDocA, "David document A ist null.");
+
+        Assertions.assertNotNull(aliceDocB, "Alice document B ist null.");
+        Assertions.assertNotNull(bobDocB, "Bob document B ist null.");
+        Assertions.assertNotNull(claraDocB, "Clara document B ist null.");
+        Assertions.assertNotNull(davidDocB, "David document B ist null.");
+
+        Assertions.assertArrayEquals(groupIdA, bobDocA.getGroupId(), "Die GroupID_A bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupIdA, claraDocA.getGroupId(), "Die GroupID_A bei Clara muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupIdA, davidDocA.getGroupId(), "Die GroupID_A bei David muss mit der von Alice übereinstimmen.");
+
+        Assertions.assertArrayEquals(groupIdB, bobDocB.getGroupId(), "Die GroupID_B bei Bob muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupIdB, claraDocB.getGroupId(), "Die GroupID_B bei Clara muss mit der von Alice übereinstimmen.");
+        Assertions.assertArrayEquals(groupIdB, davidDocB.getGroupId(), "Die GroupID_B bei David muss mit der von Alice übereinstimmen.");
+
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, aliceDocA.getGroupDocState(), "Alice Group Document A is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, bobDocA.getGroupDocState(), "Bobs Group Document A is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, claraDocA.getGroupDocState(), "Claras Group Document A is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, davidDocA.getGroupDocState(), "Davids Group Document A is not SIGNED_BY_ALL");
+
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, aliceDocB.getGroupDocState(), "Alice Group Document B is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, bobDocB.getGroupDocState(), "Bobs Group Document B is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, claraDocB.getGroupDocState(), "Claras Group Document B is not SIGNED_BY_ALL");
+        Assertions.assertEquals(GroupSignings.SIGNED_BY_ALL, davidDocB.getGroupDocState(), "Davids Group Document B is not SIGNED_BY_ALL");
+
+        Assertions
+                .assertEquals(4,
+                        aliceDocA.getCurrentMembers().size(),
+                        "Alice docsA member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        bobDocA.getCurrentMembers().size(),
+                        "Bob docsA member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        claraDocA.getCurrentMembers().size(),
+                        "Clara docsA member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        davidDocA.getCurrentMembers().size(),
+                        "David docsA member count is not correct");
+
+        Assertions
+                .assertEquals(4,
+                        aliceDocB.getCurrentMembers().size(),
+                        "Alice docsB member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        bobDocB.getCurrentMembers().size(),
+                        "Bob docsB member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        claraDocB.getCurrentMembers().size(),
+                        "Clara docsB member count is not correct");
+        Assertions
+                .assertEquals(4,
+                        davidDocB.getCurrentMembers().size(),
+                        "David docsB member count is not correct");
+
+        byte[] aliceSignatureA = aliceDocA.getCurrentMembers().get(ALICE_ID);
+        byte[] bobSignatureA = bobDocA.getCurrentMembers().get(BOB_ID);
+        byte[] claraSignatureA = claraDocA.getCurrentMembers().get(CLARA_ID);
+        byte[] davidSignatureA = davidDocA.getCurrentMembers().get(DAVID_ID);
+
+        byte[] aliceSignatureB = aliceDocB.getCurrentMembers().get(ALICE_ID);
+        byte[] bobSignatureB = bobDocB.getCurrentMembers().get(BOB_ID);
+        byte[] claraSignatureB = claraDocB.getCurrentMembers().get(CLARA_ID);
+        byte[] davidSignatureB = davidDocB.getCurrentMembers().get(DAVID_ID);
+
+        boolean verifiedAliceSigA = ASAPCryptoAlgorithms.verify(groupIdA, aliceSignatureA, ALICE_ID,
+                ((SharkPKIComponent) aliceSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedBobSigA = ASAPCryptoAlgorithms.verify(groupIdA, bobSignatureA, BOB_ID,
+                ((SharkPKIComponent) bobSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedClaraSigA = ASAPCryptoAlgorithms.verify(groupIdA, claraSignatureA, CLARA_ID,
+                ((SharkPKIComponent) claraSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedDavidSigA = ASAPCryptoAlgorithms.verify(groupIdA, davidSignatureA, DAVID_ID,
+                ((SharkPKIComponent) davidSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        boolean verifiedAliceSigB = ASAPCryptoAlgorithms.verify(groupIdB, aliceSignatureB, ALICE_ID,
+                ((SharkPKIComponent) aliceSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedBobSigB = ASAPCryptoAlgorithms.verify(groupIdB, bobSignatureB, BOB_ID,
+                ((SharkPKIComponent) bobSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedClaraSigB = ASAPCryptoAlgorithms.verify(groupIdB, claraSignatureB, CLARA_ID,
+                ((SharkPKIComponent) claraSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+        boolean verifiedDavidSigB = ASAPCryptoAlgorithms.verify(groupIdB, davidSignatureB, DAVID_ID,
+                ((SharkPKIComponent) davidSharkPeer.getComponent(SharkPKIComponent.class)).getASAPKeyStore());
+
+        Assertions.assertTrue(verifiedAliceSigA, "Alice Signatur A ist ungültig");
+        Assertions.assertTrue(verifiedBobSigA, "Bob Signatur A ist ungültig");
+        Assertions.assertTrue(verifiedClaraSigA, "Clara Signatur A ist ungültig");
+        Assertions.assertTrue(verifiedDavidSigA, "David Signatur A ist ungültig");
+
+        Assertions.assertTrue(verifiedAliceSigB, "Alice Signatur B ist ungültig");
+        Assertions.assertTrue(verifiedBobSigB, "Bob Signatur B ist ungültig");
+        Assertions.assertTrue(verifiedClaraSigB, "Clara Signatur B ist ungültig");
+        Assertions.assertTrue(verifiedDavidSigB, "David Signatur B ist ungültig");
+
+        Assertions.assertFalse(this.bobStorage.hasPendingInvites(),
+                "Bob should not have pending invited");
+        Assertions.assertFalse(this.claraStorage.hasPendingInvites(),
+                "Clara should not have pending invited");
+        Assertions.assertFalse(this.davidStorage.hasPendingInvites(),
+                "David should not have pending invited");
+    }
+
+    @Test
+    public void sendInvitationFor2GroupsFromDifferentPeers(){
+
+    }
 }

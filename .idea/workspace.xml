@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="addMember() in SharkGroupDocument.java bearbeitet, sodass nur noch Peers, die sich in der Whitelist befinden, einer Gruppe beitreten können.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2026_11_42_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_03_2026_11_42__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/currency/storage/SharkCurrencyStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/storage/SharkCurrencyStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyListenerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyListenerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyStorageImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyStorageImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkGroupInviteHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkGroupInviteHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SharkNewMemberHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SharkNewMemberHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/currencyGroupTests/CurrencyGroupTests.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M" />
@@ -85,6 +76,7 @@
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor": "Run",
     "JUnit.CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor": "Run",
+    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer.executor": "Run",
     "JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived.executor": "Run",
     "JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
     "JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted.executor": "Run",
@@ -127,7 +119,7 @@
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CurrencyGroupTests">
+  <component name="RunManager" selected="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer">
     <configuration name="CurrencyGroupTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -139,22 +131,6 @@
       <option name="PACKAGE_NAME" value="currencyGroupTests" />
       <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ASAPJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="currencyGroupTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="currencyGroupTests" />
-      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
-      <option name="METHOD_NAME" value="aliceCreatesAGroupWithLocalCurrency" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -191,6 +167,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ASAPJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="currencyGroupTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="currencyGroupTests" />
+      <option name="MAIN_CLASS_NAME" value="currencyGroupTests.CurrencyGroupTests" />
+      <option name="METHOD_NAME" value="sendInvitationFor2GroupsFromSamePeer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CurrencyGroupTests.successfullGroupInviteSendAndReceived" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ASAPJava" />
       <extension name="coverage">
@@ -209,11 +201,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer" />
         <item itemvalue="JUnit.CurrencyGroupTests" />
         <item itemvalue="JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3" />
         <item itemvalue="JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived" />
         <item itemvalue="JUnit.CurrencyGroupTests.establishGroupWithMemberThatIsNotWhitelisted" />
-        <item itemvalue="JUnit.CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency" />
       </list>
     </recent_temporary>
   </component>
