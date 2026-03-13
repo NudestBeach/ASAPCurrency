@@ -2,6 +2,7 @@ package currency.api;
 
 
 import currency.classes.SharkCurrency;
+import currency.classes.SharkPromise;
 import currency.storage.SharkCurrencyStorage;
 import exepections.SharkCurrencyException;
 import exepections.SharkPromiseException;
@@ -141,11 +142,11 @@ public interface SharkCurrencyComponent extends SharkComponent {
      * @return promiseId id of created promise
      */
     CharSequence createPromise(int amount,
-                       SharkCurrency referenceValue,
-                       byte[] groupId,
-                       CharSequence creditorId,
-                       CharSequence debtorId,
-                       boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, SharkCurrencyException;
+                               SharkCurrency referenceValue,
+                               byte[] groupId,
+                               CharSequence creditorId,
+                               CharSequence debtorId,
+                               boolean asCreditor) throws ASAPSecurityException, SharkPromiseException, IOException, SharkCurrencyException;
 
 
     /**

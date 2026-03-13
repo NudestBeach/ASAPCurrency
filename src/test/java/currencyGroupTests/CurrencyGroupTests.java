@@ -10,13 +10,12 @@ import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 
 import net.sharksystem.pki.SharkPKIComponent;
 
-import org.apache.commons.io.FileUtils;
+
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.*;
 import testHelper.AsapCurrencyTestHelper;
 
 
-import java.io.File;
 import java.io.IOException;
 
 import java.util.*;

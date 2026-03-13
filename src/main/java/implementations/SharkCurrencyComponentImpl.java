@@ -134,6 +134,8 @@ public class SharkCurrencyComponentImpl
                     true,
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_DEB);
+            //TODO is new need to be testest
+            this.sharkCurrencyStorage.addSharkPromiseToStorage(promise);
             return promise.getPromiseID();
         } else {
             SharkPromiseManagement
@@ -145,6 +147,8 @@ public class SharkCurrencyComponentImpl
                     true,
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED);
+            //TODO is new need to be testest
+            this.sharkCurrencyStorage.addSharkPromiseToStorage(promise);
             return promise.getPromiseID();
         }
     }

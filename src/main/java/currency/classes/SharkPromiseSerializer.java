@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class SharkPromiseSerializer {
 
-    static byte [] serializePromise(SharkPromise promise, CharSequence sender,
+    public static byte [] serializePromise(SharkPromise promise, CharSequence sender,
                                        Set<CharSequence> receiver,
                                        boolean sign, boolean encrypt,
                                        ASAPKeyStore asapKeyStore, boolean excludeSignature,
@@ -88,7 +88,7 @@ public class SharkPromiseSerializer {
         return baos.toByteArray();
     }
 
-    public static SharkPromise deserialzePromise(byte [] asapMessage, ASAPKeyStore asapKeyStore) throws IOException, ASAPException {
+    public static SharkPromise deserializePromise(byte [] asapMessage, ASAPKeyStore asapKeyStore) throws IOException, ASAPException {
         ByteArrayInputStream bais = new ByteArrayInputStream(asapMessage);
         byte flags = ASAPSerialization.readByte(bais);
         byte[] tmpMessage = ASAPSerialization.readByteArray(bais);
@@ -152,7 +152,7 @@ public class SharkPromiseSerializer {
         return byteArrayToSharkPromise(snMessage);
     }
 
-    static byte[] sharkPromiseToByteArray(SharkPromise promise, boolean excludeSignature) {
+    public static byte[] sharkPromiseToByteArray(SharkPromise promise, boolean excludeSignature) {
             byte[] byteArray = null;
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream out = null;
@@ -173,7 +173,7 @@ public class SharkPromiseSerializer {
             return byteArray;
     }
 
-    static SharkPromise byteArrayToSharkPromise(byte [] byteArray) {
+    public static SharkPromise byteArrayToSharkPromise(byte [] byteArray) {
         SharkPromise bond = null;
         ByteArrayInputStream bis = new ByteArrayInputStream(byteArray);
         ObjectInput in = null;

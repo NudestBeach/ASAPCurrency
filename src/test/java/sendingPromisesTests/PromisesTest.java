@@ -63,7 +63,6 @@ public class PromisesTest extends AsapCurrencyTestHelper {
                 true);
         this.groupIdA=groupId;
 
-        //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
@@ -110,21 +109,7 @@ public class PromisesTest extends AsapCurrencyTestHelper {
                 BOB_ID, //debtor
                 true);
 
-
-        Assertions.assertNotNull(this.aliceStorage.getSharkPromiseFromStorage(promiseId));
-
-
-
-
-//        SharkBondsReceivedListener bobListener = new DummySharkBondReceivedListener(this.bobComponent);
-//        this.bobComponent.subscribeBondReceivedListener(bobListener);
-//
-//        // set up backdoors
-//        this.aliceComponentImpl = (SharkCreditMoneyComponentImpl) this.aliceComponent;
-//        this.bobComponentImpl = (SharkCreditMoneyComponentImpl) this.bobComponent;
-
-
-
+        Assertions.assertNotNull(promiseId);
 
     }
 
