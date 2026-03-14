@@ -5,13 +5,17 @@ import net.sharksystem.asap.ASAPException;
 import net.sharksystem.utils.SerializationHelper;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
  *
  */
-public class SharkLocalCurrency implements SharkCurrency {
+public class SharkLocalCurrency implements SharkCurrency, Serializable {
+
+    private static final long serialVersionUID = 2L;
+
     private boolean globalLimit;
     private String currencyName;
     private String specification;

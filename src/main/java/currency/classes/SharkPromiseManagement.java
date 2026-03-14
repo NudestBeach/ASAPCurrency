@@ -19,7 +19,7 @@ public class SharkPromiseManagement {
                     + ") doesn't match the creditor's id ("
                     + promise.getCreditorID() + ")");
         } else {
-            promise.setDebtorSignature(signPromise(asapKeyStore, promise, true));
+            promise.setCreditorSignature(signPromise(asapKeyStore, promise, true));
         }
     }
 

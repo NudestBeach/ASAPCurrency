@@ -59,6 +59,10 @@ public interface SharkPromise {
 
     long getExpirationDate();
 
+    SharkPromiseSignings getSigningStateOfPromise();
+
+    void setSigningStateOfPromise(SharkPromiseSignings newState);
+
     void setAllowedToChangeDebtor(boolean on) throws SharkPromiseException;
     void setAllowedToChangeCreditor(boolean on) throws SharkPromiseException;
 

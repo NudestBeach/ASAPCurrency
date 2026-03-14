@@ -148,7 +148,6 @@ public class CurrencyGroupTests extends AsapCurrencyTestHelper {
                 false,
                 true);
 
-        //Fehler behoben, dass es die uri nicht gefunden hat weil wir zu schnell waren
         Thread.sleep(2000);
 
         // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder

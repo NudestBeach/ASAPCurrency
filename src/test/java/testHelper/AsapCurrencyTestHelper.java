@@ -2,7 +2,10 @@ package testHelper;
 
 import currency.api.SharkCurrencyComponent;
 import currency.api.SharkCurrencyComponentFactory;
+import currency.classes.SharkCurrency;
+import currency.classes.SharkLocalCurrency;
 import currency.storage.SharkCurrencyStorage;
+import exepections.SharkCurrencyException;
 import implementations.SharkCurrencyListenerImpl;
 import listener.SharkCurrencyListenerNEW;
 import net.sharksystem.SharkException;
@@ -14,6 +17,7 @@ import net.sharksystem.testhelper.SharkPeerTestHelper;
 import implementations.SharkCurrencyComponentImpl;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static net.sharksystem.utils.testsupport.TestConstants.ROOT_DIRECTORY;
 
@@ -179,6 +183,40 @@ public class AsapCurrencyTestHelper extends SharkPeerTestHelper {
         SharkCurrencyListenerNEW davidListener = new SharkCurrencyListenerImpl(this.davidCurrencyComponent);
         this.davidCurrencyComponent.subscribeSharkCurrencyListener(davidListener);
         this.davidStorage=this.davidCurrencyComponent.getSharkCurrencyStorage();
+    }
+
+    protected byte[] aliceCreatesGroupWithBobSetUp() throws SharkException, InterruptedException, IOException {
+
+        setUpScenarioEstablishCurrency_2_BobAndAlice();
+        Thread.sleep(500);
+
+        CharSequence currencyName = "AliceTalerForPromiseTest_A";
+        SharkCurrency dummyCurrency = new SharkLocalCurrency(
+                false,
+                currencyName.toString(),
+                "A test Currency"
+        );
+
+        ArrayList<CharSequence> whitelist = new ArrayList<>();
+        whitelist.add(BOB_ID);
+
+        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
+                dummyCurrency,
+                whitelist,
+                false,
+                true);
+
+        Thread.sleep(1000);
+        this.aliceCurrencyComponent
+                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        Thread.sleep(1000);
+        this.bobImpl.acceptInviteAndSign(currencyName);
+        Thread.sleep(1000);
+        this.runEncounter(this.bobSharkPeer,this.aliceSharkPeer,true);
+        Thread.sleep(1000);
+
+        return groupId;
     }
 
     protected static void stopPeerSafely(SharkPeer peer) {

@@ -1,22 +1,13 @@
 package sendingPromisesTests;
 
-import currency.classes.SharkCurrency;
-import currency.classes.SharkLocalCurrency;
-import currency.classes.SharkPromise;
-import currencyGroupTests.CurrencyGroupTests;
+import currency.classes.*;
 import net.sharksystem.SharkException;
 import net.sharksystem.asap.pki.CredentialMessageInMemo;
 import net.sharksystem.pki.SharkPKIComponent;
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import testHelper.AsapCurrencyTestHelper;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class PromisesTest extends AsapCurrencyTestHelper {
 
@@ -24,54 +15,14 @@ public class PromisesTest extends AsapCurrencyTestHelper {
         super(PromisesTest.class.getSimpleName());
     }
 
-
-
-    byte[] groupIdA = null;
-
     @BeforeEach
-    void setUp() throws SharkException, InterruptedException, IOException {
-        String testClassName = CurrencyGroupTests.class.getSimpleName();
-        String[] peerNames = {ALICE_NAME, BOB_NAME, CLARA_NAME, DAVID_NAME};
-        for (String peer : peerNames) {
-            File peerFolder = new File("testResultsRootFolder/" + testClassName + "/" + peer);
-            if (peerFolder.exists()) {
-                try {
-                    FileUtils.cleanDirectory(peerFolder);
-                } catch (IOException ignored) {}
-            }
-        }
-        //Establish Group with 2 Users
-
-        this.setUpScenarioEstablishCurrency_2_BobAndAlice();
-
-
-        CharSequence currencyName = "CurrencyForPromiseTests";
-        SharkCurrency dummyCurrency = new SharkLocalCurrency(
-                false,
-                currencyName.toString(),
-                "A test Currency"
+    void setUp(TestInfo testInfo) {
+        String testName = testInfo.getDisplayName()
+                .replaceAll("[^a-zA-Z0-9]", "_");
+        this.initSubRootFolder(
+                PromisesTest.class.getSimpleName(),
+                testName
         );
-
-        // 2. Alice creates a new Group and whitelists Bob
-        ArrayList<CharSequence> whitelist = new ArrayList<>();
-        whitelist.add(BOB_ID);
-
-        byte[] groupId = this.aliceCurrencyComponent.establishGroup(
-                dummyCurrency,
-                whitelist,
-                false,
-                true);
-        this.groupIdA=groupId;
-
-        Thread.sleep(2000);
-
-        // 3. Encounter including message exchange starts, Alice will send a group invite to Bob the builder
-        this.aliceCurrencyComponent
-                .invitePeerToGroup(groupId, "Hi Bob, join my group!", BOB_ID);
-
-        // 4. Encounter
-
-
     }
 
     @AfterEach
@@ -83,13 +34,10 @@ public class PromisesTest extends AsapCurrencyTestHelper {
     }
 
     @Test
-    public void createPromise() throws SharkException, IOException, InterruptedException {
+    public void createPromiseAndSendToBob() throws SharkException, IOException, InterruptedException {
 
-        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
-        Thread.sleep(2000);
-
-
-
+        // Alice created a group with bob in it (he accepted). This method returns the groupID
+        byte[] groupId = this.aliceCreatesGroupWithBobSetUp();
 
         SharkPKIComponent alicePKI = (SharkPKIComponent) this.aliceSharkPeer.getComponent(SharkPKIComponent.class);
         SharkPKIComponent bobPKI = (SharkPKIComponent) this.bobSharkPeer.getComponent(SharkPKIComponent.class);
@@ -103,14 +51,34 @@ public class PromisesTest extends AsapCurrencyTestHelper {
         alicePKI.acceptAndSignCredential(bobCredentialMessage);
 
         CharSequence promiseId = this.aliceCurrencyComponent.createPromise(2,
-                this.aliceStorage.getGroupDocument(groupIdA).getAssignedCurrency(),
-                groupIdA,
+                this.aliceStorage.getGroupDocument(groupId).getAssignedCurrency(),
+                groupId,
                 ALICE_ID, //creditor
                 BOB_ID, //debtor
                 true);
 
-        Assertions.assertNotNull(promiseId);
+        Thread.sleep(200);
+        this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
+        Thread.sleep(200);
 
+        //we are also testing for bobs side because create triggers sending a promise
+        SharkPromise alicePromise = this.aliceStorage.getSharkSignedPromiseFromStorage(promiseId);
+        SharkPromise bobPromise = this.bobStorage.getSharkSignedPromiseFromStorage(promiseId);
+
+
+        Assertions.assertNotNull(alicePromise);
+        Assertions.assertNotNull(bobPromise);
+        Assertions.assertNotNull(promiseId);
+        Assertions.assertEquals(promiseId, alicePromise.getPromiseID());
+        Assertions.assertEquals(promiseId, bobPromise.getPromiseID());
+        Assertions.assertEquals(SharkPromiseSignings.SIGNED_BY_CREDITOR
+                ,alicePromise.getSigningStateOfPromise());
+        Assertions.assertEquals(SharkPromiseSignings.SIGNED_BY_CREDITOR
+                ,bobPromise.getSigningStateOfPromise());
+        Assertions.assertNull(alicePromise.getDebtorSignature());
+        Assertions.assertNotNull(alicePromise.getCreditorSignature());
+        Assertions.assertNull(bobPromise.getDebtorSignature());
+        Assertions.assertNotNull(bobPromise.getCreditorSignature());
     }
 
     @Test

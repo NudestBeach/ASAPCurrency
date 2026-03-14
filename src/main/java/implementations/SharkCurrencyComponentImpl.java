@@ -1,17 +1,12 @@
 package implementations;
 
-import currency.classes.SharkInMemoPromise;
-import currency.classes.SharkPromise;
-import currency.classes.SharkPromiseManagement;
+import currency.classes.*;
 import currency.storage.SharkCurrencyStorage;
 import exepections.SharkPromiseException;
 import group.SharkGroupDocument;
 import currency.api.SharkCurrencyComponent;
-import currency.classes.SharkCurrency;
 import group.GroupSignings;
 import exepections.SharkCurrencyException;
-import listener.SharkCurrencyListener;
-import listener.SharkCurrencyListenerManager;
 import listener.SharkCurrencyListenerManagerNEW;
 import listener.SharkCurrencyListenerNEW;
 import net.sharksystem.*;
@@ -20,8 +15,6 @@ import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.asap.crypto.ASAPKeyStore;
 import net.sharksystem.pki.SharkPKIComponent;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -127,6 +120,7 @@ public class SharkCurrencyComponentImpl
         if(asCreditor) {
             SharkPromiseManagement
                     .signAsCreditor(keystore, promise);
+            promise.setSigningStateOfPromise(SharkPromiseSignings.SIGNED_BY_CREDITOR);
             receiver.add(promise.getDebtorID());
             this.sendPromise(currencyName,
                     promise.getCreditorID(),
@@ -135,11 +129,12 @@ public class SharkCurrencyComponentImpl
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_DEB);
             //TODO is new need to be testest
-            this.sharkCurrencyStorage.addSharkPromiseToStorage(promise);
+            this.sharkCurrencyStorage.addSharkPendingPromiseToStorage(promise);
             return promise.getPromiseID();
         } else {
             SharkPromiseManagement
                     .signAsDebtor(keystore, promise);
+            promise.setSigningStateOfPromise(SharkPromiseSignings.SIGNED_BY_DEBITOR);
             receiver.add(promise.getCreditorID());
             this.sendPromise(currencyName,
                     promise.getDebtorID(),
@@ -148,7 +143,7 @@ public class SharkCurrencyComponentImpl
                     true,
                     SharkPromise.SHARK_PROMISE_ASK_FOR_SIGNATURE_AS_CRED);
             //TODO is new need to be testest
-            this.sharkCurrencyStorage.addSharkPromiseToStorage(promise);
+            this.sharkCurrencyStorage.addSharkPendingPromiseToStorage(promise);
             return promise.getPromiseID();
         }
     }
@@ -220,89 +215,6 @@ public class SharkCurrencyComponentImpl
         }
     }
 
-    // Hilfsmethode zum robusten Parsen
-    public static SharkGroupDocument parseSharkGroupDocument(byte[] data) {
-        if (data == null || data.length == 0) return null;
-
-        try {
-            // Versuch 1: Direktes Parsen (für nackte Dokumente im Storage)
-            return SharkGroupDocument.fromByte(data);
-        } catch (Exception e) {
-            // Versuch 2: Parsen eines gewrappten Pakets (aus invitePeerToGroup)
-            try (ByteArrayInputStream bais = new ByteArrayInputStream(data);
-                 DataInputStream dis = new DataInputStream(bais)) {
-
-                dis.readUTF(); // Überspringe die 'optionalMessage'
-                int docLength = dis.readInt(); // Lies die Länge des Dokuments
-
-                if (docLength > 0 && bais.available() >= docLength) {
-                    byte[] docBytes = new byte[docLength];
-                    dis.readFully(docBytes);
-                    return SharkGroupDocument.fromByte(docBytes);
-                }
-            } catch (Exception innerEx) {
-            }
-        }
-        return null;
-    }
-
-    public SharkGroupDocument getSharkGroupDocument(CharSequence currencyNameUri) throws ASAPException {
-
-        CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameUri.toString();
-
-        try {
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            ASAPChannel channel = storage.getChannel(groupUri);
-            ASAPMessages messages = channel.getMessages();
-            if (messages.size() == 0) {
-                System.err.println("DEBUG: A No messages found in channel " + groupUri);
-                return null;
-            }
-            SharkGroupDocument base = null;
-            for (int i = 0; i < messages.size(); i++) {
-                try {
-                    SharkGroupDocument doc = parseSharkGroupDocument(
-                            messages.getMessage(i, true));
-                    if (doc == null) continue;
-
-                    if (base == null) {
-                        base = doc;
-                    } else {
-                        for (Map.Entry<String, byte[]> entry :
-                                doc.getCurrentMembers().entrySet()) {
-                            base.addMember(entry.getKey(), entry.getValue());
-                        }
-                    }
-                } catch (Exception e) {
-                }
-            }
-            System.out.println("DEBUG: " + this.asapPeer.getPeerID() + " messages size: " + messages.size() + " Group size: " + base.getCurrentMembers().size());
-            return base;
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        } catch (ASAPException e){
-            throw new ASAPException(e);
-        }
-    }
-
-     public byte[] getSharkGroupDocumentSerialized(CharSequence currencyNameUri) {
-         CharSequence groupUri = SharkGroupDocument.DOCUMENT_FORMAT + currencyNameUri;
-
-         try {
-             ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-             ASAPChannel channel = storage.getChannel(groupUri);
-             ASAPMessages messages = channel.getMessages();
-             if(messages.size() == 0) {
-                 System.err.println("DEBUG: B No messages found in channel " + groupUri);
-                 return null;
-             }
-             return messages.getMessage(0, false);
-
-         } catch (IOException | ASAPException e) {
-             throw new RuntimeException(e);
-         }
-     }
-
     private void checkComponentRunning() throws SharkCurrencyException {
         if(this.asapPeer == null || this.sharkPKIComponent == null)
             throw new SharkCurrencyException("peer not started and/or pki not initialized");
@@ -348,37 +260,6 @@ public class SharkCurrencyComponentImpl
             this.notifySharkCurrencyListener(uri);
         } catch (NullPointerException e) {
             e.printStackTrace();
-        }
-    }
-
-    public String receivedNewMemberNoti(ASAPMessages message, String sender, SharkCurrencyComponent scc) {
-        try {
-            System.out.println("DEBUG: I "+this.asapPeer.getPeerID()+" received a new message from: " + sender + " message size is: " + message.size());
-            int lastindex = message.size()-1;
-            byte[] messageData = message.getMessage(lastindex, true);
-
-            //--------Read all data from the message ------------------------
-            ByteArrayInputStream bais = new ByteArrayInputStream(messageData);
-            DataInputStream dis = new DataInputStream(bais);
-            String peerID = dis.readUTF();
-            String currencyName = dis.readUTF();
-            int sigLength = dis.readInt();
-            byte[] signature = new byte[sigLength];
-            dis.readFully(signature);
-            //---------------------------------------------------------------
-            CharSequence groupURI = SharkGroupDocument.DOCUMENT_FORMAT + currencyName;
-            ASAPStorage storage = this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
-            SharkGroupDocument doc = this.getSharkGroupDocument(currencyName);
-            System.out.println("DEBUG: VOR addMember - doc hat Members: " + doc.getCurrentMembers().keySet());
-            doc.addMember(peerID, signature);
-            System.out.println("DEBUG: NACH addMember - doc hat Members: " + doc.getCurrentMembers().keySet());
-            storage.add(groupURI, doc.sharkDocumentToByte());
-            System.out.println("Added"  + peerID + " to " + groupURI + " iam " + this.asapPeer.getPeerID() + " so member size is now: " + doc.getCurrentMembers());
-            return currencyName;
-        } catch (ASAPException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

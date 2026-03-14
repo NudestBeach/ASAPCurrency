@@ -11,7 +11,8 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
 
-    private final List<SharkPromise> sharkPromiseStore = new ArrayList<>();
+    private final Map<CharSequence, SharkPromise> sharkPromiseStorePending = new HashMap<>();
+    private final Map<CharSequence, SharkPromise> sharkPromiseStoreSigned = new HashMap<>();
     private final Map<String, SharkGroupDocument> pendingInvites = new HashMap<>();
     private final Map<String, SharkGroupDocument> groupDocuments = new HashMap<>();
 
@@ -60,23 +61,32 @@ public class SharkCurrencyStorageImpl implements SharkCurrencyStorage {
     }
 
     @Override
-    public void addSharkPromiseToStorage(SharkPromise promise) {
-        this.sharkPromiseStore.add(promise);
+    public void addSharkSignedPromiseToStorage(SharkPromise promise) {
+        CharSequence promiseId = promise.getPromiseID();
+        this.sharkPromiseStoreSigned.put(promiseId, promise);
     }
 
     @Override
-    public void removeSharkPromiseFromStorage(CharSequence promiseId) {
-        this.sharkPromiseStore.removeIf(promise ->
-                promise.getPromiseID().toString().equals(promiseId.toString()));
+    public void removeSharkSignedPromiseFromStorage(CharSequence promiseId) {
+        this.sharkPromiseStoreSigned.remove(promiseId);
     }
 
     @Override
-    public SharkPromise getSharkPromiseFromStorage(CharSequence promiseId) {
-        return this.sharkPromiseStore.stream()
-                .filter(promise ->
-                        promise.getPromiseID().toString().equals(promiseId.toString()))
-                .findFirst()
-                .orElse(null);
+    public SharkPromise getSharkSignedPromiseFromStorage(CharSequence promiseId) {
+        return this.sharkPromiseStoreSigned.get(promiseId);
+    }
+
+    public void addSharkPendingPromiseToStorage(SharkPromise promise) {
+        CharSequence promiseId = promise.getPromiseID();
+        this.sharkPromiseStorePending.put(promiseId, promise);
+    }
+
+    public void removeSharkPendingPromiseFromStorage(CharSequence promiseId) {
+        this.sharkPromiseStorePending.remove(promiseId);
+    }
+
+    public SharkPromise getSharkPendingPromiseFromStorage(CharSequence promiseId) {
+        return this.sharkPromiseStorePending.get(promiseId);
     }
 
     //this method is needed because of hashingf purposes

@@ -22,9 +22,14 @@ public interface SharkCurrencyStorage {
     SharkGroupDocument getPendingInvite(String currencyName);
     void removePendingInvite(String currencyName);
 
-    //PROMISE STORAGE METHODS
-    void addSharkPromiseToStorage(SharkPromise promise);
-    void removeSharkPromiseFromStorage(CharSequence promiseId);
-    SharkPromise getSharkPromiseFromStorage(CharSequence promiseId);
+    //FULLY SIGNED PROMISE STORAGE METHODS
+    void addSharkSignedPromiseToStorage(SharkPromise promise);
+    void removeSharkSignedPromiseFromStorage(CharSequence promiseId);
+    SharkPromise getSharkSignedPromiseFromStorage(CharSequence promiseId);
+
+    //PENDING PROMISE STORAGE METHODS
+    void addSharkPendingPromiseToStorage(SharkPromise promise);
+    void removeSharkPendingPromiseFromStorage(CharSequence promiseId);
+    SharkPromise getSharkPendingPromiseFromStorage(CharSequence promiseId);
 
 }

@@ -2,10 +2,13 @@ package currency.classes;
 
 import exepections.SharkPromiseException;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.UUID;
 
-public class SharkInMemoPromise implements SharkPromise {
+public class SharkInMemoPromise implements SharkPromise, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final int amount;
     private final SharkCurrency referenceValue;
@@ -15,6 +18,7 @@ public class SharkInMemoPromise implements SharkPromise {
     private CharSequence promiseID;
     private CharSequence debtorID, creditorID;
     private byte[] debtorSignature, creditorSignature;
+    private SharkPromiseSignings promiseSignings;
 
     public SharkInMemoPromise(SharkPromise promise) {
         this(promise.getPromiseID(), promise.getAmount(),
@@ -58,6 +62,7 @@ public class SharkInMemoPromise implements SharkPromise {
         this.debtorID=debtorID;
         this.creditorSignature=creditorSignature;
         this.debtorSignature=debtorSignature;
+        this.promiseSignings=SharkPromiseSignings.UNSIGNED;
     }
 
     @Override
@@ -133,6 +138,16 @@ public class SharkInMemoPromise implements SharkPromise {
     @Override
     public void setDebtorSignature(byte[] signature) {
         this.debtorSignature=signature;
+    }
+
+    @Override
+    public SharkPromiseSignings getSigningStateOfPromise() {
+        return this.promiseSignings;
+    }
+
+    @Override
+    public void setSigningStateOfPromise(SharkPromiseSignings newState) {
+        this.promiseSignings=newState;
     }
 
     /**
