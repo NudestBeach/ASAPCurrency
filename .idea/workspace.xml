@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f95f2a6-4fa0-40cd-8f01-d91fde6bc6cd" name="Changes" comment="sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline() in CurrencyGroupTests.java&#10;- Testet den Umgang mit 2 Einladungen, die von unterschiedlichen Peers ausgehen. &#10;- unterschiedliche Whitelisten für beide Gruppen&#10;- in beiden Gruppen lehnt jeweils ein Peer dem Beitritt ab">
-      <change afterPath="$PROJECT_DIR$/src/main/java/blockchain/wallet/WalletManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/blockchain/transaction/OfflineTXCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blockchain/BlockchainConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchain/BlockchainConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blockchain/wallet/WalletManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blockchain/wallet/WalletManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/currency/api/SharkCurrencyComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/implementations/SharkCurrencyComponentImpl.java" afterDir="false" />
     </list>
     <list id="f0d41ee6-f2dc-4ce6-998d-dcd71ebccd13" name="Changes by Eric M" comment="Changes by Eric M" />
     <list id="bd11a90a-041e-48d4-9005-5403c8c91059" name="Changes by kacper" comment="" />
@@ -68,51 +69,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
-    "JUnit.CurrencyGroupTests.establishGroupWithMemberThatIsNotWhitelisted.executor": "Run",
-    "JUnit.CurrencyGroupTests.executor": "Run",
-    "JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3.executor": "Run",
-    "JUnit.CurrencyGroupTests.receiveInviteListenerAcceptedTest.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeers.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline.executor": "Run",
-    "JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer.executor": "Run",
-    "JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived.executor": "Run",
-    "JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor": "Run",
-    "JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted.executor": "Run",
-    "JUnit.EstablishCurrencyTests.executor": "Run",
-    "JUnit.EstablishCurrencyTests.receiveInviteListenerAcceptedTest.executor": "Run",
-    "JUnit.EstablishCurrencyTests.receiveInviteListenerDeniedTest.executor": "Run",
-    "JUnit.EstablishCurrencyTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor": "Run",
-    "JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor": "Run",
-    "JUnit.SharkCurrencySerializationTest.executor": "Run",
-    "JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor": "Run",
-    "Maven.ASAPJava [clean].executor": "Run",
-    "Maven.ASAPJava [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "blockchain__anbindung",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Eric M/Documents/Projekt_Studium_WiSe2526/ASAPCurrency",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.CurrencyGroupTests.aliceCreatesAGroupWithLocalCurrency.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.establishGroupWithMemberThatIsNotWhitelisted.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.groupWith2WhitlistedButInvite3.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.receiveInviteListenerAcceptedTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAnd2AcceptAnd1Decline.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendGroupInviteTo3PeersAndAllAccept.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromDifferentPeersWithDifferentWhitelistAndDecline.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.sendInvitationFor2GroupsFromSamePeer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CurrencyGroupTests.successfullGroupInviteSendAndReceived.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.aliceCreatesAGroupWithLocalCurrency.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.establishGroupWithMemberThatIsNotWhitelisted.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.receiveInviteListenerAcceptedTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.receiveInviteListenerDeniedTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.sendGroupInviteToMoreThanOnePersonAndAccept.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.EstablishCurrencyTests.successfullGroupInviteSendAndReceived.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SharkCurrencySerializationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SharkCurrencySerializationTest.testSerializationAndDeserialization.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ASAPJava [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ASAPJava [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;blockchain__anbindung&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Eric M/Documents/Projekt_Studium_WiSe2526/ASAPCurrency&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\HTW\WI2526\ASAPProjekt\ASAPCurrency\lib" />

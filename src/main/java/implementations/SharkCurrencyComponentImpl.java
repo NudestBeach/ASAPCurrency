@@ -1,5 +1,6 @@
 package implementations;
 
+import blockchain.wallet.WalletManager;
 import currency.classes.SharkInMemoPromise;
 import currency.classes.SharkPromise;
 import currency.classes.SharkPromiseManagement;
@@ -400,5 +401,15 @@ public class SharkCurrencyComponentImpl
     public void subscribeSharkCurrencyListener(SharkCurrencyListenerNEW listener) {
         this.sharkCurrencyListenerNEW = listener;
         this.addSharkCurrencyListener(listener);
+    }
+
+    @Override
+    public String getWalletAddress() {
+        return "";
+    }
+
+    @Override
+    public WalletManager getWallet() {
+        return null;
     }
 }

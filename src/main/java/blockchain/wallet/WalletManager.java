@@ -12,13 +12,12 @@ import java.security.NoSuchProviderException;
 import java.util.Objects;
 
 /**
- * This is the Wallet for every ASAP Peer.
- *
+ * Manages the Ethereum Wallet for every single Peer
  */
 public class WalletManager {
     private Credentials credentials;
 
-    // Lädt oder generiert ein neues Wallet für einen Peer
+    // generates a new Ethereum wallet or loads an existing one
     public void initializeWallet(String password, File walletDirectory) throws InvalidAlgorithmParameterException, CipherException, NoSuchAlgorithmException, IOException, NoSuchProviderException {
         if(!walletDirectory.exists() || Objects.requireNonNull(walletDirectory.listFiles()).length == 0){
             String fileName = WalletUtils.generateNewWalletFile(password, walletDirectory);
