@@ -57,20 +57,27 @@ public class PromisesTest extends AsapCurrencyTestHelper {
                 BOB_ID, //debtor
                 true);
 
+
         Thread.sleep(200);
         this.runEncounter(this.aliceSharkPeer, this.bobSharkPeer, true);
         Thread.sleep(200);
 
         //we are also testing for bobs side because create triggers sending a promise
-        SharkPromise alicePromise = this.aliceStorage.getSharkSignedPromiseFromStorage(promiseId);
-        SharkPromise bobPromise = this.bobStorage.getSharkSignedPromiseFromStorage(promiseId);
+        System.out.println("\u001B[33m" + "Debug" + "\u001B[0m");
+        this.aliceStorage.getallShrkPromiesesFromStorage();
+        SharkPromise alicePromise = this.aliceStorage.getSharkPendingPromiseFromStorage(promiseId);
+
+
+        SharkPromise bobPromise = this.bobStorage.getSharkPendingPromiseFromStorage(promiseId);
+        System.out.println("\u001B[33m" + "Debug" + "\u001B[0m");
+
 
 
         Assertions.assertNotNull(alicePromise);
         Assertions.assertNotNull(bobPromise);
         Assertions.assertNotNull(promiseId);
-        Assertions.assertEquals(promiseId, alicePromise.getPromiseID());
-        Assertions.assertEquals(promiseId, bobPromise.getPromiseID());
+        Assertions.assertEquals(promiseId.toString(), alicePromise.getPromiseID().toString());
+        Assertions.assertEquals(promiseId.toString(), bobPromise.getPromiseID().toString());
         Assertions.assertEquals(SharkPromiseSignings.SIGNED_BY_CREDITOR
                 ,alicePromise.getSigningStateOfPromise());
         Assertions.assertEquals(SharkPromiseSignings.SIGNED_BY_CREDITOR

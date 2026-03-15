@@ -18,7 +18,6 @@ public class PromisSerializationTest {
     @Test
     public void serializeAndDeserializePromise() throws Exception {
         // 1. Arrange: Create the promise
-        // Assumption based on the code snippet: parameters are (Identifier/Creditor, Amount)
 
         SharkCurrency sharkCurrency = new SharkLocalCurrency(false, "USD", "USD");
 
@@ -40,8 +39,7 @@ public class PromisSerializationTest {
         // 5. Assert: Verify values after deserialization
         assertNotNull(deserializedPromise, "The deserialized object must not be null.");
         assertEquals(originalPromise.getAmount(), deserializedPromise.getAmount(), "The amount must match.");
-        // Optionally assert other getters, e.g.:
-        // assertEquals(originalPromise.getCreditorID(), deserializedPromise.getCreditorID());
+
 
     }
 

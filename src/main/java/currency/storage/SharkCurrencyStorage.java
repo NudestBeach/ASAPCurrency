@@ -30,6 +30,7 @@ public interface SharkCurrencyStorage {
     //PENDING PROMISE STORAGE METHODS
     void addSharkPendingPromiseToStorage(SharkPromise promise);
     void removeSharkPendingPromiseFromStorage(CharSequence promiseId);
+    void getallShrkPromiesesFromStorage();
     SharkPromise getSharkPendingPromiseFromStorage(CharSequence promiseId);
 
 }
