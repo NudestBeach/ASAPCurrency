@@ -20,12 +20,12 @@ import net.sharksystem.asap.*;
 import net.sharksystem.asap.crypto.ASAPCryptoAlgorithms;
 import net.sharksystem.asap.crypto.ASAPKeyStore;
 import net.sharksystem.pki.SharkPKIComponent;
+import org.web3j.crypto.CipherException;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.*;
 
 /**
@@ -40,6 +40,7 @@ public class SharkCurrencyComponentImpl
     private ASAPPeer asapPeer;
     private SharkCurrencyListenerNEW sharkCurrencyListenerNEW;
     private SharkCurrencyStorage sharkCurrencyStorage;
+    private WalletManager wallet;
 
     public SharkCurrencyComponentImpl(SharkPKIComponent pki) throws SharkException {
         this.sharkPKIComponent = pki;
@@ -212,7 +213,20 @@ public class SharkCurrencyComponentImpl
             this.asapPeer.getASAPStorage(SharkCurrencyComponent.CURRENCY_FORMAT);
             this.sharkCurrencyStorage = new SharkCurrencyStorageImpl();
             this.asapPeer.addASAPMessageReceivedListener(SharkCurrencyComponent.CURRENCY_FORMAT, this);
-        } catch (IOException e) {
+
+            // Initialize Ethereum Wallet for the Peer in Storage (using the Peer ID as password for now)
+            String peerStoragePath = "storage/" + asapPeer.getPeerID().toString() + "/wallet/";
+            File walletDir = new File(peerStoragePath);
+
+            if (!walletDir.exists()){
+                walletDir.mkdirs();
+            }
+            this.wallet = new WalletManager();
+            this.wallet.initializeWallet(asapPeer.getPeerID().toString(), walletDir);
+
+
+        } catch (IOException | InvalidAlgorithmParameterException | CipherException | NoSuchAlgorithmException |
+                 NoSuchProviderException e) {
             throw new SharkException("Could not initialize ASAP storage for currency", e);
         }
     }
@@ -405,11 +419,14 @@ public class SharkCurrencyComponentImpl
 
     @Override
     public String getWalletAddress() {
+        if (this.wallet != null){
+            return this.wallet.getMyAdress();
+        }
         return "";
     }
 
     @Override
     public WalletManager getWallet() {
-        return null;
+        return this.wallet;
     }
 }
